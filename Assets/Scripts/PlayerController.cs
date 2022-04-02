@@ -30,7 +30,11 @@ public class PlayerController : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         _rangedAttack = GetComponent<RangedAttack>();
         _meleeAttack = GetComponent<MeleeAttack>();
+        UnitManager.FriendlyUnits.Add(transform);
+
     }
+
+
 
     void Update()
     {
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         //RangedAttackEvent.RemoveAllListeners();
         //MeleeAttackEvent.RemoveAllListeners();
+        UnitManager.FriendlyUnits.Remove(transform);
         Instance = null;
     }
 

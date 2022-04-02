@@ -11,13 +11,13 @@ namespace LD50.Scripts.AI
 
         public SpriteRenderer Sprite;
 
-        protected Transform _player;
+        protected Transform _target;
 
         public Rigidbody2D RigidBody;
 
         protected virtual void Start()
         {       
-            _player = PlayerController.Instance?.transform;
+            _target = null;//PlayerController.Instance?.transform;
         }
 
         protected virtual void Update() 
