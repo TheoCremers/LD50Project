@@ -31,10 +31,8 @@ public class MeleeAttack : MonoBehaviour
     {
         if (!_isAttacking)
         {
-            Debug.Log("Melee Attack");
             _swingTransform.position = transform.position + (Vector3) direction * _swingOffset;
-            //_swingTransform.eulerAngles = Vector2.SignedAngle(Vector2.up, direction);
-            _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector3)direction);
+            _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
             StartCoroutine(AttackAnimation());
         }
     }
