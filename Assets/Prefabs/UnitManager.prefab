@@ -43,3 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83617739ecac5448be38d04c80f79d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _difficultyModifier: 1
+  _spawnFrequencyModifier: 1
+  _baseSpawnFrequency: 5
+  Enemies:
+  - {fileID: 763289381788512821, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+  - {fileID: 1844023191233683524, guid: 1e50082dc773ce9478404cb8f19a5488, type: 3}
+  - {fileID: 7696153516659998040, guid: e271bcef8c37c7648942661bca90fbb4, type: 3}
