@@ -10,8 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
 
-    public UnityEvent<Vector2> RangedAttackEvent;
-    public UnityEvent MeleeAttackEvent;
+    //public UnityEvent<Vector2> RangedAttackEvent;
+    //public UnityEvent MeleeAttackEvent;
+
+    private RangedAttack _rangedAttack = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Start ()
     {
+        _rangedAttack = GetComponent<RangedAttack>();
     }
 
     void Update()
@@ -40,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy ()
     {
-        RangedAttackEvent.RemoveAllListeners();
-        MeleeAttackEvent.RemoveAllListeners();
+        //RangedAttackEvent.RemoveAllListeners();
+        //MeleeAttackEvent.RemoveAllListeners();
     }
 
     private void OnDrawGizmos ()
@@ -78,7 +81,8 @@ public class PlayerController : MonoBehaviour
         {
             if (_attackCooldownRemaining <= 0f)
             {
-                RangedAttackEvent?.Invoke(_targetDirection);
+                //RangedAttackEvent?.Invoke(_targetDirection);
+                _rangedAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
