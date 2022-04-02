@@ -97,15 +97,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 763289381788512821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa3a23d8c78d2340bc751c4b18cfe6d, type: 3}
+  m_Script: {fileID: 11500000, guid: 664e1b13763456c44b3cd2a5a7f3f5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collisionAttack: 10
-  _moveSpeed: 2
-  _wanderSpeed: 1
-  _agroRange: 3
-  Sprite: {fileID: 763289381788512820}
-  RigidBody: {fileID: 5483993250682471302}
+  _moveSpeed: 0
+  Sprite: {fileID: 0}
+  RigidBody: {fileID: 0}
+  _agroRange: 0
+  _wanderSpeed: 0
 --- !u!114 &6097530358922775405
 MonoBehaviour:
   m_ObjectHideFlags: 0
