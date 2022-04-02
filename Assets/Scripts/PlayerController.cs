@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public static PlayerController Instance = null;
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
 
@@ -41,10 +38,16 @@ public class PlayerController : MonoBehaviour
         UpdateTimers();
     }
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
     private void OnDestroy ()
     {
         //RangedAttackEvent.RemoveAllListeners();
         //MeleeAttackEvent.RemoveAllListeners();
+        Instance = null;
     }
 
     private void OnDrawGizmos ()
