@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance = null;
+
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
 
@@ -31,19 +32,14 @@ public class PlayerController : MonoBehaviour
         _rangedAttack = GetComponent<RangedAttack>();
         _meleeAttack = GetComponent<MeleeAttack>();
         UnitManager.FriendlyUnits.Add(transform);
-
     }
-
 
 
     void Update()
     {
         GetInput();
-
         ApplyMovement();
-
         ApplyActions();
-
         UpdateTimers();
     }
 

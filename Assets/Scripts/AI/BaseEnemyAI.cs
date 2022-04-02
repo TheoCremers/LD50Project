@@ -23,6 +23,8 @@ namespace LD50.Scripts.AI
 
         protected float _seekTime;
 
+        private float _distanceToTarget;
+
         protected override void Start()
         {
             UnitManager.EnemyUnits.Add(transform);
@@ -39,12 +41,17 @@ namespace LD50.Scripts.AI
             if (_seekTime <= 0) 
             {
                 _target = UnitManager.GetClosestFriendly(transform.position);
+                _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+                // If enemy is too far away Destroy
+                DestroyIfTooFar(_state == EnemyCombatState.Idle ? 40f : 60f);
                 _seekTime = 0.2f;
             } 
             else 
             {
                 _seekTime -= Time.deltaTime;
             }
+
+
 
             switch (_state) 
             {
@@ -63,7 +70,7 @@ namespace LD50.Scripts.AI
 
         private void IdleBehavior() 
         {
-            if (_target != null && Vector2.Distance(_target.position, transform.position) < _agroRange)
+            if (_target != null && _distanceToTarget < _agroRange)
             {
                 _state = EnemyCombatState.Agro;
             }
@@ -91,6 +98,14 @@ namespace LD50.Scripts.AI
                     var randomSpeedMod = Random.Range(0.3f, 0.4f);
                     _moveDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
                 }
+            }
+        }
+
+        private void DestroyIfTooFar(float maxDistance)
+        {
+            if (_distanceToTarget > maxDistance) 
+            {
+                Destroy(gameObject);
             }
         }
 
