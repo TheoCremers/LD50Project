@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6097530358922775405}
   - component: {fileID: 5483993250682471302}
   - component: {fileID: 7047015894245355186}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: EnemyTheo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

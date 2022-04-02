@@ -8,6 +8,7 @@ namespace LD50.Scripts.AI
         Agro,
         Dead
     }
+
     public abstract class BaseEnemyAI : BaseUnitAI 
     {   
         [SerializeField]
@@ -20,8 +21,22 @@ namespace LD50.Scripts.AI
         protected float _wanderTime;
         protected float _standTime;
 
+        protected override void Start()
+        {
+            UnitManager.EnemyUnits.Add(transform);
+            base.Start();
+        }
+
+        protected virtual void OnDestroy()
+        {
+            UnitManager.EnemyUnits.Remove(transform);
+        }
+
         protected override void Update() 
         {
+            // todo: niet elke frame!
+            _target = UnitManager.GetClosestFriendly(transform.position);
+
             switch (_state) 
             {
                 case (EnemyCombatState.Idle): 
@@ -39,7 +54,7 @@ namespace LD50.Scripts.AI
 
         private void IdleBehavior() 
         {
-            if (_player != null && Vector2.Distance(_player.position, transform.position) < _agroRange)
+            if (_target != null && Vector2.Distance(_target.position, transform.position) < _agroRange)
             {
                 _state = EnemyCombatState.Agro;
             }

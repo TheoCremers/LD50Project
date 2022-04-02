@@ -32,8 +32,8 @@ namespace LD50.Scripts.AI
         protected override void AgroBehavior()
         {
             // TODO: Add other targets based on collider
-            var distanceToTarget = Vector2.Distance(_player.position, transform.position);
-            var relativeVector = _player.position - transform.position;
+            var distanceToTarget = Vector2.Distance(_target.position, transform.position);
+            var relativeVector = _target.position - transform.position;
             _moveDirection = relativeVector.normalized;
 
             // If too close to player, flee

@@ -6,7 +6,7 @@ namespace LD50.Scripts.AI
     {   
         protected override void AgroBehavior()
         {
-            var relativeVector = _player.position - transform.position;
+            var relativeVector = _target.position - transform.position;
             _moveDirection = relativeVector.normalized;
             RigidBody.velocity = _moveDirection * _wanderSpeed;
         }
