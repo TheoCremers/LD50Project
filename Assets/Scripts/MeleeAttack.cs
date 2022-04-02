@@ -11,6 +11,9 @@ public class MeleeAttack : MonoBehaviour
     private bool _isAttacking = false;
     private SpriteRenderer _swingSprite = null;
     private Collider2D _swingCollider = null;
+    private Swing _swing = null;
+
+    public int damage = 5;
 
     private void Start ()
     {
@@ -22,9 +25,11 @@ public class MeleeAttack : MonoBehaviour
 
         _swingSprite = _swingTransform.GetComponent<SpriteRenderer>();
         _swingCollider = _swingTransform.GetComponent<Collider2D>();
+        _swing = _swingTransform.GetComponent<Swing>();
 
         _swingCollider.enabled = false;
         _swingSprite.color = Color.clear;
+        _swing.DamagableHit.AddListener(OnDamagableHit);
     }
 
     public void Fire (Vector2 direction)
@@ -40,6 +45,7 @@ public class MeleeAttack : MonoBehaviour
     private void OnDestroy ()
     {
         StopAllCoroutines();
+        _swing.DamagableHit.RemoveListener(OnDamagableHit);
     }
 
     private IEnumerator AttackAnimation ()
@@ -64,5 +70,10 @@ public class MeleeAttack : MonoBehaviour
         _swingSprite.color = Color.clear;
         _swingCollider.enabled = false;
         _isAttacking = false;
+    }
+
+    private void OnDamagableHit (Damagable damagable)
+    {
+        damagable.Hit(damage);
     }
 }
