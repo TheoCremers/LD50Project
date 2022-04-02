@@ -31,9 +31,9 @@ public class Projectile : MonoBehaviour
         transform.Translate(Vector3.up * baseSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter2D (Collider2D collision)
     {
-        if (other.TryGetComponent(out Damagable damageable))
+        if (collision.TryGetComponent(out Damagable damageable))
         {
             damageable.Hit(baseDamage);
 

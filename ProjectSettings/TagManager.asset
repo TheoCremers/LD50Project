@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - PlayerProjectiles
-  - 
-  - 
-  - 
+  - Enemies
+  - EnemyProjectiles
+  - EnemyHitBoxes
   - 
   - 
   - 

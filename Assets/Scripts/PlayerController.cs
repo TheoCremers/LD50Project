@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     //public UnityEvent<Vector2> RangedAttackEvent;
     //public UnityEvent MeleeAttackEvent;
 
+    private Rigidbody2D _rigidBody = null;
     private RangedAttack _rangedAttack = null;
 
     private Vector2 _inputDirection = Vector2.zero;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start ()
     {
+        _rigidBody = GetComponent<Rigidbody2D>();
         _rangedAttack = GetComponent<RangedAttack>();
     }
 
@@ -73,9 +75,9 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement ()
     {
-        _velocity = _inputDirection * _baseMoveSpeed * _moveSpeedModifier * Time.deltaTime;
+        _velocity = _inputDirection * _baseMoveSpeed * _moveSpeedModifier;
 
-        transform.Translate(_velocity);
+        _rigidBody.velocity = _velocity;
     }
 
     private void ApplyActions()
