@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 9160835060194928128}
   - component: {fileID: 9160835060194928131}
   - component: {fileID: 6493591704664013269}
-  m_Layer: 7
-  m_Name: ProtoProjectile
+  m_Layer: 9
+  m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.59379387, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
