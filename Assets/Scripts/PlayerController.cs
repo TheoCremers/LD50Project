@@ -12,10 +12,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rigidBody = null;
     private RangedAttack _rangedAttack = null;
+    private MeleeAttack _meleeAttack = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
-    private bool _shootButtonDown = false;
+    private bool _attackButton1Down = false;
+    private bool _attackButton2Down = false;
 
     private Vector2 _velocity = Vector2.zero;
     private float _attackCooldownRemaining = 0f;
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _rangedAttack = GetComponent<RangedAttack>();
+        _meleeAttack = GetComponent<MeleeAttack>();
     }
 
     void Update()
@@ -70,7 +73,8 @@ public class PlayerController : MonoBehaviour
         mouseWorldPosition.z = 0f;
         _targetDirection = (mouseWorldPosition - transform.position).normalized;
 
-        _shootButtonDown = Input.GetAxis("Fire1") > 0f;
+        _attackButton1Down = Input.GetAxis("Fire1") > 0f;
+        _attackButton2Down = Input.GetAxis("Fire2") > 0f;
     }
 
     private void ApplyMovement ()
@@ -82,12 +86,22 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyActions()
     {
-        if (_shootButtonDown)
+        if (_attackButton1Down)
         {
             if (_attackCooldownRemaining <= 0f)
             {
                 //RangedAttackEvent?.Invoke(_targetDirection);
                 _rangedAttack.Fire(_targetDirection);
+                _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
+            }
+        }
+
+        if (_attackButton2Down)
+        {
+            if (_attackCooldownRemaining <= 0f)
+            {
+                //MeleeAttackEvent?.Invoke(_targetDirection);
+                _meleeAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
