@@ -308,8 +308,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -581923197
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e919f00806d342a44b2b03971582fa3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461436776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.714, y: 0.12, z: 1}
+  m_LocalPosition: {x: -1.714, y: 0.12, z: 0}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -348,6 +348,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 763289381788512820, guid: 9b3ca3eb485eb084bbd927a2382e6a75, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512820, guid: 9b3ca3eb485eb084bbd927a2382e6a75, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -462523183
+      objectReference: {fileID: 0}
     - target: {fileID: 763289381788512821, guid: 9b3ca3eb485eb084bbd927a2382e6a75, type: 3}
       propertyPath: m_Name
       value: EnemyTheo
@@ -366,7 +374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512823, guid: 9b3ca3eb485eb084bbd927a2382e6a75, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512823, guid: 9b3ca3eb485eb084bbd927a2382e6a75, type: 3}
       propertyPath: m_LocalRotation.w
@@ -485,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 378395780697002140, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4124551367453661928, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6408992311847277043, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: m_RootOrder
