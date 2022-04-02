@@ -31,7 +31,7 @@ namespace LD50.Scripts.AI
 
         protected override void AgroBehavior()
         {
-            // TODO: Add other targets based on collider
+            if (_target == null) return;
             var distanceToTarget = Vector2.Distance(_target.position, transform.position);
             var relativeVector = _target.position - transform.position;
             _moveDirection = relativeVector.normalized;
@@ -57,7 +57,7 @@ namespace LD50.Scripts.AI
             }
         }
 
-        private void UpdateTimers ()
+        private void UpdateTimers()
         {
             if (_attackCooldownRemaining > 0f)
             {

@@ -17,7 +17,7 @@ namespace LD50.Scripts.AI
 
         protected virtual void Start()
         {       
-            _target = null;//PlayerController.Instance?.transform;
+            _target = null;
         }
 
         protected virtual void Update() 

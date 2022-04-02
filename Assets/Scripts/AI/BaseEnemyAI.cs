@@ -21,6 +21,8 @@ namespace LD50.Scripts.AI
         protected float _wanderTime;
         protected float _standTime;
 
+        protected float _seekTime;
+
         protected override void Start()
         {
             UnitManager.EnemyUnits.Add(transform);
@@ -34,8 +36,15 @@ namespace LD50.Scripts.AI
 
         protected override void Update() 
         {
-            // todo: niet elke frame!
-            _target = UnitManager.GetClosestFriendly(transform.position);
+            if (_seekTime <= 0) 
+            {
+                _target = UnitManager.GetClosestFriendly(transform.position);
+                _seekTime = 0.2f;
+            } 
+            else 
+            {
+                _seekTime -= Time.deltaTime;
+            }
 
             switch (_state) 
             {
