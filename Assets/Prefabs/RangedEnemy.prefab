@@ -212,8 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 3
-  Sprite: {fileID: 0}
-  RigidBody: {fileID: 0}
+  Sprite: {fileID: 1088263239531244243}
+  RigidBody: {fileID: 5302699178439564129}
   _agroRange: 6
   _wanderSpeed: 2
   _deadzone: 4

@@ -1,51 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    private static float _timeOutTime = 3f;
-
-    public int baseDamage = 10;
-    public float baseSpeed = 7f;
-    public int piercingAmount = 0;
     public float directionAngle = 0f;
+    public int remainingPierces = 0;
+    public float creationTime;
 
-    private float _creationTime;
+    public UnityEvent<Damagable> DamagableHit;
 
-    private void Start ()
+    public void SetDirection (Vector2 direction) 
     {
-        _creationTime = Time.time;
-    }
-
-    private void Update ()
-    {
-        // timeout
-        if (Time.time - _creationTime > _timeOutTime)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        directionAngle = Vector2.SignedAngle(Vector2.up, direction);
         transform.eulerAngles = Vector3.forward * directionAngle;
-        transform.Translate(Vector3.up * baseSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
     {
-        if (collision.TryGetComponent(out Damagable damageable))
+        if (collision.TryGetComponent(out Damagable damagable))
         {
-            damageable.Hit(baseDamage);
+            DamagableHit?.Invoke(damagable);
 
-            if (piercingAmount > 0) { --piercingAmount; }
+            if (remainingPierces > 0) { --remainingPierces; }
             else
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
         else
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
