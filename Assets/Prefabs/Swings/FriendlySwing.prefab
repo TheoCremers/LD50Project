@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4587073825811670467}
   - component: {fileID: 8489917338368285331}
   m_Layer: 8
-  m_Name: ProtoSwing
+  m_Name: FriendlySwing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: a9716c16a44a94eed9b5c90fbf4d9bdd, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Color: {r: 0.38229796, g: 0.6698113, b: 0.45735633, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -112,4 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e35664bb1a17446b433edbdad84491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 10
+  DamagableHit:
+    m_PersistentCalls:
+      m_Calls: []
