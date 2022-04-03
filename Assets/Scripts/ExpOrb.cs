@@ -37,7 +37,7 @@ public class ExpOrb : MonoBehaviour
 
             if (relativeToPlayer.sqrMagnitude < 0.25f)
             {
-                PlayerController.Instance.levelingSystem.ChangeExperience(expValue);
+                PlayerController.Instance.LevelingSystem.ChangeExperience(expValue);
                 Destroy(gameObject);
             }
             else
