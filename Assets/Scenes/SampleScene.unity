@@ -180,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+--- !u!4 &289329350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6720105850583156340, guid: e3eee8b19f4c8374d9d35295129a6415, type: 3}
+  m_PrefabInstance: {fileID: 1917283385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &571292953 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4647972743652313894, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
@@ -529,7 +534,7 @@ Transform:
   - {fileID: 1457984505}
   - {fileID: 995332283}
   - {fileID: 1258144634}
-  - {fileID: 713091400}
+  - {fileID: 289329350}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
