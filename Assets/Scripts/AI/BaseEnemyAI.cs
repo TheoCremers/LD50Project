@@ -10,7 +10,10 @@ namespace LD50.Scripts.AI
     }
 
     public abstract class BaseEnemyAI : BaseUnitAI 
-    {   
+    {
+        [SerializeField]
+        private int ExpWorth = 88;
+
         [SerializeField]
         private float _agroRange;
 
@@ -108,6 +111,11 @@ namespace LD50.Scripts.AI
             {
                 Destroy(gameObject);
             }
+        }
+
+        public void DropExp()
+        {
+            ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, ExpWorth);
         }
 
         protected abstract void AgroBehavior();

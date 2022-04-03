@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -76,8 +77,16 @@ public class PlayerController : MonoBehaviour
         mouseWorldPosition.z = 0f;
         _targetDirection = (mouseWorldPosition - transform.position).normalized;
 
-        _attackButton1Down = Input.GetAxis("Fire1") > 0f;
-        _attackButton2Down = Input.GetAxis("Fire2") > 0f;
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            _attackButton1Down = Input.GetAxis("Fire1") > 0f;
+            _attackButton2Down = Input.GetAxis("Fire2") > 0f;
+        }
+        else
+        {
+            _attackButton1Down = false;
+            _attackButton2Down = false;
+        }
     }
 
     private void ApplyMovement ()

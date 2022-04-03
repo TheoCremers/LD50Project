@@ -77,6 +77,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2763604200322253591}
+        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
+        m_MethodName: DropExp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHealthChange:
     m_PersistentCalls:
       m_Calls:
@@ -214,6 +226,7 @@ MonoBehaviour:
   _moveSpeed: 3
   Sprite: {fileID: 1088263239531244243}
   RigidBody: {fileID: 5302699178439564129}
+  ExpWorth: 128
   _agroRange: 6
   _wanderSpeed: 2
   _deadzone: 3

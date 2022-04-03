@@ -25,7 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512821, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: m_Name
-      value: MeleeEnemyLv3 Variant
+      value: MeleeEnemyLv3
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+      propertyPath: ExpWorth
+      value: 168
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: _agroRange

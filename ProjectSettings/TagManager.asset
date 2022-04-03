@@ -44,6 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ExpOrbs
+    uniqueID: 838916701
+    locked: 0
   - name: Characters
     uniqueID: 3832444113
     locked: 0

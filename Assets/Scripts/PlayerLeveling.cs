@@ -19,6 +19,8 @@ public class PlayerLeveling : MonoBehaviour
         {
             AddUpgradeTile(item);
         }
+
+        UIManager.Instance.UpdateExpCounter(currentExperience);
     }
 
     public void ChangeExperience(int amount)
@@ -37,6 +39,7 @@ public class PlayerLeveling : MonoBehaviour
                 _upgradeTiles[i].DisableButton();
             }
         }
+        UIManager.Instance.UpdateExpCounter(currentExperience);
     }
 
     public void AddRangedDamage(int amount)
@@ -54,7 +57,7 @@ public class PlayerLeveling : MonoBehaviour
         PlayerController.Instance.meleeAttack.damage += amount;
     }
 
-    private void AddUpgradeTile (UpgradeOption option)
+    private UpgradeTile AddUpgradeTile (UpgradeOption option)
     {
         UpgradeTile newTile = Instantiate(_tileTemplate, UIManager.Instance.UpgradeContainer);
         _upgradeTiles.Add(newTile);
@@ -72,11 +75,12 @@ public class PlayerLeveling : MonoBehaviour
         {
             newTile.DisableButton();
         }
+        return newTile;
     }
 
     private void ApplyUpgrade(UpgradeOption option)
     {
-        currentExperience -= option.expCost;
+        ChangeExperience(-option.expCost);
 
         switch (option.type)
         {
@@ -93,10 +97,12 @@ public class PlayerLeveling : MonoBehaviour
                 break;
         }
 
+        int upgradeIndex = _currentUpgradeOptions.IndexOf(option);
         _currentUpgradeOptions.Remove(option);
+
         foreach (var item in option.unlocksOptions)
         {
-            _currentUpgradeOptions.Add(item);
+            _currentUpgradeOptions.Insert(upgradeIndex, item);
             AddUpgradeTile(item);
         }
     }

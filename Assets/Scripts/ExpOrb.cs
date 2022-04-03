@@ -5,13 +5,15 @@ using UnityEngine;
 public class ExpOrb : MonoBehaviour
 {
     public int expValue = 10;
+        
+    public Vector3 direction = Vector3.zero;
+    public float speed = 0f;
 
-    
-    private Vector3 _velocity = Vector3.zero;
-    private float _speed = 0f;
+    private float _lifetime = 0f;
 
     private static Transform playerTransform = null;
     private static float maxAcceleration = 5.0f;
+    private static float settleTime = 1f;
 
     private void Start ()
     {
@@ -23,18 +25,29 @@ public class ExpOrb : MonoBehaviour
 
     private void Update ()
     {
-        Vector3 relativeToPlayer = playerTransform.position - transform.position;
-        _speed = _speed + maxAcceleration * Time.deltaTime;
+        if (_lifetime < settleTime && speed > 0f)
+        {
+            speed = speed - maxAcceleration * Time.deltaTime;
+            if (speed < 0f) { speed = 0f; }
+        }
+        else 
+        {
+            Vector3 relativeToPlayer = playerTransform.position - transform.position;
+            speed = speed + maxAcceleration * Time.deltaTime;
 
-        if (relativeToPlayer.sqrMagnitude < 0.25f) 
-        {
-            PlayerController.Instance.levelingSystem.ChangeExperience(expValue);
-            Destroy(gameObject);
+            if (relativeToPlayer.sqrMagnitude < 0.25f)
+            {
+                PlayerController.Instance.levelingSystem.ChangeExperience(expValue);
+                Destroy(gameObject);
+            }
+            else
+            {
+                direction = relativeToPlayer.normalized;
+            }
         }
-        else
-        {
-            _velocity = relativeToPlayer.normalized * _speed;
-            transform.position += _velocity * Time.deltaTime;
-        }
+
+        transform.position += direction * speed * Time.deltaTime;
+
+        _lifetime += Time.deltaTime;
     }
 }
