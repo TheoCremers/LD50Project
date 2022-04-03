@@ -9,14 +9,16 @@ public class UIManager : MonoBehaviour
     public Transform UpgradeContainer = null;
     public TMP_Text DistanceIndicator;
     public TMP_Text ExpCounter;
+    public TMP_Text PauseText = null;
 
     [SerializeField] private GameObject _menuOverlay = null;
-    [SerializeField] private TMP_Text _pauseText = null;
 
     public bool Paused = false;
 
     public UnityEvent PauseEvent;
     public UnityEvent UnpauseEvent;
+
+    private bool _pauseTipShown = false;
 
     private void Awake ()
     {
@@ -28,7 +30,7 @@ public class UIManager : MonoBehaviour
         DistanceIndicator.text = "Distance: 0";
 
         _menuOverlay.SetActive(false);
-        _pauseText.enabled = false;
+        PauseText.enabled = false;
     }
 
     // Update is called once per frame
@@ -62,17 +64,27 @@ public class UIManager : MonoBehaviour
         if (Paused)
         {
             _menuOverlay.SetActive(true);
-            _pauseText.text = "Press 'space' to resume";
-            _pauseText.enabled = true;
+            PauseText.text = "Press 'space' to resume";
+            PauseText.enabled = true;
             Time.timeScale = 0f;
             PauseEvent?.Invoke();
         }
         else
         {
             _menuOverlay.SetActive(false);
-            _pauseText.enabled = false;
+            PauseText.enabled = false;
             Time.timeScale = 1f;
             UnpauseEvent?.Invoke();
+        }
+    }
+
+    public void ShowPauseTip ()
+    {
+        if (!_pauseTipShown)
+        {
+            PauseText.text = "Press 'space' to view upgrade details";
+            PauseText.enabled = true;
+            _pauseTipShown = true;
         }
     }
 }

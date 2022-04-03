@@ -534,9 +534,15 @@ MonoBehaviour:
   UpgradeContainer: {fileID: 8893623390310290153}
   DistanceIndicator: {fileID: 4647972743967171800}
   ExpCounter: {fileID: 4199236575135792215}
+  PauseText: {fileID: 183240333851538876}
   _menuOverlay: {fileID: 3006155205308378613}
-  _pauseText: {fileID: 183240333851538876}
   Paused: 0
+  PauseEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  UnpauseEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4647972745056635720
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,8 +891,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4290903819
+  m_fontColor: {r: 0.042452812, g: 1, b: 0.7586341, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -903,8 +909,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

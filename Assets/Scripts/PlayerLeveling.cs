@@ -31,12 +31,15 @@ public class PlayerLeveling : MonoBehaviour
     {
         currentExperience += amount;
 
+        bool anyUpgrade = false;
+
         // check if new upgrades become available
         foreach (var item in _upgradeTiles)
         {
             if (item.UpgradeOption.expCost <= currentExperience)
             {
                 item.EnableButton();
+                anyUpgrade = true;
             }
             else
             {
@@ -44,6 +47,11 @@ public class PlayerLeveling : MonoBehaviour
             }
         }
         UIManager.Instance.UpdateExpCounter(currentExperience);
+
+        if (anyUpgrade)
+        {
+            UIManager.Instance.ShowPauseTip();
+        }
     }
 
     public void AddRangedDamage(int amount)
