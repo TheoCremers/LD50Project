@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class Damagable : MonoBehaviour
 {
     [SerializeField]
-    private int _maxHealth = 20;
+    public int MaxHealth = 20;
     [SerializeField]
     private int _health;
 
@@ -14,8 +14,13 @@ public class Damagable : MonoBehaviour
         set 
         {
             _health = value;
-            OnHealthChange?.Invoke((float)Health / _maxHealth);
+            OnHealthChange?.Invoke((float)Health / MaxHealth);
         }
+    }
+
+    public float HealthPercentage
+    {
+        get { return ((float)Health / MaxHealth); }
     }
 
     public UnityEvent OnDeath;
@@ -24,7 +29,7 @@ public class Damagable : MonoBehaviour
 
     private void Start()
     {
-        Health = _maxHealth;
+        Health = MaxHealth;
     }
 
     internal void Hit(int damage) 
@@ -43,7 +48,7 @@ public class Damagable : MonoBehaviour
     public void Heal(int healPoints) 
     {
         Health += healPoints;
-        Health = Mathf.Clamp(Health, 0, _maxHealth);
+        Health = Mathf.Clamp(Health, 0, MaxHealth);
         OnHeal?.Invoke();
     }
 }

@@ -29,6 +29,16 @@ namespace LD50.Scripts.AI
             UpdateTimers();
         }
 
+        protected override void UpdateTargetting()
+        {
+            // There should always be a friendly target left, else it's game over
+            _target = UnitManager.GetClosestFriendly(transform.position);
+            _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+            // If enemy is too far away Destroy
+            DestroyIfTooFar(_state == EnemyCombatState.Idle ? 25f : 40f);
+            _seekTime = 0.2f;
+        }
+
         protected override void AgroBehavior()
         {
             if (_target == null) 
@@ -37,16 +47,16 @@ namespace LD50.Scripts.AI
                 _currentAgroRange = _agroRange;
                 return;
             }  
-            var distanceToTarget = Vector2.Distance(_target.position, transform.position);
+            //var distanceToTarget = Vector2.Distance(_target.position, transform.position);
             var relativeVector = _target.position - transform.position;
             _moveDirection = relativeVector.normalized;
 
             // If too close to player, flee
-            if (distanceToTarget < _deadzone) {
+            if (_distanceToTarget < _deadzone) {
                 RigidBody.velocity = -(_moveDirection * _moveSpeed);
             } 
             // If close enough to player, shoot
-            else if (distanceToTarget < _range)
+            else if (_distanceToTarget < _range)
             {
                 if (_attackCooldownRemaining <= 0f) 
                 {

@@ -18,7 +18,7 @@ namespace LD50.Scripts.AI
 
         protected float _seekTime;
 
-        private float _distanceToTarget;
+        protected float _distanceToTarget;
         private float _distanceToMaster;
 
         private Transform _master;
