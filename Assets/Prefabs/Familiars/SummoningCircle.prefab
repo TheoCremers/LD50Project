@@ -96,4 +96,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Familiar: {fileID: 763289381788512821, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
-  SummonTime: 2
+  SummonTime: 1.2

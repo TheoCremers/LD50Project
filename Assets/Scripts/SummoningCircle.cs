@@ -7,7 +7,7 @@ public class SummoningCircle : MonoBehaviour
 {
     public GameObject Familiar;
 
-    public float SummonTime = 2f;
+    public float SummonTime = 1.2f;
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class SummoningCircle : MonoBehaviour
         }
         else 
         {   
-            transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime));
+            transform.Rotate(new Vector3(0, 0, 270 * Time.deltaTime));
             SummonTime -= Time.deltaTime;
         }                    
     }
