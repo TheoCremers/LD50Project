@@ -122,6 +122,7 @@ MonoBehaviour:
   _swingOffset: 1
   _swingTransform: {fileID: 7527229749674181598}
   _attackTime: 0.3
+  damage: 5
 --- !u!1 &2009184497804358727
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.58, y: 0.756}
-  m_SizeDelta: {x: 1.16, y: 0.15}
+  m_AnchoredPosition: {x: -0.5, y: 1.25}
+  m_SizeDelta: {x: 1, y: 0.1}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6725680564222265015
 CanvasRenderer:
