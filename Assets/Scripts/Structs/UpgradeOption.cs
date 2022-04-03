@@ -10,5 +10,7 @@ public class UpgradeOption : ScriptableObject
     public float floatValue = 0f;
     public Sprite upgradeImage = null;
     public Color spriteColor = Color.white;
+    [TextArea(3, 3)]
+    public string details = string.Empty;
     public List<UpgradeOption> unlocksOptions;
 }

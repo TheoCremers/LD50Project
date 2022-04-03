@@ -18,6 +18,7 @@ MonoBehaviour:
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: 98fe94fb75ca1cb4d98c2cac1f67f112, type: 3}
   spriteColor: {r: 0, g: 0.39658165, b: 1, a: 1}
+  details: Increase ranged damage
   unlocksOptions:
   - {fileID: 11400000, guid: f6d3605ad17a91b419e88ed69f718c4a, type: 2}
   - {fileID: 11400000, guid: 7c15d1b2deac9c449acac90795b7e6db, type: 2}

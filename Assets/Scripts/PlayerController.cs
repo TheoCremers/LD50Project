@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour
     // Summons
     public int SummonLevel = 0;
     public float SummonCooldownFactor = 1f;
-    private float _lv1SummonTimer = 0f;
-    private float _lv2SummonTimer = 0f;
-    private float _lv3SummonTimer = 0f;
+    private float _lv1SummonTimer = 0.5f;
+    private float _lv2SummonTimer = 0.5f;
+    private float _lv3SummonTimer = 0.5f;
 
     void Awake ()
     {
@@ -158,15 +158,15 @@ public class PlayerController : MonoBehaviour
                 _attackCooldownRemaining = 0f;
             }
         }
-        if (_lv1SummonTimer > 0f) 
+        if (SummonLevel >= 1 && _lv1SummonTimer > 0f) 
         {
             _lv1SummonTimer -= Time.deltaTime;
         }
-        if (_lv2SummonTimer > 0f) 
+        if (SummonLevel >= 2 && _lv2SummonTimer > 0f) 
         {
             _lv2SummonTimer -= Time.deltaTime;
         }
-        if (_lv3SummonTimer > 0f) 
+        if (SummonLevel >= 3 && _lv3SummonTimer > 0f) 
         {
             _lv3SummonTimer -= Time.deltaTime;
         }
