@@ -6,16 +6,10 @@ public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] private float _swingOffset = 1.0f;
     [SerializeField] private Transform _swingTransform = null;
-    //[SerializeField] private float _attackTime = 0.3f;
     [SerializeField] private AoeEffect _aoeEffectTemplate = null;
-
-    //private bool _isAttacking = false;
-    private SpriteRenderer _swingSprite = null;
-    private Collider2D _swingCollider = null;
     private Swing _swing = null;
     private AoeEffect _activeAoeEffect = null;
 
-    private Color _originalColor;
 
     public int Damage = 5;
     public bool LeavesAoe = false;
@@ -30,9 +24,6 @@ public class MeleeAttack : MonoBehaviour
 
         _swing = _swingTransform.GetComponent<Swing>();
 
-        //_swingCollider.enabled = false;
-        //_originalColor = _swingSprite.color;
-        //_swingSprite.color = Color.clear;
         _swing.DamagableHit.AddListener(OnDamagableHit);
     }
 
@@ -42,7 +33,6 @@ public class MeleeAttack : MonoBehaviour
         _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
 
         _swing.Activate();
-        //StartCoroutine(AttackAnimation());
 
         if (LeavesAoe)
         {
@@ -55,31 +45,6 @@ public class MeleeAttack : MonoBehaviour
         StopAllCoroutines();
         _swing.DamagableHit.RemoveListener(OnDamagableHit);
     }
-
-
-    //private IEnumerator AttackAnimation ()
-    //{
-    //    _isAttacking = true;
-    //    _swingCollider.enabled = true;
-    //    float timeElapsed = 0f;
-        
-    //    while (timeElapsed < _attackTime * 0.5f)
-    //    {
-    //        _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
-    //        timeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    while (timeElapsed < _attackTime * 0.5f)
-    //    {
-    //        _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
-    //        timeElapsed += Time.deltaTime;
-    //        yield return null;
-    //    }
-
-    //    _swingSprite.color = Color.clear;
-    //    _swingCollider.enabled = false;
-    //    _isAttacking = false;
-    //}
 
     private void OnDamagableHit (Damagable damagable)
     {
