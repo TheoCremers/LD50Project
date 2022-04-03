@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agroRange: 6
   _moveSpeed: 3
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 1947057478453327891}
   RigidBody: {fileID: 5302699178439564129}
   ExpWorth: 128
   _wanderSpeed: 2
