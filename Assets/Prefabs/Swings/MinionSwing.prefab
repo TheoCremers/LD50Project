@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8489917338368285331}
   - component: {fileID: 3993588478282837259}
   - component: {fileID: 2833413783919108460}
-  m_Layer: 12
-  m_Name: EnemySwing
+  m_Layer: 8
+  m_Name: MinionSwing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 453f727cc766d224dae3b93811a91a86, type: 3}
-  m_Color: {r: 0.9339623, g: 0.022027409, b: 0.041268405, a: 1}
+  m_Color: {r: 0.4669811, g: 1, b: 0.6108701, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

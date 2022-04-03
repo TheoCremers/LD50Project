@@ -6,10 +6,10 @@ public class MeleeAttack : MonoBehaviour
 {
     [SerializeField] private float _swingOffset = 1.0f;
     [SerializeField] private Transform _swingTransform = null;
-    [SerializeField] private float _attackTime = 0.3f;
+    //[SerializeField] private float _attackTime = 0.3f;
     [SerializeField] private AoeEffect _aoeEffectTemplate = null;
 
-    private bool _isAttacking = false;
+    //private bool _isAttacking = false;
     private SpriteRenderer _swingSprite = null;
     private Collider2D _swingCollider = null;
     private Swing _swing = null;
@@ -28,27 +28,25 @@ public class MeleeAttack : MonoBehaviour
             return;
         }
 
-        _swingSprite = _swingTransform.GetComponent<SpriteRenderer>();
-        _swingCollider = _swingTransform.GetComponent<Collider2D>();
         _swing = _swingTransform.GetComponent<Swing>();
 
-        _swingCollider.enabled = false;
-        _originalColor = _swingSprite.color;
-        _swingSprite.color = Color.clear;
+        //_swingCollider.enabled = false;
+        //_originalColor = _swingSprite.color;
+        //_swingSprite.color = Color.clear;
         _swing.DamagableHit.AddListener(OnDamagableHit);
     }
 
     public void Fire (Vector2 direction)
     {
-        if (!_isAttacking)
+        _swingTransform.position = transform.position + (Vector3) direction * _swingOffset;
+        _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+
+        _swing.Activate();
+        //StartCoroutine(AttackAnimation());
+
+        if (LeavesAoe)
         {
-            _swingTransform.position = transform.position + (Vector3) direction * _swingOffset;
-            _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
-            StartCoroutine(AttackAnimation());
-            if (LeavesAoe)
-            {
-                SpawnAoeEffect(_swingTransform.position);
-            }
+            SpawnAoeEffect(_swingTransform.position);
         }
     }
 
@@ -59,29 +57,29 @@ public class MeleeAttack : MonoBehaviour
     }
 
 
-    private IEnumerator AttackAnimation ()
-    {
-        _isAttacking = true;
-        _swingCollider.enabled = true;
-        float timeElapsed = 0f;
+    //private IEnumerator AttackAnimation ()
+    //{
+    //    _isAttacking = true;
+    //    _swingCollider.enabled = true;
+    //    float timeElapsed = 0f;
         
-        while (timeElapsed < _attackTime * 0.5f)
-        {
-            _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        while (timeElapsed < _attackTime * 0.5f)
-        {
-            _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
+    //    while (timeElapsed < _attackTime * 0.5f)
+    //    {
+    //        _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
+    //        timeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    while (timeElapsed < _attackTime * 0.5f)
+    //    {
+    //        _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
+    //        timeElapsed += Time.deltaTime;
+    //        yield return null;
+    //    }
 
-        _swingSprite.color = Color.clear;
-        _swingCollider.enabled = false;
-        _isAttacking = false;
-    }
+    //    _swingSprite.color = Color.clear;
+    //    _swingCollider.enabled = false;
+    //    _isAttacking = false;
+    //}
 
     private void OnDamagableHit (Damagable damagable)
     {

@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 405227121273856565, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2003953404596183916, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: OnHealthChange.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -233,6 +237,18 @@ PrefabInstance:
     - target: {fileID: 6086636119730936088, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: currentExperience
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221171967952326376, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221171967952326376, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9975258
+      objectReference: {fileID: 0}
+    - target: {fileID: 6221171967952326376, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: m_Color.r
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6408992311847277043, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: m_RootOrder
