@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     //public UnityEvent MeleeAttackEvent;
 
     private Rigidbody2D _rigidBody = null;
-    private RangedAttack _rangedAttack = null;
-    private MeleeAttack _meleeAttack = null;
+
+    [HideInInspector] public RangedAttack rangedAttack = null;
+    [HideInInspector] public MeleeAttack meleeAttack = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -26,14 +27,18 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeedModifier = 1f;
     private float _attackCooldownModifier = 1f;
 
-    void Start ()
+    void Awake ()
     {
+        Instance = this;
         _rigidBody = GetComponent<Rigidbody2D>();
-        _rangedAttack = GetComponent<RangedAttack>();
-        _meleeAttack = GetComponent<MeleeAttack>();
-        UnitManager.FriendlyUnits.Add(transform);
+        rangedAttack = GetComponent<RangedAttack>();
+        meleeAttack = GetComponent<MeleeAttack>();
     }
 
+    private void Start ()
+    {
+        UnitManager.FriendlyUnits.Add(transform);
+    }
 
     void Update()
     {
@@ -41,11 +46,6 @@ public class PlayerController : MonoBehaviour
         ApplyMovement();
         ApplyActions();
         UpdateTimers();
-    }
-
-    void Awake()
-    {
-        Instance = this;
     }
 
     private void OnDestroy ()
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
             if (_attackCooldownRemaining <= 0f)
             {
                 //RangedAttackEvent?.Invoke(_targetDirection);
-                _rangedAttack.Fire(_targetDirection);
+                rangedAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
             if (_attackCooldownRemaining <= 0f)
             {
                 //MeleeAttackEvent?.Invoke(_targetDirection);
-                _meleeAttack.Fire(_targetDirection);
+                meleeAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
