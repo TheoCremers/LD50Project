@@ -2,17 +2,15 @@ using UnityEngine;
 
 namespace LD50.Scripts.AI 
 {
-    public class RangedEnemyAI : BaseEnemyAI 
+    public class MeleeFamiliarAI : BaseFamiliarAI 
     {   
-        [SerializeField] 
-        protected float _deadzone;
+        [SerializeField]
+        protected float _meleeRange = 1f; 
 
-        [SerializeField] 
-        protected float _range;
-
-        protected RangedAttack _rangedAttack;
         protected float _attackCooldownRemaining = 0f;
 
+        protected MeleeAttack _meleeAttack;
+        
         [SerializeField] 
         private float _baseAttackCooldown = 1f;
         private float _attackCooldownModifier = 1f;
@@ -20,7 +18,7 @@ namespace LD50.Scripts.AI
         protected override void Start()
         {
             base.Start();
-            _rangedAttack = GetComponent<RangedAttack>();
+            _meleeAttack = GetComponent<MeleeAttack>();
         }
 
         protected override void Update()
@@ -33,35 +31,31 @@ namespace LD50.Scripts.AI
         {
             if (_target == null) 
             {
-                _state = EnemyCombatState.Idle;
+                _state = FamiliarCombatState.Following;
                 return;
             }  
+            
+            // If close enough to target, swing
             var distanceToTarget = Vector2.Distance(_target.position, transform.position);
-            var relativeVector = _target.position - transform.position;
-            _moveDirection = relativeVector.normalized;
-
-            // If too close to player, flee
-            if (distanceToTarget < _deadzone) {
-                RigidBody.velocity = -(_moveDirection * _moveSpeed);
-            } 
-            // If close enough to player, shoot
-            else if (distanceToTarget < _range)
+            if (distanceToTarget < _meleeRange)
             {
                 if (_attackCooldownRemaining <= 0f) 
                 {
                     RigidBody.velocity = Vector2.zero;
-                    _rangedAttack.Fire(_moveDirection);
+                    _meleeAttack.Fire(_moveDirection);
                     _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
                 }
             } 
-            // If too far from player, move to a nice position
-            else
+            // Move closer to target
+            else 
             {
-                RigidBody.velocity = _moveDirection * _moveSpeed; 
+                var relativeVector = _target.position - transform.position;
+                _moveDirection = relativeVector.normalized;
+                RigidBody.velocity = _moveDirection * _moveSpeed;
             }
         }
 
-        private void UpdateTimers()
+        private void UpdateTimers ()
         {
             if (_attackCooldownRemaining > 0f)
             {
@@ -71,7 +65,7 @@ namespace LD50.Scripts.AI
                     _attackCooldownRemaining = 0f;
                 }
             }
-        }        
+        }  
     }
 }
 

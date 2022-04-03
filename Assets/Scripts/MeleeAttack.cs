@@ -13,6 +13,8 @@ public class MeleeAttack : MonoBehaviour
     private Collider2D _swingCollider = null;
     private Swing _swing = null;
 
+    private Color _originalColor;
+
     public int damage = 5;
 
     private void Start ()
@@ -28,6 +30,7 @@ public class MeleeAttack : MonoBehaviour
         _swing = _swingTransform.GetComponent<Swing>();
 
         _swingCollider.enabled = false;
+        _originalColor = _swingSprite.color;
         _swingSprite.color = Color.clear;
         _swing.DamagableHit.AddListener(OnDamagableHit);
     }
@@ -48,21 +51,24 @@ public class MeleeAttack : MonoBehaviour
         _swing.DamagableHit.RemoveListener(OnDamagableHit);
     }
 
+
     private IEnumerator AttackAnimation ()
     {
         _isAttacking = true;
         _swingCollider.enabled = true;
         float timeElapsed = 0f;
+        
+
 
         while (timeElapsed < _attackTime * 0.5f)
         {
-            _swingSprite.color = Color.Lerp(Color.clear, Color.white, timeElapsed * 2f / _attackTime);
+            _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         while (timeElapsed < _attackTime * 0.5f)
         {
-            _swingSprite.color = Color.Lerp(Color.clear, Color.white, timeElapsed * 2f / _attackTime);
+            _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
             timeElapsed += Time.deltaTime;
             yield return null;
         }

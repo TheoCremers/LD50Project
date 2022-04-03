@@ -26,10 +26,14 @@ namespace LD50.Scripts.AI
             base.Update();
             UpdateTimers();
         }
-        
+
         protected override void AgroBehavior()
         {
-            if (_target == null) return;
+            if (_target == null) 
+            {
+                _state = EnemyCombatState.Idle;
+                return;
+            }  
             // If close enough to target, swing
             var distanceToTarget = Vector2.Distance(_target.position, transform.position);
             if (distanceToTarget < _meleeRange)
@@ -46,7 +50,7 @@ namespace LD50.Scripts.AI
             {
                 var relativeVector = _target.position - transform.position;
                 _moveDirection = relativeVector.normalized;
-                RigidBody.velocity = _moveDirection * _wanderSpeed;
+                RigidBody.velocity = _moveDirection * _moveSpeed;
             }
         }
 

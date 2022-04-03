@@ -14,7 +14,7 @@ namespace LD50.Scripts.AI
         [SerializeField]
         private float _agroRange;
 
-        private EnemyCombatState _state = EnemyCombatState.Idle;
+        protected EnemyCombatState _state = EnemyCombatState.Idle;
         [SerializeField]
         protected float _wanderSpeed;
 
@@ -40,8 +40,9 @@ namespace LD50.Scripts.AI
         {
             if (_seekTime <= 0) 
             {
+                // There should always be a friendly target left, else it's game over
                 _target = UnitManager.GetClosestFriendly(transform.position);
-                _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+                _distanceToTarget = Vector2.Distance(_target.position, transform.position);                
                 // If enemy is too far away Destroy
                 DestroyIfTooFar(_state == EnemyCombatState.Idle ? 40f : 60f);
                 _seekTime = 0.2f;
