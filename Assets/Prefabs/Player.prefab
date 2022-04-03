@@ -271,7 +271,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31d1db87f66c0fb4da38e56f7c977a5d, type: 2}
   - {fileID: 11400000, guid: 14aa4cd2f560afd41b1234b0fc802fb5, type: 2}
   - {fileID: 11400000, guid: 73bcc824bed75384e93d0dfac25dea7c, type: 2}
-  _tileTemplate: {fileID: 4282102796275678719, guid: 33c74490fb1504540ab38d4a4666aed2, type: 3}
 --- !u!114 &8636970702003687100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,7 +367,19 @@ MonoBehaviour:
         m_CallState: 2
   OnHealthChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4647972745030961096, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHit:
     m_PersistentCalls:
       m_Calls: []

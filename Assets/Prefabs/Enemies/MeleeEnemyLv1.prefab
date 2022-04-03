@@ -51,11 +51,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e1b13763456c44b3cd2a5a7f3f5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agroRange: 3
   _moveSpeed: 2
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
   ExpWorth: 44
-  _agroRange: 3
   _wanderSpeed: 1
   _meleeRange: 1
   _baseAttackCooldown: 1
@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.5, y: 1.25}
+  m_AnchoredPosition: {x: -0.51, y: 0.46}
   m_SizeDelta: {x: 1, y: 0.1}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6725680564222265015
@@ -277,8 +277,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5730926603667428574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 763289381788512823}
   m_RootOrder: 3
@@ -321,9 +321,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -462523183
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5731196096010505017, guid: b699ee5ef2a057a4da7e054281e97165, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89c306f4bec304045bd5e577dc692391, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -379,8 +379,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.65, y: 1.4}
+  m_Offset: {x: -0.007028222, y: -0.40060824}
+  m_Size: {x: 0.86084616, y: 0.86084616}
   m_Direction: 0
 --- !u!114 &344575056479585225
 MonoBehaviour:

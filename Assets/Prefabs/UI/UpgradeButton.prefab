@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 3872618943881664587}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UpgradeButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -529,3 +529,4 @@ MonoBehaviour:
   Icon: {fileID: 3759966009635322098}
   Cost: {fileID: 241959608230812035}
   Details: {fileID: 4556192693342757773}
+  Active: 0
