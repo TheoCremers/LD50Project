@@ -21,9 +21,12 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public MeleeAttack MeleeAttack = null;
     [HideInInspector] public Summoner Summoner = null;
     [HideInInspector] public PlayerLeveling LevelingSystem = null;
+    public SpriteRenderer SpriteRenderer;
+    public Animator Animator;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
+    
     private bool _attackButton1Down = false;
     private bool _attackButton2Down = false;
 
@@ -81,7 +84,10 @@ public class PlayerController : MonoBehaviour
     private void GetInput ()
     {
         _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (_inputDirection != Vector2.zero)
+
+        var moving = _inputDirection != Vector2.zero;
+        Animator.SetBool("moving", moving);
+        if (moving)
         {
             _inputDirection.Normalize();
         }
@@ -104,8 +110,15 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement ()
     {
-        _velocity = _inputDirection * _baseMoveSpeed * _moveSpeedModifier;
-
+        _velocity = _inputDirection * _baseMoveSpeed * _moveSpeedModifier;        
+        if (_inputDirection.x < 0 && !SpriteRenderer.flipX) 
+        {
+            SpriteRenderer.flipX = true;
+        } 
+        else if (_inputDirection.x > 0 && SpriteRenderer.flipX)
+        {
+            SpriteRenderer.flipX = false;
+        }
         _rigidBody.velocity = _velocity;
     }
 

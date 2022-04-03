@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &146324996459658859
+--- !u!1 &174237701354061804
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8659138897587089082}
-  - component: {fileID: 2303964021273880098}
+  - component: {fileID: 242709552522607719}
+  - component: {fileID: 2636061012439156941}
+  - component: {fileID: 1533045847044979245}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -17,27 +18,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8659138897587089082
+--- !u!4 &242709552522607719
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146324996459658859}
+  m_GameObject: {fileID: 174237701354061804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.14, y: 0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6408992311847277043}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2303964021273880098
+--- !u!212 &2636061012439156941
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146324996459658859}
+  m_GameObject: {fileID: 174237701354061804}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -71,17 +72,36 @@ SpriteRenderer:
   m_SortingLayerID: -462523183
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2611168455720188827, guid: a70b86dfda756e4429ede0780af92ae5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c02f53a92f4e85428fc5a3ab0526799, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.6875, y: 1.40625}
+  m_Size: {x: 9.375, y: 9.375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1533045847044979245
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174237701354061804}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bbcc635af5a3aac478825e03d969e690, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &378395780697002140
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +138,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5880414160190468302}
-  - {fileID: 8659138897587089082}
   - {fileID: 6649188298836462522}
+  - {fileID: 242709552522607719}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -181,6 +201,8 @@ MonoBehaviour:
   MeleeAttack: {fileID: 0}
   Summoner: {fileID: 0}
   LevelingSystem: {fileID: 0}
+  SpriteRenderer: {fileID: 2636061012439156941}
+  Animator: {fileID: 1533045847044979245}
   SummonLevel: 0
   SummonCooldownFactor: 1
 --- !u!114 &4510696589996095342
@@ -295,7 +317,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6408992311847277043}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1206116790768739878
 CapsuleCollider2D:
