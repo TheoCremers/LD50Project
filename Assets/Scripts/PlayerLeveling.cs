@@ -53,31 +53,6 @@ public class PlayerLeveling : MonoBehaviour
         }
     }
 
-    public void AddRangedDamage(int amount)
-    {
-        PlayerController.Instance.RangedAttack.damage += amount;
-    }
-
-    public void AddRangedPierce(int amount)
-    {
-        PlayerController.Instance.RangedAttack.piercingAmount += amount;
-    }
-
-    public void AddMeleeDamage(int amount)
-    {
-        PlayerController.Instance.MeleeAttack.damage += amount;
-    }
-
-    public void AddSummonerLevel()
-    {
-        PlayerController.Instance.SummonLevel += 1;
-    }
-
-    public void ReduceSummonCooldown (float factorChange)
-    {
-        PlayerController.Instance.SummonCooldownFactor -= factorChange;
-    }
-
     private UpgradeTile SetUpgradeTile (UpgradeOption option)
     {
         //UpgradeTile blankTile = Instantiate(_tileTemplate, UIManager.Instance.UpgradeContainer);
@@ -135,6 +110,9 @@ public class PlayerLeveling : MonoBehaviour
             case UpgradeType.summonLevel:
                 AddSummonerLevel();
                 break;
+            case UpgradeType.meleeAoe:
+                SetMeleeAoe();
+                break;
             default:
                 break;
         }
@@ -151,5 +129,35 @@ public class PlayerLeveling : MonoBehaviour
             if (setTile == null) { break; } // no more blank tiles available
             _currentUpgradeOptions.RemoveAt(index);
         }
+    }
+
+    public void AddRangedDamage (int amount)
+    {
+        PlayerController.Instance.RangedAttack.damage += amount;
+    }
+
+    public void AddRangedPierce (int amount)
+    {
+        PlayerController.Instance.RangedAttack.piercingAmount += amount;
+    }
+
+    public void AddMeleeDamage (int amount)
+    {
+        PlayerController.Instance.MeleeAttack.Damage += amount;
+    }
+
+    public void AddSummonerLevel ()
+    {
+        PlayerController.Instance.SummonLevel += 1;
+    }
+
+    public void ReduceSummonCooldown (float factorChange)
+    {
+        PlayerController.Instance.SummonCooldownFactor -= factorChange;
+    }
+
+    public void SetMeleeAoe ()
+    {
+        PlayerController.Instance.MeleeAttack.LeavesAoe = true;
     }
 }
