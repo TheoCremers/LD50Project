@@ -34,7 +34,7 @@ Transform:
   m_Children:
   - {fileID: 1699233393844594868}
   - {fileID: 1572907973654098128}
-  - {fileID: 1513554293586196680}
+  - {fileID: 144466578229548595}
   - {fileID: 8314897736759690241}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,9 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde011c5b01cf354593342437649b833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swingOffset: 1
-  _swingTransform: {fileID: 1513554293586196680}
-  _attackTime: 0.3
+  _swingOffset: 0.5
+  _swingTransform: {fileID: 144466578229548595}
   _aoeEffectTemplate: {fileID: 0}
   Damage: 5
   LeavesAoe: 0
