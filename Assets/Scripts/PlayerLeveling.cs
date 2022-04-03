@@ -15,11 +15,14 @@ public class PlayerLeveling : MonoBehaviour
 
     private void Start ()
     {
-        foreach (var item in _currentUpgradeOptions)
+        _upgradeTiles.AddRange(UIManager.Instance.UpgradeContainer.GetComponentsInChildren<UpgradeTile>());
+
+        while (_currentUpgradeOptions.Count > 0)
         {
-            AddUpgradeTile(item);
+            UpgradeTile setTile = SetUpgradeTile(_currentUpgradeOptions[0]);
+            if (setTile == null) { break; }
+            _currentUpgradeOptions.RemoveAt(0);
         }
-        _currentUpgradeOptions.Clear();
 
         UIManager.Instance.UpdateExpCounter(currentExperience);
     }
@@ -68,28 +71,42 @@ public class PlayerLeveling : MonoBehaviour
         PlayerController.Instance.SummonCooldownFactor -= factorChange;
     }
 
-    private UpgradeTile AddUpgradeTile (UpgradeOption option)
+    private UpgradeTile SetUpgradeTile (UpgradeOption option)
     {
-        UpgradeTile newTile = Instantiate(_tileTemplate, UIManager.Instance.UpgradeContainer);
-        _upgradeTiles.Add(newTile);
-        newTile.SetUpgradeOption(option);
+        //UpgradeTile blankTile = Instantiate(_tileTemplate, UIManager.Instance.UpgradeContainer);
+        UpgradeTile blankTile = null;
+        foreach (var item in _upgradeTiles)
+        {
+            if (!item.Active)
+            {
+                blankTile = item;
+                break;
+            }
+        }
+        if (blankTile == null) { return blankTile; }
 
-        newTile.Button.onClick.AddListener(() => ApplyUpgrade(option));
-        newTile.Button.onClick.AddListener(() => RemoveTile(newTile));
+        blankTile.SetUpgradeOption(option);
+        blankTile.Button.onClick.AddListener(() => ApplyUpgrade(blankTile));
+        blankTile.SetActive();
 
         if (option.expCost <= currentExperience)
         {
-            newTile.EnableButton();
+            blankTile.EnableButton();
         }
         else
         {
-            newTile.DisableButton();
+            blankTile.DisableButton();
         }
-        return newTile;
+
+        return blankTile;
     }
 
-    private void ApplyUpgrade(UpgradeOption option)
+    private void ApplyUpgrade(UpgradeTile tile)
     {
+        tile.SetInactive();
+
+        UpgradeOption option = tile.UpgradeOption;
+
         ChangeExperience(-option.expCost);
 
         switch (option.type)
@@ -115,23 +132,17 @@ public class PlayerLeveling : MonoBehaviour
                 break;
         }
 
-        _currentUpgradeOptions.Remove(option);
         foreach (var item in option.unlocksOptions)
         {
             _currentUpgradeOptions.Add(item);
         }
 
-        if (_currentUpgradeOptions.Count > 0)
+        while (_currentUpgradeOptions.Count > 0)
         {
             int index = Random.Range(0, _currentUpgradeOptions.Count);
-            AddUpgradeTile(_currentUpgradeOptions[index]);
+            UpgradeTile setTile = SetUpgradeTile(_currentUpgradeOptions[index]);
+            if (setTile == null) { break; } // no more blank tiles available
             _currentUpgradeOptions.RemoveAt(index);
         }
-    }
-
-    private void RemoveTile(UpgradeTile tile)
-    {
-        _upgradeTiles.Remove(tile);
-        Destroy(tile.gameObject);
     }
 }

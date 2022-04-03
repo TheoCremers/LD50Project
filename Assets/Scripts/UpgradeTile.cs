@@ -7,11 +7,22 @@ public class UpgradeTile : MonoBehaviour
     public UpgradeOption UpgradeOption = null;
     public Button Button = null;
     public Image Icon = null;
-    public TextMeshProUGUI CostText = null;
+    public TextMeshProUGUI Cost = null;
+    public TextMeshProUGUI Details = null;
+    public bool Active = false;
+
+    private void Start ()
+    {
+        UIManager.Instance.PauseEvent.AddListener(ShowDetails);
+        UIManager.Instance.UnpauseEvent.AddListener(HideDetails);
+        Details.enabled = UIManager.Instance.Paused;
+    }
 
     private void OnDestroy ()
     {
         Button.onClick.RemoveAllListeners();
+        UIManager.Instance?.PauseEvent.RemoveListener(ShowDetails);
+        UIManager.Instance?.UnpauseEvent.RemoveListener(HideDetails);
     }
 
     public void SetUpgradeOption(UpgradeOption upgradeOption)
@@ -19,6 +30,7 @@ public class UpgradeTile : MonoBehaviour
         UpgradeOption = upgradeOption;
         SetIconSprite(upgradeOption.upgradeImage, upgradeOption.spriteColor);
         SetPriceText(upgradeOption.expCost);
+        SetDetailsText(upgradeOption.details);
     }
 
     public void SetIconSprite(Sprite sprite, Color color)
@@ -29,18 +41,46 @@ public class UpgradeTile : MonoBehaviour
 
     public void SetPriceText(int amount)
     {
-        CostText.text = amount.ToString();
+        Cost.text = amount.ToString();
+    }
+
+    public void SetDetailsText(string details)
+    {
+        Details.text = details;
+    }
+
+    public void ShowDetails()
+    {
+        Details.enabled = true;
+    }
+
+    public void HideDetails ()
+    {
+        Details.enabled = false;
     }
 
     public void EnableButton ()
     {
         Button.interactable = true;
-        CostText.color = Color.green;
+        Cost.color = Color.green;
     }
 
     public void DisableButton()
     {
         Button.interactable = false;
-        CostText.color = Color.red;
+        Cost.color = Color.red;
+    }
+
+    public void SetInactive ()
+    {
+        Active = false;
+        Button.onClick.RemoveAllListeners();
+        gameObject.SetActive(false);
+    }
+
+    public void SetActive()
+    {
+        gameObject.SetActive(true);
+        Active = true;
     }
 }
