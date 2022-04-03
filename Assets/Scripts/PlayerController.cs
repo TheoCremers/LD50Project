@@ -36,9 +36,10 @@ public class PlayerController : MonoBehaviour
 
     // Summons
     public int SummonLevel = 0;
-    private float _lv1SummonTimer = 7f;
-    private float _lv2SummonTimer = 15f;
-    private float _lv3SummonTimer = 29f;
+    public float SummonCooldownFactor = 1f;
+    private float _lv1SummonTimer = 0f;
+    private float _lv2SummonTimer = 0f;
+    private float _lv3SummonTimer = 0f;
 
     void Awake ()
     {
@@ -133,17 +134,17 @@ public class PlayerController : MonoBehaviour
         if (SummonLevel >= 3 && _lv3SummonTimer <= 0f) 
         {   
             Summoner.Summon(2);
-            _lv3SummonTimer = _baseLv3SummonSpeed * Random.Range(0.9f, 1.1f);
+            _lv3SummonTimer = _baseLv3SummonSpeed * SummonCooldownFactor * Random.Range(0.9f, 1.1f);
         }
         if (SummonLevel >= 2 && _lv2SummonTimer <= 0f) 
         {   
             Summoner.Summon(1);
-            _lv2SummonTimer = _baseLv2SummonSpeed * Random.Range(0.9f, 1.1f);
+            _lv2SummonTimer = _baseLv2SummonSpeed * SummonCooldownFactor * Random.Range(0.9f, 1.1f);
         }
         if (SummonLevel >= 1 && _lv1SummonTimer <= 0f) 
         {   
             Summoner.Summon(0);
-            _lv1SummonTimer = _baseLv1SummonSpeed * Random.Range(0.9f, 1.1f);
+            _lv1SummonTimer = _baseLv1SummonSpeed * SummonCooldownFactor * Random.Range(0.9f, 1.1f);
         }
     }
 

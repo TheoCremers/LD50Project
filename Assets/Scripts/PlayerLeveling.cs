@@ -19,6 +19,7 @@ public class PlayerLeveling : MonoBehaviour
         {
             AddUpgradeTile(item);
         }
+        _currentUpgradeOptions.Clear();
 
         UIManager.Instance.UpdateExpCounter(currentExperience);
     }
@@ -28,15 +29,15 @@ public class PlayerLeveling : MonoBehaviour
         currentExperience += amount;
 
         // check if new upgrades become available
-        for (int i = 0; i < _currentUpgradeOptions.Count; i++)
+        foreach (var item in _upgradeTiles)
         {
-            if (_currentUpgradeOptions[i].expCost <= currentExperience)
+            if (item.UpgradeOption.expCost <= currentExperience)
             {
-                _upgradeTiles[i].EnableButton();
+                item.EnableButton();
             }
             else
             {
-                _upgradeTiles[i].DisableButton();
+                item.DisableButton();
             }
         }
         UIManager.Instance.UpdateExpCounter(currentExperience);
@@ -57,15 +58,24 @@ public class PlayerLeveling : MonoBehaviour
         PlayerController.Instance.MeleeAttack.damage += amount;
     }
 
+    public void AddSummonerLevel()
+    {
+        PlayerController.Instance.SummonLevel += 1;
+    }
+
+    public void ReduceSummonCooldown (float factorChange)
+    {
+        PlayerController.Instance.SummonCooldownFactor -= factorChange;
+    }
+
     private UpgradeTile AddUpgradeTile (UpgradeOption option)
     {
         UpgradeTile newTile = Instantiate(_tileTemplate, UIManager.Instance.UpgradeContainer);
         _upgradeTiles.Add(newTile);
-        newTile.SetIconSprite(option.upgradeImage, option.spriteColor);
-        newTile.SetPriceText(option.expCost);
+        newTile.SetUpgradeOption(option);
 
-        newTile.button.onClick.AddListener(() => ApplyUpgrade(option));
-        newTile.button.onClick.AddListener(() => RemoveTile(newTile));
+        newTile.Button.onClick.AddListener(() => ApplyUpgrade(option));
+        newTile.Button.onClick.AddListener(() => RemoveTile(newTile));
 
         if (option.expCost <= currentExperience)
         {
@@ -95,15 +105,27 @@ public class PlayerLeveling : MonoBehaviour
             case UpgradeType.rangedPierce:
                 AddRangedPierce(option.intValue);
                 break;
+            case UpgradeType.summonSpeed:
+                ReduceSummonCooldown(option.floatValue);
+                break;
+            case UpgradeType.summonLevel:
+                AddSummonerLevel();
+                break;
+            default:
+                break;
         }
 
-        int upgradeIndex = _currentUpgradeOptions.IndexOf(option);
         _currentUpgradeOptions.Remove(option);
-
         foreach (var item in option.unlocksOptions)
         {
-            _currentUpgradeOptions.Insert(upgradeIndex, item);
-            AddUpgradeTile(item);
+            _currentUpgradeOptions.Add(item);
+        }
+
+        if (_currentUpgradeOptions.Count > 0)
+        {
+            int index = Random.Range(0, _currentUpgradeOptions.Count);
+            AddUpgradeTile(_currentUpgradeOptions[index]);
+            _currentUpgradeOptions.RemoveAt(index);
         }
     }
 
