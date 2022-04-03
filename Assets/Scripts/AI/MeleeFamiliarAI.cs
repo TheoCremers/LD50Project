@@ -37,8 +37,8 @@ namespace LD50.Scripts.AI
             }  
 
             // If close enough to target, swing
-            var distanceToTarget = Vector2.Distance(_target.position, transform.position);
-            if (distanceToTarget < _meleeRange)
+            //var distanceToTarget = Vector2.Distance(_target.position, transform.position);
+            if (_distanceToTarget < _meleeRange)
             {
                 if (_attackCooldownRemaining <= 0f) 
                 {

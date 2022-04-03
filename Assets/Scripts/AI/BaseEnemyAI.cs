@@ -15,7 +15,7 @@ namespace LD50.Scripts.AI
         private int ExpWorth = 88;
 
         protected EnemyCombatState _state = EnemyCombatState.Idle;
-        
+
         [SerializeField]
         protected float _wanderSpeed;
 
@@ -24,7 +24,7 @@ namespace LD50.Scripts.AI
 
         protected float _seekTime;
 
-        private float _distanceToTarget;
+        protected float _distanceToTarget;
 
         protected override void Start()
         {
@@ -37,23 +37,17 @@ namespace LD50.Scripts.AI
             UnitManager.EnemyUnits.Remove(transform);
         }
 
+
         protected override void Update() 
         {
             if (_seekTime <= 0) 
             {
-                // There should always be a friendly target left, else it's game over
-                _target = UnitManager.GetClosestFriendly(transform.position);
-                _distanceToTarget = Vector2.Distance(_target.position, transform.position);                
-                // If enemy is too far away Destroy
-                DestroyIfTooFar(_state == EnemyCombatState.Idle ? 40f : 60f);
-                _seekTime = 0.2f;
+                UpdateTargetting();
             } 
             else 
             {
                 _seekTime -= Time.deltaTime;
             }
-
-
 
             switch (_state) 
             {
@@ -114,7 +108,7 @@ namespace LD50.Scripts.AI
             }
         }
 
-        private void DestroyIfTooFar(float maxDistance)
+        protected virtual void DestroyIfTooFar(float maxDistance)
         {
             if (_distanceToTarget > maxDistance) 
             {
@@ -126,6 +120,8 @@ namespace LD50.Scripts.AI
         {
             ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, ExpWorth);
         }
+
+        protected abstract void UpdateTargetting();
 
         protected abstract void AgroBehavior();
     }
