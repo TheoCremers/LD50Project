@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
-    
+
     private bool _attackButton1Down = false;
     private bool _attackButton2Down = false;
 
@@ -59,8 +59,10 @@ public class PlayerController : MonoBehaviour
         UnitManager.FriendlyUnits.Add(transform);
     }
 
-    void Update()
+    void Update ()
     {
+        if (UIManager.Paused || UIManager.GameOver) { return; }
+
         GetInput();
         ApplyMovement();
         ApplyActions();

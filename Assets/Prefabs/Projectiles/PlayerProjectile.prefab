@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 9160835060194928128}
   - component: {fileID: 9160835060194928131}
   - component: {fileID: 6493591704664013269}
+  - component: {fileID: 5011688075111915482}
   m_Layer: 7
-  m_Name: ProtoProjectile
+  m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9160835060194928130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.61, y: -2.91, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -462523183
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c46f94e5f8a5d8f4b9cc526fe266ce34, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,7 +100,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.2, y: 0.4}
   m_Direction: 0
 --- !u!114 &9160835060194928131
 MonoBehaviour:
@@ -113,10 +114,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b27dafaa1225458701177ebfefb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
-  baseSpeed: 10
-  piercingAmount: 1
   directionAngle: 0
+  damage: 5
+  projectileSpeed: 7
+  homing: 0
+  remainingPierces: 0
+  creationTime: 0
+  DamagableHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!50 &6493591704664013269
 Rigidbody2D:
   serializedVersion: 4
@@ -138,3 +144,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &5011688075111915482
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160835060194928130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88518d3f370937c428bcc04de71c9f56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
