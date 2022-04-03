@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e02951c35bc13b438278d5ac8a3322d, type: 3}
-  m_Name: RangedAttackUp1 1
+  m_Name: SummonLevelUp3
   m_EditorClassIdentifier: 
-  type: 1
-  expCost: 100
-  intValue: 10
+  type: 5
+  expCost: 400
+  intValue: 0
   floatValue: 0
-  upgradeImage: {fileID: 21300000, guid: 98fe94fb75ca1cb4d98c2cac1f67f112, type: 3}
-  spriteColor: {r: 0, g: 0.39658165, b: 1, a: 1}
-  unlocksOptions:
-  - {fileID: 11400000, guid: f6d3605ad17a91b419e88ed69f718c4a, type: 2}
-  - {fileID: 11400000, guid: 7c15d1b2deac9c449acac90795b7e6db, type: 2}
+  upgradeImage: {fileID: 21300000, guid: 7cf725c1ab826ea43a0716c2b4787347, type: 3}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  unlocksOptions: []

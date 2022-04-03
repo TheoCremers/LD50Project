@@ -4,35 +4,43 @@ using TMPro;
 
 public class UpgradeTile : MonoBehaviour
 {
-    public Button button = null;
-    public Image icon = null;
-    public TextMeshProUGUI costText = null;
+    public UpgradeOption UpgradeOption = null;
+    public Button Button = null;
+    public Image Icon = null;
+    public TextMeshProUGUI CostText = null;
 
     private void OnDestroy ()
     {
-        button.onClick.RemoveAllListeners();
+        Button.onClick.RemoveAllListeners();
+    }
+
+    public void SetUpgradeOption(UpgradeOption upgradeOption)
+    {
+        UpgradeOption = upgradeOption;
+        SetIconSprite(upgradeOption.upgradeImage, upgradeOption.spriteColor);
+        SetPriceText(upgradeOption.expCost);
     }
 
     public void SetIconSprite(Sprite sprite, Color color)
     {
-        icon.sprite = sprite;
-        icon.color = color;
+        Icon.sprite = sprite;
+        Icon.color = color;
     }
 
     public void SetPriceText(int amount)
     {
-        costText.text = amount.ToString();
+        CostText.text = amount.ToString();
     }
 
     public void EnableButton ()
     {
-        button.interactable = true;
-        costText.color = Color.green;
+        Button.interactable = true;
+        CostText.color = Color.green;
     }
 
     public void DisableButton()
     {
-        button.interactable = false;
-        costText.color = Color.red;
+        Button.interactable = false;
+        CostText.color = Color.red;
     }
 }

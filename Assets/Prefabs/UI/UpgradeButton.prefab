@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ea763f6da54c6458f2c7f27acad98e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 2141260428924413598}
-  icon: {fileID: 3759966009635322098}
-  costText: {fileID: 241959608230812035}
+  UpgradeOption: {fileID: 0}
+  Button: {fileID: 2141260428924413598}
+  Icon: {fileID: 3759966009635322098}
+  CostText: {fileID: 241959608230812035}
