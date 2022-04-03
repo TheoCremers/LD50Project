@@ -283,6 +283,10 @@ MonoBehaviour:
   _projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
   _spawnOffset: 0.5
   _projectileContainer: {fileID: 0}
+  damage: 5
+  projectileSpeed: 7
+  piercingAmount: 0
+  homing: 0
 --- !u!1 &2193244941305343136
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,8 +323,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.58, y: 0.756}
-  m_SizeDelta: {x: 1.16, y: 0.15}
+  m_AnchoredPosition: {x: -0.5, y: 0.78}
+  m_SizeDelta: {x: 1, y: 0.1}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6402883739499847248
 CanvasRenderer:
@@ -578,7 +582,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.693, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

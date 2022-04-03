@@ -38,7 +38,7 @@ namespace LD50.Scripts.AI
 
             // If too close to player, flee
             if (distanceToTarget < _deadzone) {
-                RigidBody.velocity = -(_moveDirection * _wanderSpeed);
+                RigidBody.velocity = -(_moveDirection * _moveSpeed);
             } 
             // If close enough to player, shoot
             else if (distanceToTarget < _range)
@@ -53,7 +53,7 @@ namespace LD50.Scripts.AI
             // If too far from player, move to a nice position
             else
             {
-                RigidBody.velocity = _moveDirection * _wanderSpeed; 
+                RigidBody.velocity = _moveDirection * _moveSpeed; 
             }
         }
 
