@@ -14,10 +14,8 @@ namespace LD50.Scripts.AI
         [SerializeField]
         private int ExpWorth = 88;
 
-        [SerializeField]
-        private float _agroRange;
-
         protected EnemyCombatState _state = EnemyCombatState.Idle;
+        
         [SerializeField]
         protected float _wanderSpeed;
 
