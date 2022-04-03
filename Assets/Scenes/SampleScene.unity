@@ -685,6 +685,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4647972743967171801, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4647972745018620414, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
