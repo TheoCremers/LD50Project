@@ -107,6 +107,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2763604200322253591}
+        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OnHeal:
     m_PersistentCalls:
       m_Calls: []
@@ -211,10 +223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a465bd09cdbf99e4990b2bac42ba789b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agroRange: 6
   _moveSpeed: 3
   Sprite: {fileID: 1088263239531244243}
   RigidBody: {fileID: 5302699178439564129}
-  _agroRange: 6
   _wanderSpeed: 2
   _deadzone: 3
   _range: 6
@@ -249,7 +261,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &7224320942333392469

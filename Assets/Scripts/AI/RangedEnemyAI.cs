@@ -34,6 +34,7 @@ namespace LD50.Scripts.AI
             if (_target == null) 
             {
                 _state = EnemyCombatState.Idle;
+                _currentAgroRange = _agroRange;
                 return;
             }  
             var distanceToTarget = Vector2.Distance(_target.position, transform.position);

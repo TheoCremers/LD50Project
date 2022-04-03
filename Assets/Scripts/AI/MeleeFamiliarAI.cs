@@ -32,9 +32,10 @@ namespace LD50.Scripts.AI
             if (_target == null) 
             {
                 _state = FamiliarCombatState.Following;
+                _currentAgroRange = _agroRange;
                 return;
             }  
-            
+
             // If close enough to target, swing
             var distanceToTarget = Vector2.Distance(_target.position, transform.position);
             if (distanceToTarget < _meleeRange)

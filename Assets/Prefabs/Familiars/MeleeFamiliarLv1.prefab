@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f0d68bc56401542bcfc4bf0aeea456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _agroRange: 5
   _moveSpeed: 5
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
-  _agroRange: 5
   _followSpeed: 0
   _meleeRange: 1
   _baseAttackCooldown: 2
@@ -88,7 +88,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!70 &7047015894245355186
@@ -432,6 +432,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 5057344534883360177}
+        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseFamiliarAI, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

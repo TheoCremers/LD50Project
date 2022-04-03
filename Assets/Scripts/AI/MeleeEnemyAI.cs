@@ -32,6 +32,7 @@ namespace LD50.Scripts.AI
             if (_target == null) 
             {
                 _state = EnemyCombatState.Idle;
+                _currentAgroRange = _agroRange;
                 return;
             }  
             // If close enough to target, swing

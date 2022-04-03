@@ -11,9 +11,6 @@ namespace LD50.Scripts.AI
 
     public abstract class BaseFamiliarAI : BaseUnitAI 
     {   
-        [SerializeField]
-        private float _agroRange;
-
         protected FamiliarCombatState _state = FamiliarCombatState.Following;
 
         [SerializeField]
@@ -73,7 +70,7 @@ namespace LD50.Scripts.AI
 
         private void FollowBehavior() 
         {
-            if (_target != null && _distanceToTarget < _agroRange)
+            if (_target != null && _distanceToTarget < _currentAgroRange)
             {
                 _state = FamiliarCombatState.Agro;
             }
@@ -85,6 +82,17 @@ namespace LD50.Scripts.AI
                     _moveDirection = relativeVector.normalized;
                     RigidBody.velocity = _moveDirection * _moveSpeed;
                 }
+            }
+        }
+
+        // Force agro when hit while idle
+        public void OnHit() 
+        {
+            if (_state == FamiliarCombatState.Following) 
+            {
+                _state = FamiliarCombatState.Agro;
+                _target = UnitManager.GetClosestEnemy(transform.position);
+                _currentAgroRange = 99f;
             }
         }
 

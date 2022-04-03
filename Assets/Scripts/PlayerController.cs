@@ -7,15 +7,19 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
+    [SerializeField] private float _baseLv1SummonSpeed = 8f;
+    [SerializeField] private float _baseLv2SummonSpeed = 16f;
+    [SerializeField] private float _baseLv3SummonSpeed = 32f;
 
     //public UnityEvent<Vector2> RangedAttackEvent;
     //public UnityEvent MeleeAttackEvent;
 
     private Rigidbody2D _rigidBody = null;
 
-    [HideInInspector] public RangedAttack rangedAttack = null;
-    [HideInInspector] public MeleeAttack meleeAttack = null;
-    [HideInInspector] public PlayerLeveling levelingSystem = null;
+    [HideInInspector] public RangedAttack RangedAttack = null;
+    [HideInInspector] public MeleeAttack MeleeAttack = null;
+    [HideInInspector] public Summoner Summoner = null;
+    [HideInInspector] public PlayerLeveling LevelingSystem = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -28,13 +32,21 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeedModifier = 1f;
     private float _attackCooldownModifier = 1f;
 
+
+    // Summons
+    public int SummonLevel = 0;
+    private float _lv1SummonTimer = 7f;
+    private float _lv2SummonTimer = 15f;
+    private float _lv3SummonTimer = 29f;
+
     void Awake ()
     {
         Instance = this;
         _rigidBody = GetComponent<Rigidbody2D>();
-        rangedAttack = GetComponent<RangedAttack>();
-        meleeAttack = GetComponent<MeleeAttack>();
-        levelingSystem = GetComponent<PlayerLeveling>();
+        RangedAttack = GetComponent<RangedAttack>();
+        MeleeAttack = GetComponent<MeleeAttack>();
+        LevelingSystem = GetComponent<PlayerLeveling>();
+        Summoner = GetComponent<Summoner>();
     }
 
     private void Start ()
@@ -94,7 +106,7 @@ public class PlayerController : MonoBehaviour
             if (_attackCooldownRemaining <= 0f)
             {
                 //RangedAttackEvent?.Invoke(_targetDirection);
-                rangedAttack.Fire(_targetDirection);
+                RangedAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
@@ -104,9 +116,25 @@ public class PlayerController : MonoBehaviour
             if (_attackCooldownRemaining <= 0f)
             {
                 //MeleeAttackEvent?.Invoke(_targetDirection);
-                meleeAttack.Fire(_targetDirection);
+                MeleeAttack.Fire(_targetDirection);
                 _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
+        }
+        
+        if (SummonLevel >= 3 && _lv3SummonTimer <= 0f) 
+        {   
+            Summoner.Summon(2);
+            _lv3SummonTimer = _baseLv3SummonSpeed * Random.Range(0.9f, 1.1f);
+        }
+        if (SummonLevel >= 2 && _lv2SummonTimer <= 0f) 
+        {   
+            Summoner.Summon(1);
+            _lv2SummonTimer = _baseLv2SummonSpeed * Random.Range(0.9f, 1.1f);
+        }
+        if (SummonLevel >= 1 && _lv1SummonTimer <= 0f) 
+        {   
+            Summoner.Summon(0);
+            _lv1SummonTimer = _baseLv1SummonSpeed * Random.Range(0.9f, 1.1f);
         }
     }
 
@@ -119,6 +147,18 @@ public class PlayerController : MonoBehaviour
             {
                 _attackCooldownRemaining = 0f;
             }
+        }
+        if (_lv1SummonTimer > 0f) 
+        {
+            _lv1SummonTimer -= Time.deltaTime;
+        }
+        if (_lv2SummonTimer > 0f) 
+        {
+            _lv2SummonTimer -= Time.deltaTime;
+        }
+        if (_lv3SummonTimer > 0f) 
+        {
+            _lv3SummonTimer -= Time.deltaTime;
         }
     }
 }
