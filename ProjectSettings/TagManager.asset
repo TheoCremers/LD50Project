@@ -51,6 +51,9 @@ TagManager:
   - name: Characters
     uniqueID: 3832444113
     locked: 0
+  - name: Effects
+    uniqueID: 539175845
+    locked: 0
   - name: UI
     uniqueID: 3664663231
     locked: 0
