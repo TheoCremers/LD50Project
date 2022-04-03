@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    private static float _timeOutTime = 3f;
+    private static float _timeOutTime = 4f;
 
     public float directionAngle = 0f;
     public int damage = 5;
