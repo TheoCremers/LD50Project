@@ -66,7 +66,7 @@ public class PlayerLeveling : MonoBehaviour
 
     public void AddMeleeDamage(int amount)
     {
-        PlayerController.Instance.MeleeAttack.damage += amount;
+        PlayerController.Instance.MeleeAttack.Damage += amount;
     }
 
     public void AddSummonerLevel()

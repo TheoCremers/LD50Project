@@ -239,7 +239,9 @@ MonoBehaviour:
   _swingOffset: 1
   _swingTransform: {fileID: 5880414160190468302}
   _attackTime: 0.3
-  damage: 5
+  _aoeEffectTemplate: {fileID: 9041896508620672953, guid: 4567ea755f743cb418216ef6ec6306ec, type: 3}
+  Damage: 5
+  LeavesAoe: 0
 --- !u!114 &7291279967199776037
 MonoBehaviour:
   m_ObjectHideFlags: 0

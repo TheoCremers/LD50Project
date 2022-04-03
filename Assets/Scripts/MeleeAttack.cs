@@ -7,15 +7,18 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] private float _swingOffset = 1.0f;
     [SerializeField] private Transform _swingTransform = null;
     [SerializeField] private float _attackTime = 0.3f;
+    [SerializeField] private AoeEffect _aoeEffectTemplate = null;
 
     private bool _isAttacking = false;
     private SpriteRenderer _swingSprite = null;
     private Collider2D _swingCollider = null;
     private Swing _swing = null;
+    private AoeEffect _activeAoeEffect = null;
 
     private Color _originalColor;
 
-    public int damage = 5;
+    public int Damage = 5;
+    public bool LeavesAoe = false;
 
     private void Start ()
     {
@@ -42,6 +45,10 @@ public class MeleeAttack : MonoBehaviour
             _swingTransform.position = transform.position + (Vector3) direction * _swingOffset;
             _swingTransform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
             StartCoroutine(AttackAnimation());
+            if (LeavesAoe)
+            {
+                SpawnAoeEffect(_swingTransform.position);
+            }
         }
     }
 
@@ -58,8 +65,6 @@ public class MeleeAttack : MonoBehaviour
         _swingCollider.enabled = true;
         float timeElapsed = 0f;
         
-
-
         while (timeElapsed < _attackTime * 0.5f)
         {
             _swingSprite.color = Color.Lerp(Color.clear, _originalColor, timeElapsed * 2f / _attackTime);
@@ -80,6 +85,19 @@ public class MeleeAttack : MonoBehaviour
 
     private void OnDamagableHit (Damagable damagable)
     {
-        damagable.Hit(damage);
+        damagable.Hit(Damage);
+    }
+
+    private void SpawnAoeEffect(Vector2 position)
+    {
+        if (_activeAoeEffect != null)
+        {
+            _activeAoeEffect.Deactivate();
+            _activeAoeEffect.AoeFinished.RemoveAllListeners();
+        }
+        AoeEffect newAoe = Instantiate(_aoeEffectTemplate);
+        newAoe.transform.position = position;
+        _activeAoeEffect = newAoe;
+        newAoe.AoeFinished.AddListener(() => _activeAoeEffect = null);
     }
 }
