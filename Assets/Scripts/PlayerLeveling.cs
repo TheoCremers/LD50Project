@@ -9,7 +9,6 @@ public class PlayerLeveling : MonoBehaviour
 
     //List of available upgrades
     [SerializeField] private List<UpgradeOption> _currentUpgradeOptions;
-    [SerializeField] private UpgradeTile _tileTemplate = null;
 
     private List<UpgradeTile> _upgradeTiles = new List<UpgradeTile>();
 

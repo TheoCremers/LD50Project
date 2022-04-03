@@ -71,10 +71,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.3018868
       objectReference: {fileID: 0}
+    - target: {fileID: 1947057478453327891, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
+      propertyPath: m_Color.b
+      value: 0.11776723
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947057478453327891, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
+      propertyPath: m_Color.g
+      value: 0.058962256
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947057478453327891, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2763604200322253591, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
       propertyPath: Sprite
       value: 
-      objectReference: {fileID: 6720105850583156343}
+      objectReference: {fileID: 0}
     - target: {fileID: 2763604200322253591, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
       propertyPath: _range
       value: 7
@@ -99,13 +111,16 @@ PrefabInstance:
       propertyPath: _baseAttackCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3036840750110839867, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3036840750110839867, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
---- !u!212 &6720105850583156343 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1088263239531244243, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
-  m_PrefabInstance: {fileID: 5933726757036797092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &2003589198875850693 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 5302699178439564129, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
