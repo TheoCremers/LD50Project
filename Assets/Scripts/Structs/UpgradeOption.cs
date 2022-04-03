@@ -9,5 +9,6 @@ public class UpgradeOption : ScriptableObject
     public int intValue = 0;
     public float floatValue = 0f;
     public Sprite upgradeImage = null;
+    public Color spriteColor = Color.white;
     public List<UpgradeOption> unlocksOptions;
 }

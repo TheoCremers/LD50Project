@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public RangedAttack rangedAttack = null;
     [HideInInspector] public MeleeAttack meleeAttack = null;
+    [HideInInspector] public PlayerLeveling levelingSystem = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody2D>();
         rangedAttack = GetComponent<RangedAttack>();
         meleeAttack = GetComponent<MeleeAttack>();
+        levelingSystem = GetComponent<PlayerLeveling>();
     }
 
     private void Start ()

@@ -27,7 +27,8 @@ public class ExpOrb : MonoBehaviour
         _speed = _speed + maxAcceleration * Time.deltaTime;
 
         if (relativeToPlayer.sqrMagnitude < 0.25f) 
-        { 
+        {
+            PlayerController.Instance.levelingSystem.ChangeExperience(expValue);
             Destroy(gameObject);
         }
         else

@@ -3,8 +3,18 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
+    public Transform UpgradeContainer = null;
+
     public TMP_Text DistanceIndicator;
-    // Start is called before the first frame update
+
+
+    private void Awake ()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         DistanceIndicator.text = "Distance: 0";
@@ -15,5 +25,10 @@ public class UIManager : MonoBehaviour
     {
         var distanceFromCenter = Vector2.Distance(PlayerController.Instance.transform.position, Vector2.zero);
         DistanceIndicator.text = "Distance: " + distanceFromCenter.ToString();
+    }
+
+    private void OnDestroy ()
+    {
+        Instance = null;
     }
 }

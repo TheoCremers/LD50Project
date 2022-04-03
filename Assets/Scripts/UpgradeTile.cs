@@ -1,25 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeTile : MonoBehaviour
 {
-    private Button _button = null;
+    public Button button = null;
+    public Image icon = null;
+    public TextMeshProUGUI costText = null;
 
-    public int expCost = 1000;
-
-    public UnityEvent UpgradeEvent;
-
-    private void Start ()
+    private void OnDestroy ()
     {
-        _button = GetComponent<Button>();
-        _button.onClick.AddListener(OnUpgradeActivated);
+        button.onClick.RemoveAllListeners();
     }
 
-    private void OnUpgradeActivated ()
+    public void SetIconSprite(Sprite sprite, Color color)
     {
-        UpgradeEvent?.Invoke();
+        icon.sprite = sprite;
+        icon.color = color;
+    }
+
+    public void SetPriceText(int amount)
+    {
+        costText.text = amount.ToString();
+    }
+
+    public void EnableButton ()
+    {
+        button.interactable = true;
+        costText.color = Color.green;
+    }
+
+    public void DisableButton()
+    {
+        button.interactable = false;
+        costText.color = Color.red;
     }
 }
