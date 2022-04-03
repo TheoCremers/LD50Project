@@ -11,14 +11,14 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
+  - PlayerCollider
   - PlayerProjectiles
   - PlayerMeleeSwings
   - EnemiesColliders
   - EnemyHitBoxes
   - EnemyProjectiles
   - EnemyMeleeSwings
-  - 
+  - PlayerHitBox
   - 
   - 
   - 
