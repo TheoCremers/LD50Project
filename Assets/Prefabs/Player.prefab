@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 4124551367453661928}
   - component: {fileID: 7291279967199776037}
   - component: {fileID: 6086636119730936088}
+  - component: {fileID: 8636970702003687100}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -173,9 +174,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseAttackCooldown: 0.3
   _baseMoveSpeed: 5
-  rangedAttack: {fileID: 0}
-  meleeAttack: {fileID: 0}
-  levelingSystem: {fileID: 0}
+  _baseLv1SummonSpeed: 8
+  _baseLv2SummonSpeed: 16
+  _baseLv3SummonSpeed: 32
+  RangedAttack: {fileID: 0}
+  MeleeAttack: {fileID: 0}
+  Summoner: {fileID: 0}
+  LevelingSystem: {fileID: 0}
+  SummonLevel: 3
 --- !u!114 &4510696589996095342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +247,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c15d1b2deac9c449acac90795b7e6db, type: 2}
   - {fileID: 11400000, guid: 73bcc824bed75384e93d0dfac25dea7c, type: 2}
   _tileTemplate: {fileID: 4282102796275678719, guid: 33c74490fb1504540ab38d4a4666aed2, type: 3}
+--- !u!114 &8636970702003687100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378395780697002140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51a2802bd30e81499f74d7b55b23b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Familiars:
+  - {fileID: 763289381788512821, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
+  - {fileID: 5324056213313172754, guid: dbc884bb73b76c34b88c09e891a3f2dd, type: 3}
+  - {fileID: 5905093987814352997, guid: e7a96a58f0a6bdf469c0d7a5d1918c88, type: 3}
+  SummoningCircle: {fileID: 4057968531791591518, guid: 0f72d064182aad44e8ca3b21d5641b47, type: 3}
 --- !u!1 &1096860668947119840
 GameObject:
   m_ObjectHideFlags: 0

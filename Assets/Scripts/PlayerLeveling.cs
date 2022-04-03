@@ -44,17 +44,17 @@ public class PlayerLeveling : MonoBehaviour
 
     public void AddRangedDamage(int amount)
     {
-        PlayerController.Instance.rangedAttack.damage += amount;
+        PlayerController.Instance.RangedAttack.damage += amount;
     }
 
     public void AddRangedPierce(int amount)
     {
-        PlayerController.Instance.rangedAttack.piercingAmount += amount;
+        PlayerController.Instance.RangedAttack.piercingAmount += amount;
     }
 
     public void AddMeleeDamage(int amount)
     {
-        PlayerController.Instance.meleeAttack.damage += amount;
+        PlayerController.Instance.MeleeAttack.damage += amount;
     }
 
     private UpgradeTile AddUpgradeTile (UpgradeOption option)

@@ -5,6 +5,11 @@ namespace LD50.Scripts.AI
     public abstract class BaseUnitAI : MonoBehaviour 
     {   
         [SerializeField]
+        protected float _agroRange;
+
+        protected float _currentAgroRange;
+
+        [SerializeField]
         protected float _moveSpeed;
 
         protected Vector2 _moveDirection;    
@@ -18,6 +23,7 @@ namespace LD50.Scripts.AI
         protected virtual void Start()
         {       
             _target = null;
+            _currentAgroRange = _agroRange;
         }
 
         protected virtual void Update() 

@@ -74,7 +74,7 @@ namespace LD50.Scripts.AI
 
         private void IdleBehavior() 
         {
-            if (_target != null && _distanceToTarget < _agroRange)
+            if (_target != null && _distanceToTarget < _currentAgroRange)
             {
                 _state = EnemyCombatState.Agro;
             }
@@ -102,6 +102,17 @@ namespace LD50.Scripts.AI
                     var randomSpeedMod = Random.Range(0.3f, 0.4f);
                     _moveDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
                 }
+            }
+        }
+
+        // Force agro when hit while idle
+        public void OnHit() 
+        {
+            if (_state == EnemyCombatState.Idle) 
+            {
+                _state = EnemyCombatState.Agro;
+                _currentAgroRange = 99f;
+                _target = UnitManager.GetClosestFriendly(transform.position);
             }
         }
 
