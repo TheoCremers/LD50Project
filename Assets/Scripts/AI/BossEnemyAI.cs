@@ -244,7 +244,10 @@ namespace LD50.Scripts.AI
 
         protected override void OnDestroy()
         {
-            UIManager.Instance.TriggerGameOver(true);
+            if (_state == EnemyCombatState.Dead)
+            {
+                UIManager.Instance.TriggerGameOver(true);
+            }
             Instance = null;
             base.OnDestroy();
         }
