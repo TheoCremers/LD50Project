@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealthUp4
   m_EditorClassIdentifier: 
   type: 7
-  expCost: 7000
+  expCost: 6000
   intValue: 120
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: 30e5236933afc214c9026cd9eefefded, type: 3}

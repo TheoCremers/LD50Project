@@ -59,7 +59,7 @@ namespace LD50.Scripts.AI
             _target = UnitManager.GetClosestFriendly(transform.position);
             _distanceToTarget = Vector2.Distance(_target.position, transform.position);
             _distanceToPlayer = Vector2.Distance(PlayerController.Instance.transform.position, transform.position);
-            _distanceDifficultyModifier = 1f + (_distanceToPlayer / 30f);
+            _distanceDifficultyModifier = 1f + (_distanceToPlayer / 10f);
 
             var relativeVector = PlayerController.Instance.transform.position - transform.position;
             _playerDirection = relativeVector.normalized;
