@@ -128,14 +128,14 @@ namespace LD50.Scripts.AI
         {
             Color initialColor = Sprite.color;
             float t = 0f;
-            while (Sprite.color != Color.black)
+            while (t < _fadeTime * 0.5f)
             {
                 t += Time.deltaTime;
                 Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / _fadeTime);
                 yield return null;
             }
             t = 0f;
-            while (Sprite.color.a > 0f)
+            while (t < _fadeTime * 0.5f)
             {
                 t += Time.deltaTime;
                 Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / _fadeTime);
