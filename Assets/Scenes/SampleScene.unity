@@ -361,7 +361,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1729181582
 PrefabInstance:
@@ -741,25 +741,9 @@ PrefabInstance:
       value: UnitManager
       objectReference: {fileID: 0}
     - target: {fileID: 7168164410509249009, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
-      propertyPath: Enemies.Array.size
-      value: 3
+      propertyPath: _difficultyModifier
+      value: 0.3
       objectReference: {fileID: 0}
-    - target: {fileID: 7168164410509249009, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
-      propertyPath: _baseSpawnFrequency
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7168164410509249009, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
-      propertyPath: Enemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 763289381788512821, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
-    - target: {fileID: 7168164410509249009, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
-      propertyPath: Enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: 1844023191233683524, guid: 1e50082dc773ce9478404cb8f19a5488, type: 3}
-    - target: {fileID: 7168164410509249009, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
-      propertyPath: Enemies.Array.data[2]
-      value: 
-      objectReference: {fileID: 1088263239531244242, guid: 07453b96ff8e6ea488c36f2eee99dbae, type: 3}
     - target: {fileID: 7168164410509249010, guid: 2853649fefdee674ab245204c731ab8c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -815,7 +799,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4004541409809840265, guid: 3d0326b4486bd534e8321972da070862, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4004541409809840265, guid: 3d0326b4486bd534e8321972da070862, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
