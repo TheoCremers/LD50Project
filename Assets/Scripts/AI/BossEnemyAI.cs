@@ -188,7 +188,7 @@ namespace LD50.Scripts.AI
                 }
 
                 _sprayOfset += 2.5f;
-                _rangedAttackCooldownRemaining = 0.15f;
+                _rangedAttackCooldownRemaining = 0.25f;
             }
         }
 
