@@ -34,8 +34,11 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+#if UNITY_EDITOR
         DistanceIndicator.text = "Distance: 0";
-
+#else
+        DistanceIndicator.enabled = false;
+#endif
         _menuOverlay.SetActive(false);
         PauseText.enabled = false;
     }
@@ -52,9 +55,10 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR
             var distanceFromCenter = Vector2.Distance(PlayerController.Instance.transform.position, Vector2.zero);
-            DistanceIndicator.text = $"Distance: {distanceFromCenter.ToString()}";
-
+            DistanceIndicator.text = $"Distance: {distanceFromCenter.ToString("0.00")}";
+#endif
             if (Input.GetButtonDown("Menu"))
             {
                 ToggleLevelMenu();
@@ -99,7 +103,7 @@ public class UIManager : MonoBehaviour
     {
         if (!_pauseTipShown)
         {
-            PauseText.text = "Press 'space' to view upgrade details";
+            PauseText.text = "Press 'space'";
             PauseText.enabled = true;
             _pauseTipShown = true;
         }
