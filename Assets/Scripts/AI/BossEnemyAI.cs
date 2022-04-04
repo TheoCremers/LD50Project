@@ -76,11 +76,11 @@ namespace LD50.Scripts.AI
 
         protected override void AgroBehavior()
         {
-            if (HitpointData.HealthPercentage > 0.9f) 
+            if (HitpointData.HealthPercentage > 0.85f) 
             {
                 Phase1Mechanics(); // 100-90%
             } 
-            else if (HitpointData.HealthPercentage > 0.65f)
+            else if (HitpointData.HealthPercentage > 0.55f)
             {                
                 Phase2Mechanics(); // 65-90%
             } 
@@ -120,7 +120,7 @@ namespace LD50.Scripts.AI
             {
                 _moveSpeedModifier = 1.6f;
                 _meleeAttack.Damage = Mathf.CeilToInt(_meleeAttack.Damage * 2f);
-                _rangedAttack.damage = Mathf.CeilToInt(_rangedAttack.damage * 2f);
+                _rangedAttack.damage = Mathf.CeilToInt(_rangedAttack.damage * 1.5f);
                 _rangedAttack.projectileSpeed = Mathf.CeilToInt(_rangedAttack.projectileSpeed * 1.2f);
                 _phase3Transition = true;
             }
@@ -147,8 +147,8 @@ namespace LD50.Scripts.AI
             // Boss gets tankier, vastly increasing his effective health
             if (!_phase4Transition) 
             {
-                HitpointData.MaxHealth = HitpointData.MaxHealth * 10;
-                HitpointData.Health = HitpointData.Health * 10;
+                HitpointData.MaxHealth = HitpointData.MaxHealth * 8;
+                HitpointData.Health = HitpointData.Health * 8;
                 _moveSpeedModifier = 2.2f;
                 _meleeAttack.Damage = Mathf.CeilToInt(_meleeAttack.Damage * 2f);
                 _rangedAttack.damage = Mathf.CeilToInt(_rangedAttack.damage * 2f);
@@ -188,7 +188,7 @@ namespace LD50.Scripts.AI
                 }
 
                 _sprayOfset += 2.5f;
-                _rangedAttackCooldownRemaining = 0.15f;
+                _rangedAttackCooldownRemaining = 0.25f;
             }
         }
 

@@ -132,10 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc77be87c462114aa5774b1e347ae59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDuration: 3
+  duration: 3
   activeFor: 0
-  damagePerTick: 2
+  damagePerTick: 20
   damageInterval: 0.5
   fadeTime: 0.2
+  AoeFinished:
+    m_PersistentCalls:
+      m_Calls: []
   _collider: {fileID: 7620985872845103080}
   _spriteRenderer: {fileID: 2051691557990498533}

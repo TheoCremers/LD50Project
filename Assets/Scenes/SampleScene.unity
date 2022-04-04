@@ -141,10 +141,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 344575056479585225, guid: b2960f4b36a1e844694b073645c0a394, type: 3}
-      propertyPath: MaxHealth
-      value: 4000
-      objectReference: {fileID: 0}
     - target: {fileID: 763289381788512821, guid: b2960f4b36a1e844694b073645c0a394, type: 3}
       propertyPath: m_Name
       value: BossEnemy
