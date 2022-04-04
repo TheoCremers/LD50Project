@@ -21,7 +21,6 @@ public class PlayerLeveling : MonoBehaviour
 
         // quick shuffle
         _currentUpgradeOptions = _currentUpgradeOptions.OrderBy(x => Guid.NewGuid()).ToList();
-        Debug.Log(_currentUpgradeOptions.Count);
 
         for (int i = 0; i < 3; i++) 
         {
@@ -126,6 +125,9 @@ public class PlayerLeveling : MonoBehaviour
             case UpgradeType.regen:
                 AddRegen(option.floatValue);
                 break;
+            case UpgradeType.chainLighting:
+                AddChainLightning();
+                break;
             default:            
                 break;
         }
@@ -173,6 +175,15 @@ public class PlayerLeveling : MonoBehaviour
     public void AddRegen(float amount)
     {
         PlayerController.Instance.HitpointData.RegenFactor = amount;
+    }
+
+    public void AddChainLightning()
+    {
+        PlayerController.Instance.RangedAttack.chainLightning = true;
+        PlayerController.Instance.RangedAttack.piercingAmount += 3;
+        Color newColor;
+        ColorUtility.TryParseHtmlString("#41A7F1", out newColor);
+        PlayerController.Instance.RangedAttack.BulletColor = newColor;
     }
 
     public void ReduceSummonCooldown (float factorChange)

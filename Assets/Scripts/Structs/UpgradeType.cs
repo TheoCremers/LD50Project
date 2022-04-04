@@ -8,5 +8,6 @@ public enum UpgradeType
     summonLevel = 5,
     meleeAoe = 6,
     health = 7,
-    regen = 8
+    regen = 8,
+    chainLighting = 9
 }

@@ -177,7 +177,7 @@ namespace LD50.Scripts.AI
         {
             // Boss will go berserk and unleash a bullet hell 
             Phase1Mechanics();
-            _rangedAttack.projectileSpeed = 13f;
+            _rangedAttack.projectileSpeed = 11f;
 
             if (_rangedAttackCooldownRemaining <= 0f) 
             {

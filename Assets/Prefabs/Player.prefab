@@ -157,9 +157,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015458822, y: -0.023188233}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.24589413
 --- !u!50 &4738102979915550657
 Rigidbody2D:
   serializedVersion: 4
@@ -219,13 +219,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b923dc5a9c7eb4c88e6e98b1d7cb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
-  _spawnOffset: 0.5
+  Projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
+  _directionalSpawnOffset: 0.5
+  _absoluteSpawnOffset: {x: 0, y: 0.3, z: 0}
   _projectileContainer: {fileID: 0}
   damage: 5
-  projectileSpeed: 7
+  projectileSpeed: 9
   piercingAmount: 0
   homing: 0
+  chainLightning: 0
+  BulletLifespan: 2
+  BulletColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &4124551367453661928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,8 +339,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 1.6}
+  m_Offset: {x: -0.015458822, y: -0.35941753}
+  m_Size: {x: 0.5690824, y: 0.88116485}
   m_Direction: 0
 --- !u!114 &2003953404596183916
 MonoBehaviour:
@@ -416,8 +420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4463574224252999140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -0.35, z: 0}
-  m_LocalScale: {x: 2.0405025, y: 0.43900883, z: 1}
+  m_LocalPosition: {x: -0.0357, y: -0.35, z: 0}
+  m_LocalScale: {x: 1.9090941, y: 0.43900883, z: 1}
   m_Children: []
   m_Father: {fileID: 6408992311847277043}
   m_RootOrder: 3

@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -462523183
-  m_SortingLayer: 2
+  m_SortingLayerID: 539175845
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c46f94e5f8a5d8f4b9cc526fe266ce34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -99,7 +99,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015, y: 0}
   m_Size: {x: 0.2, y: 0.4}
   m_Direction: 0
 --- !u!114 &9160835060194928131
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5b27dafaa1225458701177ebfefb0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lifespan: 4
   directionAngle: 0
   damage: 5
   projectileSpeed: 7
@@ -122,6 +123,7 @@ MonoBehaviour:
   remainingPierces: 0
   creationTime: 0
   chainLightningTemplate: {fileID: 4119660071460873551, guid: 595780dd223385643862e4fb96bcaafa, type: 3}
+  Sprite: {fileID: 9160835060194928129}
   DamagableHit:
     m_PersistentCalls:
       m_Calls: []

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e02951c35bc13b438278d5ac8a3322d, type: 3}
-  m_Name: RangedPierceUp2
+  m_Name: ChainLightningUp1
   m_EditorClassIdentifier: 
-  type: 3
+  type: 9
   expCost: 1500
   intValue: 1
   floatValue: 0
-  upgradeImage: {fileID: 21300000, guid: b73157340627eef45ab565284a8b4a9a, type: 3}
-  spriteColor: {r: 0.056737285, g: 0.610074, b: 0.7075472, a: 1}
-  details: increase number of targets pierced by ranged attack
+  upgradeImage: {fileID: 21300000, guid: dc724858b83d0244c95d219777a9f756, type: 3}
+  spriteColor: {r: 0.05562477, g: 0.13281873, b: 0.4716981, a: 1}
+  details: magic missiles trigger a chain lightning on hit
   unlocksOptions:
-  - {fileID: 11400000, guid: e31fae66c7b923a489232c51537e8147, type: 2}
+  - {fileID: 11400000, guid: 786ef9fff16c6e54a9b940af4f17a2d0, type: 2}

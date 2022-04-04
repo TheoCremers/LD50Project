@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Projectile : MonoBehaviour
 {
-    private static float _timeOutTime = 4f;
+    public float Lifespan = 4f;
 
     public float directionAngle = 0f;
     public int damage = 5;
@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
     public int remainingPierces = 0;
     public float creationTime;
     public ChainLightning chainLightningTemplate = null;
+
+    public SpriteRenderer Sprite;
 
     public UnityEvent<Damagable> DamagableHit;
 
@@ -26,7 +28,7 @@ public class Projectile : MonoBehaviour
     private void Update ()
     {
         // timeout
-        if (Time.time - creationTime > _timeOutTime)
+        if (Time.time - creationTime > Lifespan)
         {
             Destroy(gameObject);
             return;

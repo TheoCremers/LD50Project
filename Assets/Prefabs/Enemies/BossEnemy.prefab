@@ -143,13 +143,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b923dc5a9c7eb4c88e6e98b1d7cb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
+  Projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
   _spawnOffset: 0.5
   _projectileContainer: {fileID: 0}
   damage: 10
   projectileSpeed: 10
   piercingAmount: 1
   homing: 0
+  chainLightning: 0
+  BulletLifespan: 4
 --- !u!1 &1324841201812642105
 GameObject:
   m_ObjectHideFlags: 0

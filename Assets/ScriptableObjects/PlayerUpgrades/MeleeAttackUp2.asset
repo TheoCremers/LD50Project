@@ -21,3 +21,4 @@ MonoBehaviour:
   details: increase melee damage
   unlocksOptions:
   - {fileID: 11400000, guid: 2be4633375ec5d349b2f4214532c2fce, type: 2}
+  - {fileID: 11400000, guid: c998222275791f445ad4017f84888966, type: 2}
