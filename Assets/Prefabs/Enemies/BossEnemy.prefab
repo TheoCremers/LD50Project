@@ -98,9 +98,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013204992, y: 0.02200824}
-  m_Size: {x: 1.2715267, y: 1.2715267}
-  m_Direction: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.9666088, y: 1.100223}
+  m_Direction: 1
 --- !u!114 &1907748766303818438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,14 +131,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
-  _spawnOffset: 0.5
+  _directionalSpawnOffset: 0.5
   _projectileContainer: {fileID: 0}
   damage: 10
   projectileSpeed: 10
   piercingAmount: 1
   homing: 0
   chainLightning: 0
+  absoluteSpawnOffset: {x: 0, y: 0, z: 0}
   BulletLifespan: 4
+  BulletColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1324841201812642105
 GameObject:
   m_ObjectHideFlags: 0
