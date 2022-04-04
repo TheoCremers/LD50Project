@@ -66,6 +66,24 @@ public class UIManager : MonoBehaviour
                 ToggleLevelMenu();
             }
         }
+#if !UNITY_WEBGL
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+#endif
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            FullScreenMode fullScreenMode = FullScreenMode.FullScreenWindow;
+            Screen.fullScreenMode = fullScreenMode;
+            Resolution currentResolution = Screen.currentResolution;
+            Screen.SetResolution(currentResolution.width, currentResolution.height, fullScreenMode, 60);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Screen.SetResolution(960, 540, false, 60);
+        }
     }
 
     public void UpdateExpCounter (int amount)
