@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agroRange: 4
-  _moveSpeed: 6
+  _moveSpeed: 3.5
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
   ExpWorth: 34
   _wanderSpeed: 2
-  _meleeRange: 2
+  _meleeRange: 1.5
   _baseAttackCooldown: 1
 --- !u!50 &5483993250682471302
 Rigidbody2D:
