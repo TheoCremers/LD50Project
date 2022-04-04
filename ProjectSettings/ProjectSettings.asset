@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Cremers, Cremers and De Vos
   productName: Slime Showdown
-  defaultCursor: {fileID: 2800000, guid: 9423155265a1e2243b810383ba75fb39, type: 3}
+  defaultCursor: {fileID: 2800000, guid: da57b1859d67f714cbd86de2febefe73, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
