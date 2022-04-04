@@ -17,6 +17,8 @@ public class Projectile : MonoBehaviour
     public ChainLightning chainLightningTemplate = null;
 
     public SpriteRenderer Sprite;
+    public ParticleSystem particalSystem;
+    public Collider2D collider;
 
     public UnityEvent<Damagable> DamagableHit;
 
@@ -30,7 +32,7 @@ public class Projectile : MonoBehaviour
         // timeout
         if (Time.time - creationTime > Lifespan)
         {
-            Destroy(gameObject);
+            DestroyAfterParticlesGone();
             return;
         }
 
@@ -68,6 +70,14 @@ public class Projectile : MonoBehaviour
                 return;
             }
         }
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        DestroyAfterParticlesGone();
+    }
+
+    private void DestroyAfterParticlesGone ()
+    {
+        collider.enabled = false;
+        Sprite.enabled = false;
+        particalSystem.Stop();
     }
 }
