@@ -118,8 +118,10 @@ MonoBehaviour:
   damage: 5
   projectileSpeed: 7
   homing: 0
+  chainLighting: 0
   remainingPierces: 0
   creationTime: 0
+  chainLightningTemplate: {fileID: 4119660071460873551, guid: 595780dd223385643862e4fb96bcaafa, type: 3}
   DamagableHit:
     m_PersistentCalls:
       m_Calls: []

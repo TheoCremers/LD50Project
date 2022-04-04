@@ -50,6 +50,35 @@ public class UnitManager : MonoBehaviour
         return tMin;
     }
 
+    public static Transform GetClosestEnemy (Vector3 position, params Transform[] excludeTransforms)
+    {
+        Transform tMin = null;
+        float minDist = Mathf.Infinity;
+
+        foreach (Transform t in EnemyUnits)
+        {
+            bool excluded = false;
+            foreach (var item in excludeTransforms)
+            {
+                if (t == item) 
+                { 
+                    excluded = true;
+                    break;
+                }
+            }
+            if (excluded) { continue; }
+
+            float dist = Vector2.SqrMagnitude(position - t.position);
+            //float dist = Vector3.Distance(t.position, position);
+            if (dist < minDist)
+            {
+                tMin = t;
+                minDist = dist;
+            }
+        }
+        return tMin;
+    }
+
     public static Transform GetClosestFriendly(Vector3 position)
     {
         Transform tMin = null;

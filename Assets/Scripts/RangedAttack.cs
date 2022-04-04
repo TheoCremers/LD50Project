@@ -13,6 +13,7 @@ public class RangedAttack : MonoBehaviour
     public float projectileSpeed = 7f;
     public int piercingAmount = 0;
     public bool homing = false;
+    public bool chainLightning = false;
 
     public void Fire (Vector2 direction)
     {
@@ -28,6 +29,7 @@ public class RangedAttack : MonoBehaviour
         newProjectile.projectileSpeed = projectileSpeed;
         newProjectile.remainingPierces = piercingAmount;
         newProjectile.homing = homing;
+        newProjectile.chainLighting = chainLightning;
         newProjectile.transform.position = transform.position + (Vector3)direction * _spawnOffset;
         newProjectile.SetDirection(direction);
     }

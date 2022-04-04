@@ -11,8 +11,10 @@ public class Projectile : MonoBehaviour
     public int damage = 5;
     public float projectileSpeed = 7f;
     public bool homing = false;
+    public bool chainLighting = false;
     public int remainingPierces = 0;
     public float creationTime;
+    public ChainLightning chainLightningTemplate = null;
 
     public UnityEvent<Damagable> DamagableHit;
 
@@ -51,15 +53,19 @@ public class Projectile : MonoBehaviour
         {
             damagable.Hit(damage);
 
-            if (remainingPierces > 0) { --remainingPierces; }
-            else
+            if (chainLighting) 
             {
-                Destroy(gameObject);
+                var lightning = Instantiate(chainLightningTemplate);
+                lightning.Activate(collision.transform.parent);
+                lightning.Damage = damage;
+                lightning.MaxTargets = remainingPierces + 1;
+            }
+            else if (remainingPierces > 0) 
+            {
+                --remainingPierces;
+                return;
             }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }
