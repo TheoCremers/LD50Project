@@ -221,13 +221,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
   _directionalSpawnOffset: 0.5
-  _absoluteSpawnOffset: {x: 0, y: 0.3, z: 0}
   _projectileContainer: {fileID: 0}
   damage: 5
   projectileSpeed: 9
   piercingAmount: 0
   homing: 0
   chainLightning: 0
+  absoluteSpawnOffset: {x: 0, y: 0.3, z: 0}
   BulletLifespan: 2
   BulletColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &4124551367453661928

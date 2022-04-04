@@ -7,7 +7,6 @@ public class RangedAttack : MonoBehaviour
 {
     [SerializeField] public Projectile Projectile = null;
     [SerializeField] private float _directionalSpawnOffset = 0.5f;
-    [SerializeField] private Vector3 _absoluteSpawnOffset = Vector2.zero;
     [SerializeField] private Transform _projectileContainer = null;
 
     public int damage = 5;
@@ -15,6 +14,7 @@ public class RangedAttack : MonoBehaviour
     public int piercingAmount = 0;
     public bool homing = false;
     public bool chainLightning = false;
+    public Vector3 absoluteSpawnOffset = Vector2.zero;
 
     public float BulletLifespan = 4f;
     public Color BulletColor;
@@ -41,7 +41,7 @@ public class RangedAttack : MonoBehaviour
         newProjectile.chainLighting = chainLightning;
         newProjectile.Lifespan = BulletLifespan;
         newProjectile.Sprite.color = BulletColor;
-        newProjectile.transform.position = _absoluteSpawnOffset + transform.position + (Vector3)direction * _directionalSpawnOffset;
+        newProjectile.transform.position = absoluteSpawnOffset + transform.position + (Vector3)direction * _directionalSpawnOffset;
         newProjectile.SetDirection(direction);
     }
 }
