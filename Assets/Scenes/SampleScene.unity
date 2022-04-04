@@ -238,6 +238,10 @@ PrefabInstance:
       propertyPath: _spawnOffset
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6086636119730936088, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
+      propertyPath: currentExperience
+      value: 1000000
+      objectReference: {fileID: 0}
     - target: {fileID: 6408992311847277043, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -5,7 +5,6 @@ using UnityEngine.Events;
 using System.Linq;
 using System;
 
-
 public class PlayerLeveling : MonoBehaviour
 {
     public int currentExperience = 0;
@@ -142,10 +141,11 @@ public class PlayerLeveling : MonoBehaviour
 
         while (_currentUpgradeOptions.Count > 0)
         {
-            int index = UnityEngine.Random.Range(0, _currentUpgradeOptions.Count);
-            UpgradeTile setTile = SetUpgradeTile(_currentUpgradeOptions[index]);
+            //int index = UnityEngine.Random.Range(0, _currentUpgradeOptions.Count);
+            var nextUpgrade = _currentUpgradeOptions.OrderBy((x) => x.expCost).First();
+            UpgradeTile setTile = SetUpgradeTile(nextUpgrade);
             if (setTile == null) { break; } // no more blank tiles available
-            _currentUpgradeOptions.RemoveAt(index);
+            _currentUpgradeOptions.Remove(nextUpgrade);
         }
 
         UpgradesBought++;
