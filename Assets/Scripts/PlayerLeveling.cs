@@ -32,6 +32,7 @@ public class PlayerLeveling : MonoBehaviour
         }
 
         UIManager.Instance.UpdateExpCounter(currentExperience);
+        UpgradesBought = 0;
     }
 
     public void ChangeExperience(int amount)

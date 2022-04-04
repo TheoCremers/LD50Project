@@ -55,7 +55,7 @@ MonoBehaviour:
   _moveSpeed: 3.5
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
-  ExpWorth: 34
+  ExpWorth: 44
   _wanderSpeed: 2
   _meleeRange: 1.5
   _baseAttackCooldown: 1
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28081ac2f439193489792d5e4e27e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 34
+  MaxHealth: 29
   _health: 0
   BaseRegen: 0
   RegenFactor: 1
