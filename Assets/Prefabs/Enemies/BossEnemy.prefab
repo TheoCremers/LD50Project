@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 763289381788512823}
   - component: {fileID: 7866834415689425928}
-  - component: {fileID: 6097530358922775405}
   - component: {fileID: 5483993250682471302}
   - component: {fileID: 7047015894245355186}
   - component: {fileID: 1907748766303818438}
@@ -65,18 +64,6 @@ MonoBehaviour:
   HitpointData: {fileID: 344575056479585225}
   _baseAttackCooldown: 1
   _distanceDifficultyModifier: 1
---- !u!114 &6097530358922775405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 763289381788512821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1576baf5a7e67ab40991bd613a423b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5483993250682471302
 Rigidbody2D:
   serializedVersion: 4
@@ -150,6 +137,7 @@ MonoBehaviour:
   projectileSpeed: 10
   piercingAmount: 1
   homing: 0
+  chainLightning: 0
 --- !u!1 &1324841201812642105
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,9 +518,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6097530358922775405}
-        m_TargetAssemblyTypeName: DestroyUtil, Assembly-CSharp
-        m_MethodName: DestroyHelper
+      - m_Target: {fileID: 7866834415689425928}
+        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
+        m_MethodName: TriggerDeathAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -542,10 +530,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
-        m_MethodName: DropExp
-        m_Mode: 1
+      - m_Target: {fileID: 5854578784587535396}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

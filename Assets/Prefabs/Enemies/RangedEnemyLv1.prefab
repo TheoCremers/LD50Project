@@ -68,9 +68,9 @@ MonoBehaviour:
   OnDeath:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5842067630318703498}
-        m_TargetAssemblyTypeName: DestroyUtil, Assembly-CSharp
-        m_MethodName: DestroyHelper
+      - m_Target: {fileID: 2763604200322253591}
+        m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
+        m_MethodName: TriggerDeathAnimation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -84,6 +84,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
         m_MethodName: DropExp
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6103031026787028163}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -147,7 +159,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1088263239531244240}
   - component: {fileID: 2763604200322253591}
-  - component: {fileID: 5842067630318703498}
   - component: {fileID: 5302699178439564129}
   - component: {fileID: 7224320942333392469}
   - component: {fileID: -3911885228417694171}
@@ -197,18 +208,6 @@ MonoBehaviour:
   _deadzone: 3
   _range: 6
   _baseAttackCooldown: 2
---- !u!114 &5842067630318703498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1088263239531244242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1576baf5a7e67ab40991bd613a423b08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5302699178439564129
 Rigidbody2D:
   serializedVersion: 4
@@ -265,6 +264,7 @@ MonoBehaviour:
   projectileSpeed: 7
   piercingAmount: 0
   homing: 0
+  chainLightning: 0
 --- !u!1 &2193244941305343136
 GameObject:
   m_ObjectHideFlags: 0
