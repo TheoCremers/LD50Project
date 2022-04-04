@@ -10,6 +10,8 @@ public class PlayerLeveling : MonoBehaviour
 {
     public int currentExperience = 0;
 
+    public static int UpgradesBought = 0;
+
     //List of available upgrades
     [SerializeField] private List<UpgradeOption> _currentUpgradeOptions;
 
@@ -34,7 +36,7 @@ public class PlayerLeveling : MonoBehaviour
 
     public void ChangeExperience(int amount)
     {
-        currentExperience += amount;
+        currentExperience += amount;        
 
         bool anyUpgrade = false;
 
@@ -144,6 +146,8 @@ public class PlayerLeveling : MonoBehaviour
             if (setTile == null) { break; } // no more blank tiles available
             _currentUpgradeOptions.RemoveAt(index);
         }
+
+        UpgradesBought++;
     }
 
     public void AddRangedDamage (int amount)
