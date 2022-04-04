@@ -35,7 +35,7 @@ public class Damagable : MonoBehaviour
 
     private void Start()
     {
-        Health = MaxHealth;
+        Health = MaxHealth * MaxHpMultiplier;
     }
 
     private void Update()

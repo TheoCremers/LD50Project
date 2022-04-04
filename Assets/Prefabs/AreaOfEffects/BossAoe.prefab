@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 3
   activeFor: 0
-  damagePerTick: 5
+  damagePerTick: 15
   damageInterval: 0.5
   fadeTime: 0.2
   AoeFinished:
