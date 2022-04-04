@@ -60,6 +60,7 @@ MonoBehaviour:
   _wanderSpeed: 3
   _meleeRange: 1
   _aoeEffect: {fileID: 9041896508620672953, guid: a7095dd6485e0ef43a4c73446689b1d8, type: 3}
+  _moveSpeedModifier: 1
   HitpointData: {fileID: 344575056479585225}
   _baseAttackCooldown: 1
   _distanceDifficultyModifier: 1
@@ -127,7 +128,7 @@ MonoBehaviour:
   _swingOffset: 0.5
   _swingTransform: {fileID: 6288546648717027131}
   _aoeEffectTemplate: {fileID: 0}
-  Damage: 5
+  Damage: 30
   LeavesAoe: 0
 --- !u!114 &-6197618260245336419
 MonoBehaviour:
@@ -144,7 +145,7 @@ MonoBehaviour:
   _projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
   _spawnOffset: 0.5
   _projectileContainer: {fileID: 0}
-  damage: 5
+  damage: 10
   projectileSpeed: 10
   piercingAmount: 1
   homing: 0
@@ -440,6 +441,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 400
   _health: 0
+  BaseRegen: 0
+  RegenFactor: 1
+  RegenTimer: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:

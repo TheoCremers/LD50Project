@@ -113,7 +113,13 @@ public class PlayerLeveling : MonoBehaviour
             case UpgradeType.meleeAoe:
                 SetMeleeAoe();
                 break;
-            default:
+            case UpgradeType.health:
+                AddMaxHealth(option.intValue);
+                break;
+            case UpgradeType.regen:
+                AddRegen(option.floatValue);
+                break;
+            default:            
                 break;
         }
 
@@ -151,9 +157,20 @@ public class PlayerLeveling : MonoBehaviour
         PlayerController.Instance.SummonLevel += 1;
     }
 
+    public void AddMaxHealth(int amount)
+    {
+        PlayerController.Instance.HitpointData.MaxHealth += amount;
+        PlayerController.Instance.HitpointData.Heal(amount * 2);
+    }
+
+    public void AddRegen(float amount)
+    {
+        PlayerController.Instance.HitpointData.RegenFactor = amount;
+    }
+
     public void ReduceSummonCooldown (float factorChange)
     {
-        PlayerController.Instance.SummonCooldownFactor -= factorChange;
+        PlayerController.Instance.SummonCooldownFactor -= factorChange;        
     }
 
     public void SetMeleeAoe ()

@@ -201,6 +201,7 @@ MonoBehaviour:
   MeleeAttack: {fileID: 0}
   Summoner: {fileID: 0}
   LevelingSystem: {fileID: 0}
+  HitpointData: {fileID: 2003953404596183916}
   SpriteRenderer: {fileID: 2636061012439156941}
   Animator: {fileID: 1533045847044979245}
   SummonLevel: 0
@@ -270,6 +271,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 31d1db87f66c0fb4da38e56f7c977a5d, type: 2}
   - {fileID: 11400000, guid: 14aa4cd2f560afd41b1234b0fc802fb5, type: 2}
   - {fileID: 11400000, guid: 73bcc824bed75384e93d0dfac25dea7c, type: 2}
+  - {fileID: 11400000, guid: 181a23d9254187048b9b8f1e9c9f678e, type: 2}
 --- !u!114 &8636970702003687100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,8 +349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28081ac2f439193489792d5e4e27e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 50
+  MaxHealth: 100
   _health: 0
+  BaseRegen: 1
+  RegenFactor: 1
+  RegenTimer: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -367,13 +372,13 @@ MonoBehaviour:
   OnHealthChange:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4647972745030961096, guid: c2a141c6cb4bdc249add9073ced298c7, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+        m_MethodName: set_value
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -112,6 +112,6 @@ public class UIManager : MonoBehaviour
         _gameOverGroup.alpha = 1f;
         _gameOverGroup.interactable = true;
         _gameOverGroup.blocksRaycasts = true;
-        survivalTime.text = $"survived for\n{Time.timeSinceLevelLoad.ToString("0")} seconds";
+        survivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
     }
 }
