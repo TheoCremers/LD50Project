@@ -89,6 +89,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackroundTile (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7d30eadb90d29343ad9f045282c27fc, type: 3}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
 --- !u!4 &8649034291634465046 stripped
@@ -150,6 +166,22 @@ PrefabInstance:
     - target: {fileID: 4154549869005726259, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
       propertyPath: m_Name
       value: BackroundTile (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7d30eadb90d29343ad9f045282c27fc, type: 3}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78431374
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
@@ -213,6 +245,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackroundTile (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7d30eadb90d29343ad9f045282c27fc, type: 3}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8980392
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
 --- !u!4 &8649034292320981453 stripped
@@ -274,6 +322,26 @@ PrefabInstance:
     - target: {fileID: 4154549869005726259, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
       propertyPath: m_Name
       value: BackroundTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7d30eadb90d29343ad9f045282c27fc, type: 3}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8926925
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154549869005726269, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78208435
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a366a8103c62ca3449e4cd2323eda33c, type: 3}
