@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace LD50.Scripts.AI
@@ -22,6 +23,8 @@ namespace LD50.Scripts.AI
         private float _distanceToMaster;
 
         private Transform _master;
+
+        protected float _fadeTime = 0.2f;
 
         protected override void Start()
         {
@@ -96,7 +99,49 @@ namespace LD50.Scripts.AI
             }
         }
 
-
         protected abstract void AgroBehavior();
+
+        public void TriggerDeathAnimation ()
+        {
+            _state = FamiliarCombatState.Dead;
+
+            // Stop Movement
+            RigidBody.velocity = Vector3.zero;
+
+            // turn off all colliders
+            foreach (var collider in GetComponentsInChildren<Collider2D>())
+            {
+                collider.enabled = false;
+            }
+
+            // stop sprite animation
+            if (Sprite.TryGetComponent(out Animator animator))
+            {
+                animator.enabled = false;
+            }
+
+            // fade sprite out
+            StartCoroutine(FadeOutAndDestroy());
+        }
+
+        private IEnumerator FadeOutAndDestroy ()
+        {
+            Color initialColor = Sprite.color;
+            float t = 0f;
+            while (Sprite.color != Color.black)
+            {
+                t += Time.deltaTime;
+                Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / _fadeTime);
+                yield return null;
+            }
+            t = 0f;
+            while (Sprite.color.a > 0f)
+            {
+                t += Time.deltaTime;
+                Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / _fadeTime);
+                yield return null;
+            }
+            Destroy(gameObject);
+        }
     }
 }
