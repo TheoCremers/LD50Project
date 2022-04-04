@@ -111,6 +111,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5566038
       objectReference: {fileID: 0}
+    - target: {fileID: 4487705068052213759, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2425243
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487705068052213759, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.44559196
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487705068052213759, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487705068052213759, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.722
+      objectReference: {fileID: 0}
     - target: {fileID: 5057344534883360177, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: _baseAttackCooldown
       value: 1.2
