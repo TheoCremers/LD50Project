@@ -11,8 +11,8 @@ public class UnitManager : MonoBehaviour
     [SerializeField]
     private float _difficultyModifier = 0.33f;
 
-    [SerializeField]
-    private float _highestDifficulty = 1f;
+    //[SerializeField]
+    //private float _highestDifficulty = 1f;
 
     [SerializeField]
     private float _spawnFrequencyModifier = 1f;
@@ -122,11 +122,11 @@ public class UnitManager : MonoBehaviour
     private void SpawnEnemy() 
     {
         var playerPosition = PlayerController.Instance.transform.position;
-        var difficulty = Vector2.Distance(playerPosition, Vector2.zero) * _difficultyModifier;
-        if (difficulty > _highestDifficulty) 
-        {
-            _highestDifficulty = difficulty;
-        }
+        //var difficulty = Vector2.Distance(playerPosition, Vector2.zero) * _difficultyModifier;
+        // if (difficulty > _highestDifficulty) 
+        // {
+        //     _highestDifficulty = difficulty;
+        // }        
         var camera = Camera.main;
         
         var spawnPosition = (Vector2)playerPosition + new Vector2(Random.Range(-18f, 18f), Random.Range(-14f, 14f));
@@ -139,27 +139,27 @@ public class UnitManager : MonoBehaviour
         } 
         else 
         {
-            if (_highestDifficulty < 15) 
+            if (PlayerLeveling.UpgradesBought <= 1) //if (_highestDifficulty < 15) 
             {
                 Instantiate(Enemies[Random.Range(0,2)], spawnPosition, PlayerController.Instance.transform.rotation);
             } 
-            else if (_highestDifficulty < 30) 
+            else if (PlayerLeveling.UpgradesBought <= 4) //else if (_highestDifficulty < 30) 
             {
                 Instantiate(Enemies[Random.Range(0,3)], spawnPosition, PlayerController.Instance.transform.rotation);
             }
-            else if (_highestDifficulty < 45) 
+            else if (PlayerLeveling.UpgradesBought <= 7) //else if (_highestDifficulty < 45) 
             {
                 Instantiate(Enemies[Random.Range(1,4)], spawnPosition, PlayerController.Instance.transform.rotation);
             }
-            else if (_highestDifficulty < 60) 
+            else if (PlayerLeveling.UpgradesBought <= 12) //else if (_highestDifficulty < 60) 
             {
                 Instantiate(Enemies[Random.Range(2,5)], spawnPosition, PlayerController.Instance.transform.rotation);
             }
-            else if (_highestDifficulty < 75) 
+            else if (PlayerLeveling.UpgradesBought <= 19) //else if (_highestDifficulty < 75) 
             {
                 Instantiate(Enemies[Random.Range(3,6)], spawnPosition, PlayerController.Instance.transform.rotation);
             }
-            else if (_highestDifficulty < 90) 
+            else 
             {
                 Instantiate(Enemies[Random.Range(4,7)], spawnPosition, PlayerController.Instance.transform.rotation);
             }
