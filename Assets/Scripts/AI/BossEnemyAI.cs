@@ -4,6 +4,8 @@ namespace LD50.Scripts.AI
 {
     public class BossEnemyAI : BaseEnemyAI 
     {   
+        public static BossEnemyAI Instance;
+
         [SerializeField]
         protected float _meleeRange = 1f; 
 
@@ -37,6 +39,12 @@ namespace LD50.Scripts.AI
 
         private bool _phase4Transition = false;
         private bool _phase3Transition = false;
+
+
+        protected void Awake()
+        {
+            Instance = this;
+        }
 
         protected override void Start()
         {
@@ -232,7 +240,14 @@ namespace LD50.Scripts.AI
             {
                 _aoeAttackCooldownRemaining -= Time.deltaTime;
             }
-        }  
+        }
+
+        protected override void OnDestroy()
+        {
+            // TODO: Victory condition
+            Instance = null;
+            base.OnDestroy();
+        }
     }
 }
 

@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
-    [SerializeField] private float _baseLv1SummonSpeed = 8f;
-    [SerializeField] private float _baseLv2SummonSpeed = 16f;
-    [SerializeField] private float _baseLv3SummonSpeed = 32f;
+    [SerializeField] private float _baseLv1SummonSpeed = 5f;
+    [SerializeField] private float _baseLv2SummonSpeed = 7f;
+    [SerializeField] private float _baseLv3SummonSpeed = 9f;
 
     //public UnityEvent<Vector2> RangedAttackEvent;
     //public UnityEvent MeleeAttackEvent;
@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector] public MeleeAttack MeleeAttack = null;
     [HideInInspector] public Summoner Summoner = null;
     [HideInInspector] public PlayerLeveling LevelingSystem = null;
+    public Damagable HitpointData = null;
+
     public SpriteRenderer SpriteRenderer;
     public Animator Animator;
 

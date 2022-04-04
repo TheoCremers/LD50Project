@@ -16,7 +16,7 @@ MonoBehaviour:
   expCost: 1000
   intValue: 0
   floatValue: 0
-  upgradeImage: {fileID: 21300000, guid: c959ff5db9c668a4381a6096b76cccd1, type: 3}
+  upgradeImage: {fileID: 21300000, guid: 43ea42ee2523bdf458edf9149b722e3a, type: 3}
   spriteColor: {r: 0.6294822, g: 0.08495018, b: 0.7830189, a: 1}
   details: melee attack leaves a cloud of noxious gas that damages enemies
   unlocksOptions: []

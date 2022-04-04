@@ -6,5 +6,7 @@ public enum UpgradeType
     rangedPierce = 3,
     summonSpeed = 4,
     summonLevel = 5,
-    meleeAoe = 6
+    meleeAoe = 6,
+    health = 7,
+    regen = 8
 }

@@ -37,6 +37,7 @@ Transform:
   - {fileID: 6739833966807086669}
   - {fileID: 1572907973654098128}
   - {fileID: 6288546648717027131}
+  - {fileID: 7221279977408825590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -60,6 +61,7 @@ MonoBehaviour:
   _wanderSpeed: 3
   _meleeRange: 1
   _aoeEffect: {fileID: 9041896508620672953, guid: a7095dd6485e0ef43a4c73446689b1d8, type: 3}
+  _moveSpeedModifier: 1
   HitpointData: {fileID: 344575056479585225}
   _baseAttackCooldown: 1
   _distanceDifficultyModifier: 1
@@ -87,7 +89,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 200
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -109,8 +111,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.4}
+  m_Offset: {x: 0.013204992, y: 0.02200824}
+  m_Size: {x: 1.2715267, y: 1.2715267}
   m_Direction: 0
 --- !u!114 &1907748766303818438
 MonoBehaviour:
@@ -127,7 +129,7 @@ MonoBehaviour:
   _swingOffset: 0.5
   _swingTransform: {fileID: 6288546648717027131}
   _aoeEffectTemplate: {fileID: 0}
-  Damage: 5
+  Damage: 30
   LeavesAoe: 0
 --- !u!114 &-6197618260245336419
 MonoBehaviour:
@@ -144,10 +146,92 @@ MonoBehaviour:
   _projectile: {fileID: 9160835060194928131, guid: 59c13467d7fbcae4bad3d806cbe3d821, type: 3}
   _spawnOffset: 0.5
   _projectileContainer: {fileID: 0}
-  damage: 5
+  damage: 10
   projectileSpeed: 10
   piercingAmount: 1
   homing: 0
+--- !u!1 &1324841201812642105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7221279977408825590}
+  - component: {fileID: 2395509248150620727}
+  m_Layer: 1
+  m_Name: Dropshadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7221279977408825590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324841201812642105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.07, y: -0.37, z: 0}
+  m_LocalScale: {x: 3.0908818, y: 0.9774, z: 1}
+  m_Children: []
+  m_Father: {fileID: 763289381788512823}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2395509248150620727
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324841201812642105}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Color: {r: 0.26415092, g: 0.26415092, b: 0.26415092, a: 0.38431373}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2009184497804358727
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,9 +507,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.007028222, y: -0.40060824}
-  m_Size: {x: 0.86084616, y: 0.86084616}
-  m_Direction: 0
+  m_Offset: {x: 0.08015748, y: -0.37961268}
+  m_Size: {x: 2.260572, y: 1.6306988}
+  m_Direction: 1
 --- !u!114 &344575056479585225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +524,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 400
   _health: 0
+  BaseRegen: 0
+  RegenFactor: 1
+  RegenTimer: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:

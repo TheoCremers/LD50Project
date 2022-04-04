@@ -16,9 +16,9 @@ MonoBehaviour:
   expCost: 100
   intValue: 0
   floatValue: 0
-  upgradeImage: {fileID: 21300000, guid: 7cf725c1ab826ea43a0716c2b4787347, type: 3}
-  spriteColor: {r: 1, g: 1, b: 1, a: 1}
-  details: Add a new familiar to summon
+  upgradeImage: {fileID: 21300000, guid: 7d5d1df2de6e7a2468323ba08f98715e, type: 3}
+  spriteColor: {r: 0.120812856, g: 0.09140263, b: 0.36078432, a: 1}
+  details: unlocks automatic summoning of familiars
   unlocksOptions:
   - {fileID: 11400000, guid: 1e8d20d17874d254da46396d9f79fa67, type: 2}
   - {fileID: 11400000, guid: fafac758b3b3b364c949409cbb7db3c3, type: 2}

@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
+using System;
+
 
 public class PlayerLeveling : MonoBehaviour
 {
@@ -16,7 +19,11 @@ public class PlayerLeveling : MonoBehaviour
     {
         _upgradeTiles.AddRange(UIManager.Instance.UpgradeContainer.GetComponentsInChildren<UpgradeTile>());
 
-        while (_currentUpgradeOptions.Count > 0)
+        // quick shuffle
+        _currentUpgradeOptions = _currentUpgradeOptions.OrderBy(x => Guid.NewGuid()).ToList();
+        Debug.Log(_currentUpgradeOptions.Count);
+
+        for (int i = 0; i < 3; i++) 
         {
             UpgradeTile setTile = SetUpgradeTile(_currentUpgradeOptions[0]);
             if (setTile == null) { break; }
@@ -113,7 +120,13 @@ public class PlayerLeveling : MonoBehaviour
             case UpgradeType.meleeAoe:
                 SetMeleeAoe();
                 break;
-            default:
+            case UpgradeType.health:
+                AddMaxHealth(option.intValue);
+                break;
+            case UpgradeType.regen:
+                AddRegen(option.floatValue);
+                break;
+            default:            
                 break;
         }
 
@@ -124,7 +137,7 @@ public class PlayerLeveling : MonoBehaviour
 
         while (_currentUpgradeOptions.Count > 0)
         {
-            int index = Random.Range(0, _currentUpgradeOptions.Count);
+            int index = UnityEngine.Random.Range(0, _currentUpgradeOptions.Count);
             UpgradeTile setTile = SetUpgradeTile(_currentUpgradeOptions[index]);
             if (setTile == null) { break; } // no more blank tiles available
             _currentUpgradeOptions.RemoveAt(index);
@@ -151,9 +164,20 @@ public class PlayerLeveling : MonoBehaviour
         PlayerController.Instance.SummonLevel += 1;
     }
 
+    public void AddMaxHealth(int amount)
+    {
+        PlayerController.Instance.HitpointData.MaxHealth += amount;
+        PlayerController.Instance.HitpointData.Heal(amount * 2);
+    }
+
+    public void AddRegen(float amount)
+    {
+        PlayerController.Instance.HitpointData.RegenFactor = amount;
+    }
+
     public void ReduceSummonCooldown (float factorChange)
     {
-        PlayerController.Instance.SummonCooldownFactor -= factorChange;
+        PlayerController.Instance.SummonCooldownFactor -= factorChange;        
     }
 
     public void SetMeleeAoe ()
