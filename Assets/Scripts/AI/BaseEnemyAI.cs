@@ -15,7 +15,7 @@ namespace LD50.Scripts.AI
         [SerializeField]
         private int ExpWorth;
 
-        protected float _expMultiplier = 1f;
+        protected float _expMultiplier = 1.2f;
 
         protected EnemyCombatState _state = EnemyCombatState.Idle;
 
