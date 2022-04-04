@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 344575056479585225, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+      propertyPath: MaxHealth
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 344575056479585225, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: _maxHealth
       value: 50
       objectReference: {fileID: 0}
@@ -29,19 +33,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: ExpWorth
-      value: 88
+      value: 167
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: _agroRange
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: _moveSpeed
-      value: 3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512822, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: _wanderSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512823, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: m_RootOrder
@@ -98,6 +102,10 @@ PrefabInstance:
     - target: {fileID: 1232730551374866238, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: m_Color.r
       value: 0.8867924
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907748766303818438, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+      propertyPath: Damage
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 3434259225960598748, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
       propertyPath: m_AnchorMax.x

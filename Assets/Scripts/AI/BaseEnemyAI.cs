@@ -13,7 +13,9 @@ namespace LD50.Scripts.AI
     public abstract class BaseEnemyAI : BaseUnitAI 
     {
         [SerializeField]
-        private int ExpWorth = 88;
+        private int ExpWorth;
+
+        protected float _expMultiplier = 1f;
 
         protected EnemyCombatState _state = EnemyCombatState.Idle;
 
@@ -121,7 +123,7 @@ namespace LD50.Scripts.AI
 
         public void DropExp()
         {
-            ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, ExpWorth);
+            ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, Mathf.CeilToInt(ExpWorth * _expMultiplier));
         }
 
         protected abstract void UpdateTargetting();

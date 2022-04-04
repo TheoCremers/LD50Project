@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ChainLightningUp1
   m_EditorClassIdentifier: 
   type: 9
-  expCost: 1500
+  expCost: 4500
   intValue: 1
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: dc724858b83d0244c95d219777a9f756, type: 3}

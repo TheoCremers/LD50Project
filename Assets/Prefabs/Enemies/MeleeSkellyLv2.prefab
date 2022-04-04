@@ -7,9 +7,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 344575056479585225, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: MaxHealth
+      value: 312
+      objectReference: {fileID: 0}
     - target: {fileID: 763289381788512821, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
       propertyPath: m_Name
       value: MeleeSkellyLv2
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512822, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: ExpWorth
+      value: 245
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512822, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: _agroRange
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512822, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: _moveSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 763289381788512822, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: _wanderSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 763289381788512823, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
       propertyPath: m_RootOrder
@@ -66,6 +86,10 @@ PrefabInstance:
     - target: {fileID: 1232730551374866238, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
       propertyPath: m_Color.r
       value: 0.5566038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1907748766303818438, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+      propertyPath: Damage
+      value: 26
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}

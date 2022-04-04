@@ -51,13 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e1b13763456c44b3cd2a5a7f3f5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agroRange: 3.5
-  _moveSpeed: 2
+  _agroRange: 4
+  _moveSpeed: 4
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
-  ExpWorth: 44
+  ExpWorth: 22
   _wanderSpeed: 1
-  _meleeRange: 1.5
+  _meleeRange: 2
   _baseAttackCooldown: 1
 --- !u!50 &5483993250682471302
 Rigidbody2D:
@@ -111,7 +111,7 @@ MonoBehaviour:
   _swingOffset: 0.5
   _swingTransform: {fileID: 6288546648717027131}
   _aoeEffectTemplate: {fileID: 0}
-  Damage: 5
+  Damage: 12
   LeavesAoe: 0
 --- !u!1 &2009184497804358727
 GameObject:
@@ -485,7 +485,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28081ac2f439193489792d5e4e27e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 20
+  MaxHealth: 25
   _health: 0
   BaseRegen: 0
   RegenFactor: 1

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: HealthUp5
   m_EditorClassIdentifier: 
   type: 7
-  expCost: 100
-  intValue: 300
+  expCost: 15000
+  intValue: 150
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: 30e5236933afc214c9026cd9eefefded, type: 3}
   spriteColor: {r: 1, g: 0.18396229, b: 0.18396229, a: 1}
   details: small heal and increase max HP
-  unlocksOptions: []
+  unlocksOptions:
+  - {fileID: 11400000, guid: 7131bff6517c0804dad82774ae806547, type: 2}

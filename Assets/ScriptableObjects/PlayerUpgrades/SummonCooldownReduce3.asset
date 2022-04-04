@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SummonCooldownReduce3
   m_EditorClassIdentifier: 
   type: 4
-  expCost: 400
+  expCost: 25000
   intValue: 0
   floatValue: 0.2
   upgradeImage: {fileID: 21300000, guid: ea9a1e7ad61c9114aa1e204945563f27, type: 3}

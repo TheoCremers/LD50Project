@@ -58,7 +58,7 @@ MonoBehaviour:
   RigidBody: {fileID: 5483993250682471302}
   _followSpeed: 0
   _meleeRange: 1
-  _baseAttackCooldown: 2
+  _baseAttackCooldown: 1
 --- !u!114 &6097530358922775405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28081ac2f439193489792d5e4e27e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 70
   _health: 0
   BaseRegen: 2
   RegenFactor: 1

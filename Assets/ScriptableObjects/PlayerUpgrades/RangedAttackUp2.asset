@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RangedAttackUp2
   m_EditorClassIdentifier: 
   type: 1
-  expCost: 200
-  intValue: 10
+  expCost: 900
+  intValue: 6
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: 98fe94fb75ca1cb4d98c2cac1f67f112, type: 3}
   spriteColor: {r: 0, g: 0.39658165, b: 1, a: 1}

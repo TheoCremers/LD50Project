@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33975de5a0e9d7b4e96539f684c20ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseAttackCooldown: 0.3
+  _baseAttackCooldown: 0.5
   _baseMoveSpeed: 5
   _baseLv1SummonSpeed: 8
   _baseLv2SummonSpeed: 16
@@ -245,7 +245,7 @@ MonoBehaviour:
   _swingOffset: 1
   _swingTransform: {fileID: 6221171967952326377}
   _aoeEffectTemplate: {fileID: 9041896508620672953, guid: 4567ea755f743cb418216ef6ec6306ec, type: 3}
-  Damage: 5
+  Damage: 8
   LeavesAoe: 0
 --- !u!114 &7291279967199776037
 MonoBehaviour:

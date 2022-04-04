@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 344575056479585225, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: MaxHealth
-      value: 200
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 344575056479585225, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: _maxHealth
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1907748766303818438, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: Damage
-      value: 7
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1907748766303818438, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: damage
@@ -128,8 +128,8 @@ PrefabInstance:
       value: -0.5638
       objectReference: {fileID: 0}
     - target: {fileID: 5057344534883360177, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
-      propertyPath: _baseAttackCooldown
-      value: 1.5
+      propertyPath: _agroRange
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6944834160650550234, guid: d099e42936ef61f4a9db7790469ecc53, type: 3}
       propertyPath: m_Offset.y
