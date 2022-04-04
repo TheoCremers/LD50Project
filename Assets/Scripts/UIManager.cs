@@ -11,7 +11,9 @@ public class UIManager : MonoBehaviour
     public TMP_Text DistanceIndicator;
     public TMP_Text ExpCounter;
     public TMP_Text PauseText;
-    public TMP_Text survivalTime;
+    public TMP_Text SurvivalTime;
+    public TMP_Text GameOverMessage;
+    public TMP_Text Credits;
 
     [SerializeField] private GameObject _menuOverlay = null;
     [SerializeField] private CanvasGroup _gameOverGroup = null;
@@ -109,13 +111,27 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void TriggerGameOver ()
+    public void TriggerGameOver (bool victory)
     {
         Time.timeScale = 0f;
         GameOver = true;
         _gameOverGroup.alpha = 1f;
         _gameOverGroup.interactable = true;
         _gameOverGroup.blocksRaycasts = true;
-        survivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
+
+        if (victory)
+        {
+            GameOverMessage.text = "VICTORY";
+            GameOverMessage.color = Color.green;
+            SurvivalTime.text = $"You beat the game in\n{Time.timeSinceLevelLoad.ToString("0")} seconds";
+            Credits.enabled = true;
+        }
+        else
+        {
+            GameOverMessage.text = "GAME OVER";
+            GameOverMessage.color = Color.green;
+            SurvivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
+            Credits.enabled = false;
+        }
     }
 }
