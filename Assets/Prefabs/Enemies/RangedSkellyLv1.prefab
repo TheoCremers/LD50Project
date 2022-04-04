@@ -203,7 +203,7 @@ MonoBehaviour:
   _moveSpeed: 3
   Sprite: {fileID: 1947057478453327891}
   RigidBody: {fileID: 5302699178439564129}
-  ExpWorth: 128
+  ExpWorth: 148
   _wanderSpeed: 2
   _deadzone: 3
   _range: 6

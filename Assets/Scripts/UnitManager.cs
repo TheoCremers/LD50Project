@@ -8,8 +8,8 @@ public class UnitManager : MonoBehaviour
 
     public static List<Transform> EnemyUnits;
 
-    [SerializeField]
-    private float _difficultyModifier = 0.33f;
+    //[SerializeField]
+    //private float _difficultyModifier = 0.33f;
 
     //[SerializeField]
     //private float _highestDifficulty = 1f;

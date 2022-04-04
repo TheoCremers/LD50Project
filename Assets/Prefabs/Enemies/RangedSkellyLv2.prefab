@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754048902361572648, guid: 8cf015a3670dc2a4d8a44f1ba6d498fb, type: 3}
       propertyPath: MaxHealth
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1088263239531244240, guid: 8cf015a3670dc2a4d8a44f1ba6d498fb, type: 3}
       propertyPath: m_RootOrder
@@ -81,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2763604200322253591, guid: 8cf015a3670dc2a4d8a44f1ba6d498fb, type: 3}
       propertyPath: ExpWorth
-      value: 472
+      value: 864
       objectReference: {fileID: 0}
     - target: {fileID: 2763604200322253591, guid: 8cf015a3670dc2a4d8a44f1ba6d498fb, type: 3}
       propertyPath: _agroRange
