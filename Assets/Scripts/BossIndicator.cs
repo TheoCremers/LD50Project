@@ -34,6 +34,8 @@ public class BossIndicator : MonoBehaviour
 
     private void Update ()
     {
+        if (UIManager.Paused) { return; }
+
         if (_boss == null)
         {
             SetVisibility(false);
