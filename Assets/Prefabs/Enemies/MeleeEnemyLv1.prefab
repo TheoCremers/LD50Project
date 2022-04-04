@@ -36,6 +36,7 @@ Transform:
   - {fileID: 6739833966807086669}
   - {fileID: 6288546648717027131}
   - {fileID: 2770342157064506488}
+  - {fileID: 7889863871773792254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -359,6 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 25
   _health: 0
+  MaxHpMultiplier: 1
   BaseRegen: 0
   RegenFactor: 1
   RegenTimer: 1
@@ -434,6 +436,18 @@ MonoBehaviour:
       - m_Target: {fileID: 763289381788512822}
         m_TargetAssemblyTypeName: LD50.Scripts.AI.BaseEnemyAI, Assembly-CSharp
         m_MethodName: OnHit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 8183083855487670406}
+        m_TargetAssemblyTypeName: DamageEffect, Assembly-CSharp
+        m_MethodName: TriggerDamageEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -691,3 +705,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8402559985988062640, guid: ad6f42052f2e0e541aab92afda6faca6, type: 3}
   m_PrefabInstance: {fileID: 2584648450058136203}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7225498151574992848
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 763289381788512823}
+    m_Modifications:
+    - target: {fileID: 664365791086223406, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 664365791086223406, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664365791086223406, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664365791086223406, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1573452955918397270, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 1232730551374866238}
+    - target: {fileID: 8150428058390421438, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+      propertyPath: m_Name
+      value: DamageEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+--- !u!4 &7889863871773792254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 664365791086223406, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+  m_PrefabInstance: {fileID: 7225498151574992848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8183083855487670406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1573452955918397270, guid: 58af8548caef88844b14803b2beb1d3c, type: 3}
+  m_PrefabInstance: {fileID: 7225498151574992848}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e072d882966764f4b8034260bb39f497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
