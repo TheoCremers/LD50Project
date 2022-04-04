@@ -216,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2003953404596183916, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2003953404596183916, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: OnDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -241,10 +241,6 @@ PrefabInstance:
     - target: {fileID: 4510696589996095342, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: _spawnOffset
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4510696589996095342, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
-      propertyPath: chainLightning
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6408992311847277043, guid: d2aaa4b364dbfd3478ead8817b18137b, type: 3}
       propertyPath: m_RootOrder

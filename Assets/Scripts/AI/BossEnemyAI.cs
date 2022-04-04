@@ -244,7 +244,7 @@ namespace LD50.Scripts.AI
 
         protected override void OnDestroy()
         {
-            // TODO: Victory condition
+            UIManager.Instance.TriggerGameOver(true);
             Instance = null;
             base.OnDestroy();
         }
