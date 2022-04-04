@@ -21,4 +21,3 @@ MonoBehaviour:
   details: small heal and increase max HP
   unlocksOptions:
   - {fileID: 11400000, guid: 41c2bd47225ba094da60cf6a52af76cf, type: 2}
-  - {fileID: 11400000, guid: a05904ce500cc8f4b929143ecc387dd8, type: 2}

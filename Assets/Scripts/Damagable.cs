@@ -8,8 +8,10 @@ public class Damagable : MonoBehaviour
     [SerializeField]
     private float _health;
 
+    public float MaxHpMultiplier = 1f;
+
     public float BaseRegen = 0f;
-    public float RegenFactor = 1f;
+    public float RegenFactor = 1.5f;
     public float RegenTimer = 1f;
 
     public float Health 
@@ -18,13 +20,13 @@ public class Damagable : MonoBehaviour
         set 
         {
             _health = value;
-            OnHealthChange?.Invoke((float)Health / MaxHealth);
+            OnHealthChange?.Invoke((float)Health / (MaxHealth * MaxHpMultiplier));
         }
     }
 
     public float HealthPercentage
     {
-        get { return (Health / MaxHealth); }
+        get { return (Health / (MaxHealth * MaxHpMultiplier)); }
     }
 
     public UnityEvent OnDeath;
@@ -42,7 +44,7 @@ public class Damagable : MonoBehaviour
         {
             if (RegenTimer <= 0f) 
             {
-                Heal((MaxHealth / 100f) * BaseRegen * RegenFactor);
+                Heal(((MaxHealth * MaxHpMultiplier) / 100f) * BaseRegen * RegenFactor);
                 RegenTimer = 1f;
             } 
             else
@@ -68,7 +70,7 @@ public class Damagable : MonoBehaviour
     public void Heal(float healPoints) 
     {
         Health += healPoints;
-        Health = Mathf.Clamp(Health, 0, MaxHealth);
+        Health = Mathf.Clamp(Health, 0, (MaxHealth * MaxHpMultiplier));
         OnHeal?.Invoke();
     }
 }

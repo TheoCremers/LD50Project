@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   expCost: 7500
-  intValue: 6
+  intValue: 14
   floatValue: 0
   upgradeImage: {fileID: 21300000, guid: 98fe94fb75ca1cb4d98c2cac1f67f112, type: 3}
   spriteColor: {r: 0, g: 0.39658165, b: 1, a: 1}
