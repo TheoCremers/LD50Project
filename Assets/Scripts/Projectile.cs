@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
 
     public SpriteRenderer Sprite;
     public ParticleSystem particalSystem;
-    public Collider2D collider;
+    public Collider2D projectileCollider;
 
     public UnityEvent<Damagable> DamagableHit;
 
@@ -76,7 +76,7 @@ public class Projectile : MonoBehaviour
 
     private void DestroyAfterParticlesGone ()
     {
-        collider.enabled = false;
+        projectileCollider.enabled = false;
         Sprite.enabled = false;
         particalSystem.Stop();
     }

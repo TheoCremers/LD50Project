@@ -127,7 +127,7 @@ MonoBehaviour:
   chainLightningTemplate: {fileID: 0}
   Sprite: {fileID: 9160835060194928129}
   particalSystem: {fileID: 8951743079812673537}
-  collider: {fileID: 9160835060194928128}
+  projectileCollider: {fileID: 9160835060194928128}
   DamagableHit:
     m_PersistentCalls:
       m_Calls: []

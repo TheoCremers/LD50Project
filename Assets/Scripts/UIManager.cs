@@ -66,10 +66,13 @@ public class UIManager : MonoBehaviour
                 ToggleLevelMenu();
             }
         }
+#if !UNITY_WEBGL
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
         }
+#endif
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             FullScreenMode fullScreenMode = FullScreenMode.FullScreenWindow;
