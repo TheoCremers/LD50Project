@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _baseAttackCooldown = 1f;
     [SerializeField] private float _baseMoveSpeed = 5f;
-    [SerializeField] private float _baseLv1SummonSpeed = 5f;
-    [SerializeField] private float _baseLv2SummonSpeed = 7f;
-    [SerializeField] private float _baseLv3SummonSpeed = 9f;
+    [SerializeField] private float _baseLv1SummonSpeed = 4f;
+    [SerializeField] private float _baseLv2SummonSpeed = 5f;
+    [SerializeField] private float _baseLv3SummonSpeed = 6f;
 
     //public UnityEvent<Vector2> RangedAttackEvent;
     //public UnityEvent MeleeAttackEvent;

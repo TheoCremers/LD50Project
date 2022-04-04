@@ -179,7 +179,7 @@ public class PlayerLeveling : MonoBehaviour
 
     public void AddRegen(float amount)
     {
-        PlayerController.Instance.HitpointData.RegenFactor = amount;
+        PlayerController.Instance.HitpointData.RegenFactor = PlayerController.Instance.HitpointData.RegenFactor * amount;
     }
 
     public void AddChainLightning()

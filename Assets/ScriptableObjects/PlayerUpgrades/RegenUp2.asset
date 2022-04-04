@@ -15,7 +15,7 @@ MonoBehaviour:
   type: 8
   expCost: 22000
   intValue: 0
-  floatValue: 4
+  floatValue: 2
   upgradeImage: {fileID: 21300000, guid: 30e5236933afc214c9026cd9eefefded, type: 3}
   spriteColor: {r: 0.49153742, g: 0.7169812, b: 0.46333218, a: 1}
   details: doubles passive HP regeneration

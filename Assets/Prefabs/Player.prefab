@@ -222,7 +222,7 @@ MonoBehaviour:
   Projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
   _directionalSpawnOffset: 0.5
   _projectileContainer: {fileID: 0}
-  damage: 5
+  damage: 7
   projectileSpeed: 9
   piercingAmount: 0
   homing: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   _swingOffset: 1
   _swingTransform: {fileID: 6221171967952326377}
   _aoeEffectTemplate: {fileID: 9041896508620672953, guid: 4567ea755f743cb418216ef6ec6306ec, type: 3}
-  Damage: 8
+  Damage: 12
   LeavesAoe: 0
 --- !u!114 &7291279967199776037
 MonoBehaviour:
@@ -356,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   _health: 0
+  MaxHpMultiplier: 1.5
   BaseRegen: 1
   RegenFactor: 1
   RegenTimer: 1
