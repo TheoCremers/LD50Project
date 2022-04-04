@@ -43,10 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83617739ecac5448be38d04c80f79d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _difficultyModifier: 1
+  _difficultyModifier: 0.3
+  _highestDifficulty: 1
   _spawnFrequencyModifier: 1
-  _baseSpawnFrequency: 5
+  _baseSpawnFrequency: 0.7
+  _enemyCap: 30
+  EnemyCount: 0
   Enemies:
   - {fileID: 763289381788512821, guid: 886d3d6f7e8063646851a4f37219d629, type: 3}
+  - {fileID: 763289381788512821, guid: 811bb3a3d1cff88448836c5f5b34a193, type: 3}
+  - {fileID: 1088263239531244242, guid: 8cf015a3670dc2a4d8a44f1ba6d498fb, type: 3}
   - {fileID: 1844023191233683524, guid: 1e50082dc773ce9478404cb8f19a5488, type: 3}
+  - {fileID: 1251343617345806150, guid: 217dc600f2830de4c8e05ece1a9b31bf, type: 3}
   - {fileID: 7696153516659998040, guid: e271bcef8c37c7648942661bca90fbb4, type: 3}
+  - {fileID: 7053950780111609130, guid: 95593c0e04ee2ee48b97c9c75c852fa6, type: 3}
