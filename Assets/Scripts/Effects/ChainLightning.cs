@@ -39,16 +39,17 @@ public class ChainLightning : MonoBehaviour
             _targets.Add(nextTarget);
             _current++;
             
-            yield return MakeConnection();
+            yield return AddToChain();
         }
         while (!_finished)
         {
             yield return new WaitForSeconds(1f);
             _finished = !AnyLinesActive();
         }
+        Destroy(gameObject);
     }
 
-    private IEnumerator MakeConnection ()
+    private IEnumerator AddToChain ()
     {
         LightningLine newLine = Instantiate(_lightningLineTemplate, transform);
         _lines.Add(newLine);
@@ -81,8 +82,8 @@ public class ChainLightning : MonoBehaviour
     {
         foreach (var line in _lines)
         {
-            if (line != null) { return false; }
+            if (line != null) { return true; }
         }
-        return true;
+        return false;
     }
 }

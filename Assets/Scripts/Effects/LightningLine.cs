@@ -28,6 +28,7 @@ public class LightningLine : MonoBehaviour
 
     private void Update ()
     {
+        // Animation
         _fpsCounter += Time.deltaTime;
         if (_fpsCounter >= 1f / _fps)
         {
@@ -42,6 +43,7 @@ public class LightningLine : MonoBehaviour
             _fpsCounter = 0f;
         }
 
+        // lifecycle
         if (_lifeTime > _maxLifetime)
         {
             if (BreakConnection())
