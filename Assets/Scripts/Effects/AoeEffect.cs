@@ -5,11 +5,10 @@ using UnityEngine.Events;
 
 public class AoeEffect : MonoBehaviour
 {
-    public float duration = 3f;
-    public float activeFor = 0f;
-    public int damagePerTick = 2;
-    public float damageInterval = 0.5f;
-    public float fadeTime = 0.2f;
+    public float Duration = 3f;
+    public int DamagePerTick = 2;
+    public float DamageInterval = 0.5f;
+    public float FadeTime = 0.2f;
 
     public UnityEvent AoeFinished;
 
@@ -51,13 +50,13 @@ public class AoeEffect : MonoBehaviour
         _spriteRenderer.color = _baseColor;
         float localTime = 0f;
 
-        while (localTime < duration + fadeTime)
+        while (localTime < Duration + FadeTime)
         {
             yield return null;
             _collider.enabled = true;
-            yield return new WaitForSeconds(damageInterval);
+            yield return new WaitForSeconds(DamageInterval);
             _collider.enabled = false;
-            localTime += damageInterval + Time.deltaTime;
+            localTime += DamageInterval + Time.deltaTime;
         }
 
         _spriteRenderer.color = _offColor;
@@ -68,9 +67,9 @@ public class AoeEffect : MonoBehaviour
         gameObject.SetActive(true);
         float localTime = 0f;
         _collider.enabled = false;
-        if (localTime < fadeTime)
+        if (localTime < FadeTime)
         {
-            _spriteRenderer.color = Color.Lerp(_offColor, _baseColor, localTime / fadeTime);
+            _spriteRenderer.color = Color.Lerp(_offColor, _baseColor, localTime / FadeTime);
             localTime += Time.deltaTime;
             yield return null;
         }
@@ -82,9 +81,9 @@ public class AoeEffect : MonoBehaviour
     {
         float localTime = 0f;
         _collider.enabled = false;
-        while (localTime < fadeTime)
+        while (localTime < FadeTime)
         {
-            _spriteRenderer.color = Color.Lerp(_baseColor, _offColor, localTime / fadeTime);
+            _spriteRenderer.color = Color.Lerp(_baseColor, _offColor, localTime / FadeTime);
             localTime += Time.deltaTime;
             yield return null;
         }
@@ -101,7 +100,7 @@ public class AoeEffect : MonoBehaviour
     {
         if (collision.TryGetComponent(out Damagable damagable))
         {
-            damagable.Hit(damagePerTick);
+            damagable.Hit(DamagePerTick);
         }
     }
 }

@@ -4,49 +4,49 @@ using UnityEngine;
 
 public class ExpOrb : MonoBehaviour
 {
-    public int expValue = 10;
+    public int ExpValue = 10;
         
-    public Vector3 direction = Vector3.zero;
-    public float speed = 0f;
+    [HideInInspector] public Vector3 Direction = Vector3.zero;
+    [HideInInspector] public float Speed = 0f;
 
     private float _lifetime = 0f;
 
-    private static Transform playerTransform = null;
-    private static float maxAcceleration = 5.0f;
-    private static float settleTime = 1f;
+    private static Transform PlayerTransform = null;
+    private static float MaxAcceleration = 5.0f;
+    private static float SettleTime = 1f;
 
     private void Start ()
     {
-        if (playerTransform == null)
+        if (PlayerTransform == null)
         {
-            playerTransform = PlayerController.Instance.transform;
+            PlayerTransform = PlayerController.Instance.transform;
         }
     }
 
     private void Update ()
     {
-        if (_lifetime < settleTime && speed > 0f)
+        if (_lifetime < SettleTime && Speed > 0f)
         {
-            speed = speed - maxAcceleration * Time.deltaTime;
-            if (speed < 0f) { speed = 0f; }
+            Speed = Speed - MaxAcceleration * Time.deltaTime;
+            if (Speed < 0f) { Speed = 0f; }
         }
         else 
         {
-            Vector3 relativeToPlayer = playerTransform.position - transform.position;
-            speed = speed + maxAcceleration * Time.deltaTime;
+            Vector3 relativeToPlayer = PlayerTransform.position - transform.position;
+            Speed = Speed + MaxAcceleration * Time.deltaTime;
 
             if (relativeToPlayer.sqrMagnitude < 0.25f)
             {
-                PlayerController.Instance.LevelingSystem.ChangeExperience(expValue);
+                PlayerController.Instance.LevelingSystem.ChangeExperience(ExpValue);
                 Destroy(gameObject);
             }
             else
             {
-                direction = relativeToPlayer.normalized;
+                Direction = relativeToPlayer.normalized;
             }
         }
 
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += Direction * Speed * Time.deltaTime;
 
         _lifetime += Time.deltaTime;
     }
