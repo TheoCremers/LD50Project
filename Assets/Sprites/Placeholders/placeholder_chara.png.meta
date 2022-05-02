@@ -108,6 +108,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -784,6 +785,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      placeholder_chara_21: 5910555349607704732
+      placeholder_chara_2: -1511174449547625310
+      placeholder_chara_17: 8439116615285884584
+      placeholder_chara_23: 2315207865301755192
+      placeholder_chara_26: 5347728563243671222
+      placeholder_chara_10: -7537880790153026495
+      placeholder_chara_11: 7256228168578074653
+      placeholder_chara_1: 574972051286642620
+      placeholder_chara_14: 6707852606944181217
+      placeholder_chara_8: -1495497052721674047
+      placeholder_chara_20: 1176841026399390600
+      placeholder_chara_6: -3986121415055575450
+      placeholder_chara_24: -6639245884791375702
+      placeholder_chara_25: 6769329780777785285
+      placeholder_chara_18: 6133020144552214830
+      placeholder_chara_19: -3947615566602191724
+      placeholder_chara_5: 2312245593138738068
+      placeholder_chara_15: -8767429866211151534
+      placeholder_chara_0: -5731196096010505017
+      placeholder_chara_13: 4176319716011671752
+      placeholder_chara_4: -6577492044735017160
+      placeholder_chara_12: -6620495662966936168
+      placeholder_chara_3: 8574109209875947036
+      placeholder_chara_27: -6626971360520142472
+      placeholder_chara_9: -2999393980156747790
+      placeholder_chara_22: 5560666977413327457
+      placeholder_chara_16: -923525884820334145
+      placeholder_chara_7: -5217545744625880713
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
