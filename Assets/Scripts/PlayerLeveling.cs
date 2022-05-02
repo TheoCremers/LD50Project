@@ -7,7 +7,7 @@ using System;
 
 public class PlayerLeveling : MonoBehaviour
 {
-    public int currentExperience = 0;
+    public int CurrentExperience = 0;
 
     public static int UpgradesBought = 0;
 
@@ -30,20 +30,20 @@ public class PlayerLeveling : MonoBehaviour
             _currentUpgradeOptions.RemoveAt(0);
         }
 
-        UIManager.Instance.UpdateExpCounter(currentExperience);
+        UIManager.Instance.UpdateExpCounter(CurrentExperience);
         UpgradesBought = 0;
     }
 
     public void ChangeExperience(int amount)
     {
-        currentExperience += amount;        
+        CurrentExperience += amount;        
 
         bool anyUpgrade = false;
 
         // check if new upgrades become available
         foreach (var item in _upgradeTiles)
         {
-            if (item.UpgradeOption.expCost <= currentExperience)
+            if (item.UpgradeOption.expCost <= CurrentExperience)
             {
                 item.EnableButton();
                 anyUpgrade = true;
@@ -53,7 +53,7 @@ public class PlayerLeveling : MonoBehaviour
                 item.DisableButton();
             }
         }
-        UIManager.Instance.UpdateExpCounter(currentExperience);
+        UIManager.Instance.UpdateExpCounter(CurrentExperience);
 
         if (anyUpgrade)
         {
@@ -79,7 +79,7 @@ public class PlayerLeveling : MonoBehaviour
         blankTile.Button.onClick.AddListener(() => ApplyUpgrade(blankTile));
         blankTile.SetActive();
 
-        if (option.expCost <= currentExperience)
+        if (option.expCost <= CurrentExperience)
         {
             blankTile.EnableButton();
         }
@@ -153,12 +153,12 @@ public class PlayerLeveling : MonoBehaviour
 
     public void AddRangedDamage (int amount)
     {
-        PlayerController.Instance.RangedAttack.damage += amount;
+        PlayerController.Instance.RangedAttack.Damage += amount;
     }
 
     public void AddRangedPierce (int amount)
     {
-        PlayerController.Instance.RangedAttack.piercingAmount += amount;
+        PlayerController.Instance.RangedAttack.PiercingAmount += amount;
     }
 
     public void AddMeleeDamage (int amount)
@@ -184,8 +184,8 @@ public class PlayerLeveling : MonoBehaviour
 
     public void AddChainLightning()
     {
-        PlayerController.Instance.RangedAttack.chainLightning = true;
-        PlayerController.Instance.RangedAttack.piercingAmount += 3;
+        PlayerController.Instance.RangedAttack.ChainLightning = true;
+        PlayerController.Instance.RangedAttack.PiercingAmount += 3;
         Color newColor;
         ColorUtility.TryParseHtmlString("#41A7F1", out newColor);
         PlayerController.Instance.RangedAttack.BulletColor = newColor;

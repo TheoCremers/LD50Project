@@ -220,15 +220,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b923dc5a9c7eb4c88e6e98b1d7cb51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
+  _projectile: {fileID: 9160835060194928131, guid: 47b1f8bb072a8ff488defb4d4cd2adab, type: 3}
   _directionalSpawnOffset: 0.5
   _projectileContainer: {fileID: 0}
-  damage: 7
-  projectileSpeed: 9
-  piercingAmount: 0
-  homing: 0
-  chainLightning: 0
-  absoluteSpawnOffset: {x: 0, y: 0.3, z: 0}
+  Damage: 5
+  ProjectileSpeed: 7
+  PiercingAmount: 0
+  Homing: 0
+  ChainLightning: 0
+  AbsoluteSpawnOffset: {x: 0, y: 0, z: 0}
   BulletLifespan: 2
   BulletColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!114 &4124551367453661928

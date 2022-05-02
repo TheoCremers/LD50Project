@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
 
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0f;
-        Vector3 origin = transform.position + RangedAttack.absoluteSpawnOffset;
+        Vector3 origin = transform.position + RangedAttack.AbsoluteSpawnOffset;
         _targetDirection = (mouseWorldPosition - origin).normalized;
 
         if (!EventSystem.current.IsPointerOverGameObject())

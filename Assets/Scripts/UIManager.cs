@@ -45,7 +45,6 @@ public class UIManager : MonoBehaviour
         PauseText.enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameOver)
@@ -86,16 +85,16 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateExpCounter (int amount)
-    {
-        ExpCounter.text = $"Exp: {amount.ToString()}";
-    }
-
     private void OnDestroy ()
     {
         Instance = null;
         PauseEvent.RemoveAllListeners();
         UnpauseEvent.RemoveAllListeners();
+    }
+
+    public void UpdateExpCounter (int amount)
+    {
+        ExpCounter.text = $"Exp: {amount.ToString()}";
     }
 
     private void ToggleLevelMenu ()
