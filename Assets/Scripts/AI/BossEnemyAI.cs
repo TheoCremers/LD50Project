@@ -120,8 +120,8 @@ namespace LD50.Scripts.AI
             {
                 _moveSpeedModifier = 1.6f;
                 _meleeAttack.Damage = Mathf.CeilToInt(_meleeAttack.Damage * 2f);
-                _rangedAttack.damage = Mathf.CeilToInt(_rangedAttack.damage * 1.5f);
-                _rangedAttack.projectileSpeed = Mathf.CeilToInt(_rangedAttack.projectileSpeed * 1.2f);
+                _rangedAttack.Damage = Mathf.CeilToInt(_rangedAttack.Damage * 1.5f);
+                _rangedAttack.ProjectileSpeed = Mathf.CeilToInt(_rangedAttack.ProjectileSpeed * 1.2f);
                 _phase3Transition = true;
             }
 
@@ -151,8 +151,8 @@ namespace LD50.Scripts.AI
                 HitpointData.Health = HitpointData.Health * 8;
                 _moveSpeedModifier = 2.2f;
                 _meleeAttack.Damage = Mathf.CeilToInt(_meleeAttack.Damage * 2f);
-                _rangedAttack.damage = Mathf.CeilToInt(_rangedAttack.damage * 2f);
-                _rangedAttack.projectileSpeed = Mathf.CeilToInt(_rangedAttack.projectileSpeed * 1.2f);
+                _rangedAttack.Damage = Mathf.CeilToInt(_rangedAttack.Damage * 2f);
+                _rangedAttack.ProjectileSpeed = Mathf.CeilToInt(_rangedAttack.ProjectileSpeed * 1.2f);
                 _phase4Transition = true;
             }
 
@@ -177,7 +177,7 @@ namespace LD50.Scripts.AI
         {
             // Boss will go berserk and unleash a bullet hell 
             Phase1Mechanics();
-            _rangedAttack.projectileSpeed = 11f;
+            _rangedAttack.ProjectileSpeed = 11f;
 
             if (_rangedAttackCooldownRemaining <= 0f) 
             {

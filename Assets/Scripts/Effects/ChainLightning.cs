@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChainLightning : MonoBehaviour
 {
-    [SerializeField] LightningLine _lightningLineTemplate = null;
+    [SerializeField] private LightningLine _lightningLineTemplate = null;
     public int MaxTargets = 3;
     public int Damage = 10;
     public float MaxBounceRange = 5f;

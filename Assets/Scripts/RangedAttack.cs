@@ -5,43 +5,43 @@ using UnityEngine.Events;
 
 public class RangedAttack : MonoBehaviour
 {
-    [SerializeField] public Projectile Projectile = null;
+    [SerializeField] private Projectile _projectile = null;
     [SerializeField] private float _directionalSpawnOffset = 0.5f;
     [SerializeField] private Transform _projectileContainer = null;
 
-    public int damage = 5;
-    public float projectileSpeed = 7f;
-    public int piercingAmount = 0;
-    public bool homing = false;
-    public bool chainLightning = false;
-    public Vector3 absoluteSpawnOffset = Vector2.zero;
+    public int Damage = 5;
+    public float ProjectileSpeed = 7f;
+    public int PiercingAmount = 0;
+    public bool Homing = false;
+    public bool ChainLightning = false;
+    public Vector3 AbsoluteSpawnOffset = Vector2.zero;
 
     public float BulletLifespan = 4f;
     public Color BulletColor;
 
     public void Start()
     {   
-        BulletColor = Projectile.Sprite.color;
+        BulletColor = _projectile.Sprite.color;
     }
 
     public void Fire (Vector2 direction)
     {
-        if (Projectile == null) { return; }
+        if (_projectile == null) { return; }
 
-        Projectile newProjectile = Instantiate(Projectile);
+        Projectile newProjectile = Instantiate(_projectile);
         if (_projectileContainer != null)
         {
             newProjectile.transform.parent = _projectileContainer;
         }
 
-        newProjectile.damage = damage;
-        newProjectile.projectileSpeed = projectileSpeed;
-        newProjectile.remainingPierces = piercingAmount;
-        newProjectile.homing = homing;
-        newProjectile.chainLighting = chainLightning;
+        newProjectile.Damage = Damage;
+        newProjectile.ProjectileSpeed = ProjectileSpeed;
+        newProjectile.RemainingPierces = PiercingAmount;
+        newProjectile.Homing = Homing;
+        newProjectile.ChainLighting = ChainLightning;
         newProjectile.Lifespan = BulletLifespan;
         newProjectile.Sprite.color = BulletColor;
-        newProjectile.transform.position = absoluteSpawnOffset + transform.position + (Vector3)direction * _directionalSpawnOffset;
+        newProjectile.transform.position = AbsoluteSpawnOffset + transform.position + (Vector3)direction * _directionalSpawnOffset;
         newProjectile.SetDirection(direction);
     }
 }

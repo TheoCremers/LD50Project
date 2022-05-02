@@ -6,13 +6,9 @@ public class ExperienceOrbManager : MonoBehaviour
 {
     public static ExperienceOrbManager Instance;
 
-    [SerializeField] private ExpOrb smallExpOrb = null;
-    [SerializeField] private ExpOrb mediumExpOrb = null;
-    [SerializeField] private ExpOrb largeExpOrb = null;
-
-    private int smallAmount;
-    private int mediumAmount;
-    private int largeAmount;
+    [SerializeField] private ExpOrb _smallExpOrb = null;
+    [SerializeField] private ExpOrb _mediumExpOrb = null;
+    [SerializeField] private ExpOrb _largeExpOrb = null;
 
     private float _minVelocity = 3f;
     private float _maxVelocity = 7f;
@@ -27,31 +23,24 @@ public class ExperienceOrbManager : MonoBehaviour
         Instance = null;
     }
 
-    private void Start ()
-    {
-        smallAmount = smallExpOrb.expValue;
-        mediumAmount = mediumExpOrb.expValue;
-        largeAmount = largeExpOrb.expValue;
-    }
-
     public void SpawnExperienceOrbs(Vector3 position, int value)
     {
-        CreateOrbs(largeExpOrb, position, ref value);
-        CreateOrbs(mediumExpOrb, position, ref value);
-        CreateOrbs(smallExpOrb, position, ref value);
+        CreateOrbs(_largeExpOrb, position, ref value);
+        CreateOrbs(_mediumExpOrb, position, ref value);
+        CreateOrbs(_smallExpOrb, position, ref value);
     }
 
     private void CreateOrbs(ExpOrb orb, Vector3 position, ref int value)
     {
-        int spawnAmount = value / orb.expValue;
+        int spawnAmount = value / orb.ExpValue;
         for (int i = 0; i < spawnAmount; i++)
         {
             ExpOrb newOrb = Instantiate(orb, transform);
             newOrb.transform.position = position;
             float randomAngle = Random.Range(0, Mathf.PI * 2f);
-            newOrb.direction = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0f);
-            newOrb.speed = Random.Range(_minVelocity, _maxVelocity);
-            value -= orb.expValue;
+            newOrb.Direction = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0f);
+            newOrb.Speed = Random.Range(_minVelocity, _maxVelocity);
+            value -= orb.ExpValue;
         }
     }
 }

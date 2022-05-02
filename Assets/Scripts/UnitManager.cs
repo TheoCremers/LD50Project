@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    public static List<Transform> FriendlyUnits;
+    public static List<Transform> FriendlyUnits = new List<Transform>();
 
-    public static List<Transform> EnemyUnits;
+    public static List<Transform> EnemyUnits = new List<Transform>();
 
     //[SerializeField]
     //private float _difficultyModifier = 0.33f;
@@ -28,13 +28,6 @@ public class UnitManager : MonoBehaviour
 
     public GameObject[] Enemies;
  
-    // Start is called before the first frame update
-    void Awake()
-    {
-        FriendlyUnits = new List<Transform>();
-        EnemyUnits = new List<Transform>();
-    }
-
     public static Transform GetClosestEnemy(Vector3 position)
     {
         Transform tMin = null;
@@ -100,7 +93,6 @@ public class UnitManager : MonoBehaviour
         return tMin;
     }
 
-    // Update is called once per frame
     void Update()
     {
         EnemyCount = EnemyUnits.Count;

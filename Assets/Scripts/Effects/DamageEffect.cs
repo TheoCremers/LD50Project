@@ -4,11 +4,10 @@ using UnityEngine;
 public class DamageEffect : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer = null;
+    [SerializeField] private float _flashFrameDuration = 0.05f;
     private ParticleSystem _particleSystem = null;
     private Color _originalColor;
-    [SerializeField] private float _flashFrameDuration = 0.05f;
 
-    // Start is called before the first frame update
     void Start()
     {
         _particleSystem = GetComponent<ParticleSystem>();

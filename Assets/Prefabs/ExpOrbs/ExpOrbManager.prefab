@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f68a1192aeb1a44ab772d774fd87a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallExpOrb: {fileID: 8102832158524731815, guid: c3a61691acb369e4ab58f5e3ec4d8c4a, type: 3}
-  mediumExpOrb: {fileID: 8102832158524731815, guid: f176eee85d37a424d9046b6db9fe7718, type: 3}
-  largeExpOrb: {fileID: 8102832158524731815, guid: c1ff25b013834cb46b085e8613b89606, type: 3}
+  _smallExpOrb: {fileID: 8102832158524731815, guid: c3a61691acb369e4ab58f5e3ec4d8c4a, type: 3}
+  _mediumExpOrb: {fileID: 8102832158524731815, guid: f176eee85d37a424d9046b6db9fe7718, type: 3}
+  _largeExpOrb: {fileID: 8102832158524731815, guid: c1ff25b013834cb46b085e8613b89606, type: 3}

@@ -6,67 +6,66 @@ using UnityEngine.Events;
 public class Projectile : MonoBehaviour
 {
     public float Lifespan = 4f;
-
-    public float directionAngle = 0f;
-    public int damage = 5;
-    public float projectileSpeed = 7f;
-    public bool homing = false;
-    public bool chainLighting = false;
-    public int remainingPierces = 0;
-    public float creationTime;
-    public ChainLightning chainLightningTemplate = null;
+    public float DirectionAngle = 0f;
+    public int Damage = 5;
+    public float ProjectileSpeed = 7f;
+    public bool Homing = false;
+    public bool ChainLighting = false;
+    public int RemainingPierces = 0;
+    public float CreationTime;
+    public ChainLightning ChainLightningTemplate = null;
 
     public SpriteRenderer Sprite;
-    public ParticleSystem particalSystem;
-    public Collider2D projectileCollider;
+    public ParticleSystem ParticalSystem;
+    public Collider2D ProjectileCollider;
 
     public UnityEvent<Damagable> DamagableHit;
 
     private void Start ()
     {
-        creationTime = Time.time;
+        CreationTime = Time.time;
     }
 
     private void Update ()
     {
         // timeout
-        if (Time.time - creationTime > Lifespan)
+        if (Time.time - CreationTime > Lifespan)
         {
             DestroyAfterParticlesGone();
             return;
         }
 
-        if (homing)
+        if (Homing)
         {
             // todo: homing logic
             SetDirection(Vector2.down);
         }
 
-        transform.Translate(Vector3.up * projectileSpeed * Time.deltaTime);
+        transform.Translate(Vector3.up * ProjectileSpeed * Time.deltaTime);
     }
 
     public void SetDirection (Vector2 direction) 
     {
-        directionAngle = Vector2.SignedAngle(Vector2.up, direction);
-        transform.eulerAngles = Vector3.forward * directionAngle;
+        DirectionAngle = Vector2.SignedAngle(Vector2.up, direction);
+        transform.eulerAngles = Vector3.forward * DirectionAngle;
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
     {
         if (collision.TryGetComponent(out Damagable damagable))
         {
-            damagable.Hit(damage);
+            damagable.Hit(Damage);
 
-            if (chainLighting) 
+            if (ChainLighting) 
             {
-                var lightning = Instantiate(chainLightningTemplate);
+                var lightning = Instantiate(ChainLightningTemplate);
                 lightning.Activate(collision.transform.parent);
-                lightning.Damage = damage;
-                lightning.MaxTargets = remainingPierces + 1;
+                lightning.Damage = Damage;
+                lightning.MaxTargets = RemainingPierces + 1;
             }
-            else if (remainingPierces > 0) 
+            else if (RemainingPierces > 0) 
             {
-                --remainingPierces;
+                --RemainingPierces;
                 return;
             }
         }
@@ -76,8 +75,8 @@ public class Projectile : MonoBehaviour
 
     private void DestroyAfterParticlesGone ()
     {
-        projectileCollider.enabled = false;
+        ProjectileCollider.enabled = false;
         Sprite.enabled = false;
-        particalSystem.Stop();
+        ParticalSystem.Stop();
     }
 }

@@ -117,17 +117,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Lifespan: 4
-  directionAngle: 0
-  damage: 5
-  projectileSpeed: 7
-  homing: 0
-  chainLighting: 0
-  remainingPierces: 0
-  creationTime: 0
-  chainLightningTemplate: {fileID: 4119660071460873551, guid: 595780dd223385643862e4fb96bcaafa, type: 3}
+  DirectionAngle: 0
+  Damage: 5
+  ProjectileSpeed: 7
+  Homing: 0
+  ChainLighting: 0
+  RemainingPierces: 0
+  CreationTime: 0
+  ChainLightningTemplate: {fileID: 4119660071460873551, guid: 595780dd223385643862e4fb96bcaafa, type: 3}
   Sprite: {fileID: 9160835060194928129}
-  particalSystem: {fileID: 3114314514218579732}
-  projectileCollider: {fileID: 9160835060194928128}
+  ParticalSystem: {fileID: 3114314514218579732}
+  ProjectileCollider: {fileID: 9160835060194928128}
   DamagableHit:
     m_PersistentCalls:
       m_Calls: []

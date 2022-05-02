@@ -5,13 +5,13 @@ using UnityEngine;
 public class FollowTargetSmooth : MonoBehaviour
 {
     [SerializeField] private Transform _targetTransform = null;
-    [SerializeField] private float smoothSpeed = 5f;
+    [SerializeField] private float _smoothSpeed = 5f;
 
     private void FixedUpdate ()
     {
         if (_targetTransform != null)
         {
-            Vector3 smoothPosition = Vector2.Lerp(transform.position, _targetTransform.position, smoothSpeed * Time.deltaTime);
+            Vector3 smoothPosition = Vector2.Lerp(transform.position, _targetTransform.position, _smoothSpeed * Time.deltaTime);
             transform.position = smoothPosition + Vector3.back * 10f; // add camera offset}
         }
     }

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class Damagable : MonoBehaviour
 {
-    [SerializeField]
     public float MaxHealth = 20f;
     [SerializeField]
     private float _health;
