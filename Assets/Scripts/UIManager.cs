@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text PauseText;
     public TMP_Text SurvivalTime;
     public TMP_Text GameOverMessage;
+    public TMP_Text RestartMessage;
     public TMP_Text Credits;
 
     [SerializeField] private GameObject _menuOverlay = null;
@@ -22,10 +23,7 @@ public class UIManager : MonoBehaviour
     public static bool Paused = false;
     public static bool GameOver = false;
 
-    public UnityEvent PauseEvent;
-    public UnityEvent UnpauseEvent;
-
-    private bool _pauseTipShown = false;
+    private bool _pauseExplained = false;
 
     private void Awake ()
     {
@@ -44,23 +42,36 @@ public class UIManager : MonoBehaviour
 #endif
         _menuOverlay.SetActive(false);
         PauseText.enabled = false;
+
+        InputManager.PauseEvent.AddListener(OpenLevelMenu);
+        InputManager.UnpauseEvent.AddListener(CloseLevelMenu);
+        InputManager.RestartEvent.AddListener(TryRestart);
+        InputManager.MouseAndKeyBoardEnabled.AddListener(SetPauseTextKeyboard);
+        InputManager.MouseAndKeyBoardEnabled.AddListener(SetRestartTextKeyboard);
+        InputManager.GamepadEnabled.AddListener(SetPauseTextGamepad);
+        InputManager.GamepadEnabled.AddListener(SetRestartTextGamepad);
     }
 
-    void Update()
+    private void OnDestroy ()
     {
-        if (GameOver)
-        {
-            if (Keyboard.current.rKey.wasPressedThisFrame)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-        }
+        Instance = null;
+
+        InputManager.PauseEvent.RemoveListener(OpenLevelMenu);
+        InputManager.UnpauseEvent.RemoveListener(CloseLevelMenu);
+        InputManager.RestartEvent.RemoveListener(TryRestart);
+        InputManager.MouseAndKeyBoardEnabled.RemoveListener(SetPauseTextKeyboard);
+        InputManager.MouseAndKeyBoardEnabled.RemoveListener(SetRestartTextKeyboard);
+        InputManager.GamepadEnabled.RemoveListener(SetPauseTextGamepad);
+        InputManager.GamepadEnabled.RemoveListener(SetRestartTextGamepad);
+    }
+
+    void Update ()
+    {
 #if UNITY_EDITOR
-        else
+        if (!GameOver)
         {
             var distanceFromCenter = Vector2.Distance(PlayerController.Instance.transform.position, Vector2.zero);
             DistanceIndicator.text = $"Distance: {distanceFromCenter.ToString("0.00")}";
-
         }
 #endif
 #if !UNITY_WEBGL
@@ -70,24 +81,17 @@ public class UIManager : MonoBehaviour
         }
 #endif
 
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        if (Keyboard.current.f1Key.wasPressedThisFrame)
         {
             FullScreenMode fullScreenMode = FullScreenMode.FullScreenWindow;
             Screen.fullScreenMode = fullScreenMode;
             Resolution currentResolution = Screen.currentResolution;
             Screen.SetResolution(currentResolution.width, currentResolution.height, fullScreenMode, 60);
         }
-        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+        else if (Keyboard.current.f2Key.wasPressedThisFrame)
         {
             Screen.SetResolution(960, 540, false, 60);
         }
-    }
-
-    private void OnDestroy ()
-    {
-        Instance = null;
-        PauseEvent.RemoveAllListeners();
-        UnpauseEvent.RemoveAllListeners();
     }
 
     public void UpdateExpCounter (int amount)
@@ -95,33 +99,98 @@ public class UIManager : MonoBehaviour
         ExpCounter.text = $"Exp: {amount.ToString()}";
     }
 
-    public void OpenLevelMenu ()
+    private void ToggleLevelMenu ()
     {
-        Paused = true;
-        _menuOverlay.SetActive(true);
-        PauseText.text = "Press 'space' to resume";
-        PauseText.enabled = true;
-        Time.timeScale = 0f;
-        PauseEvent?.Invoke();
+        Paused = !Paused;
+        if (Paused)
+        {
+            OpenLevelMenu();
+        }
+        else
+        {
+            CloseLevelMenu();
+        }
     }
 
-    public void CloseLevelMenu ()
+    private void OpenLevelMenu ()
     {
+        if (GameOver) { return; }
+
+        Paused = true;
+        _menuOverlay.SetActive(true);
+        PauseText.enabled = true;
+        SetPauseText();
+        Time.timeScale = 0f;
+
+        _pauseExplained = true;
+    }
+
+    private void CloseLevelMenu ()
+    {
+        if (GameOver) { return; }
+
         Paused = false;
         _menuOverlay.SetActive(false);
         PauseText.enabled = false;
         Time.timeScale = 1f;
-        UnpauseEvent?.Invoke();
     }
 
     public void ShowPauseTip ()
     {
-        if (!_pauseTipShown)
+        if (!_pauseExplained)
         {
-            PauseText.text = "Press 'space'";
             PauseText.enabled = true;
-            _pauseTipShown = true;
+            SetPauseText();
         }
+    }
+
+    public void SetPauseText ()
+    {
+        if (InputManager.Instance.UsingMouseAndKeyboard)
+        {
+            SetPauseTextKeyboard();
+        }
+        else
+        {
+            SetPauseTextGamepad();
+        }
+    }
+
+    public void SetPauseTextKeyboard ()
+    {
+        if (!PauseText.enabled) { return; }
+
+        if (Paused)
+        {
+            PauseText.text = "Press SPACE to resume";
+        }
+        else
+        {
+            PauseText.text = "Press SPACE";
+        }
+    }
+
+    public void SetPauseTextGamepad() {
+        if (!PauseText.enabled) { return; }
+
+        if (Paused)
+        {
+            PauseText.text = "Press START to resume";
+        }
+        else
+        {
+            PauseText.text = "Press START";
+        }
+    }
+
+    public void SetRestartTextKeyboard ()
+    {
+        RestartMessage.text = "Press R to restart";
+    }
+
+    public void SetRestartTextGamepad ()
+    {
+        RestartMessage.text = "Press SELECT to restart";
     }
 
     public void TriggerGameOver (bool victory)
@@ -145,6 +214,14 @@ public class UIManager : MonoBehaviour
             GameOverMessage.color = Color.red;
             SurvivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
             Credits.enabled = false;
+        }
+    }
+
+    private void TryRestart ()
+    {
+        if (GameOver)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
