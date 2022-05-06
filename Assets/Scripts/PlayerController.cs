@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer SpriteRenderer;
     public Animator Animator;
+    [SerializeField] private Transform _aimTargetTransform;
+    private SpriteRenderer _aimRenderer = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -38,6 +41,14 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeedModifier = 1f;
     private float _attackCooldownModifier = 1f;
 
+    // input
+    [HideInInspector] public PlayerInput Input = null;
+    [HideInInspector] public bool IsPaused = false;
+    [HideInInspector] public bool UsingMouseAndKeyboard = true;
+    private InputAction _moveAction = null;
+    private InputAction _aimAction = null;
+    private InputAction _fire1Action = null;
+    private InputAction _fire2Action = null;
 
     // Summons
     public int SummonLevel = 0;
@@ -54,6 +65,14 @@ public class PlayerController : MonoBehaviour
         MeleeAttack = GetComponent<MeleeAttack>();
         LevelingSystem = GetComponent<PlayerLeveling>();
         Summoner = GetComponent<Summoner>();
+
+        _aimRenderer = _aimTargetTransform.GetComponent<SpriteRenderer>();
+
+        Input = GetComponent<PlayerInput>();
+        _moveAction = Input.actions["Move"];
+        _aimAction = Input.actions["Look"];
+        _fire1Action = Input.actions["Fire1"];
+        _fire2Action = Input.actions["Fire2"];
     }
 
     private void Start ()
@@ -68,6 +87,7 @@ public class PlayerController : MonoBehaviour
         GetInput();
         ApplyMovement();
         ApplyActions();
+        ShowTarget();
         UpdateTimers();
     }
 
@@ -87,24 +107,31 @@ public class PlayerController : MonoBehaviour
 
     private void GetInput ()
     {
-        _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _inputDirection = _moveAction.ReadValue<Vector2>();
 
         var moving = _inputDirection != Vector2.zero;
         Animator.SetBool("moving", moving);
-        if (moving)
+        //if (moving)
+        //{
+        //    _inputDirection.Normalize();
+        //}
+
+        if (UsingMouseAndKeyboard)
         {
-            _inputDirection.Normalize();
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(_aimAction.ReadValue<Vector2>());
+            mouseWorldPosition.z = 0f;
+            Vector3 origin = transform.position + (Vector3)RangedAttack.AbsoluteSpawnOffset;
+            _targetDirection = (mouseWorldPosition - origin).normalized;
+        }
+        else
+        {
+            _targetDirection = _aimAction.ReadValue<Vector2>();
         }
 
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0f;
-        Vector3 origin = transform.position + RangedAttack.AbsoluteSpawnOffset;
-        _targetDirection = (mouseWorldPosition - origin).normalized;
-
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!UsingMouseAndKeyboard || !EventSystem.current.IsPointerOverGameObject())
         {
-            _attackButton1Down = Input.GetAxis("Fire1") > 0f;
-            _attackButton2Down = Input.GetAxis("Fire2") > 0f;
+            _attackButton1Down = _fire1Action.ReadValue<float>() > 0.5f;
+            _attackButton2Down = _fire2Action.ReadValue<float>() > 0.5f;
         }
         else
         {
@@ -166,6 +193,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void ShowTarget ()
+    {
+        if (UsingMouseAndKeyboard) 
+        {
+            _aimRenderer.color = Color.clear;
+        }
+        else 
+        { 
+            if (_targetDirection.sqrMagnitude > 0.01f)
+            {
+                _aimRenderer.color = Color.white;
+                _aimTargetTransform.localPosition = RangedAttack.AbsoluteSpawnOffset + _targetDirection * 2f;
+            }
+            else
+            {
+                _aimRenderer.color = Color.clear;
+            }
+        }
+        
+    }
+
     private void UpdateTimers ()
     {
         if (_attackCooldownRemaining > 0f)
@@ -188,5 +236,26 @@ public class PlayerController : MonoBehaviour
         {
             _lv3SummonTimer -= Time.deltaTime;
         }
+    }
+
+    private void OnPause ()
+    {
+        IsPaused = !IsPaused;
+        if (IsPaused)
+        {
+            Input.SwitchCurrentActionMap("UI");
+            UIManager.Instance.OpenLevelMenu();
+        }
+        else
+        {
+            Input.SwitchCurrentActionMap("Player");
+            UIManager.Instance.CloseLevelMenu();
+        }
+    }
+
+    private void OnControlsChanged(PlayerInput input)
+    {
+        UsingMouseAndKeyboard = input.currentControlScheme == "Keyboard&Mouse";
+        Cursor.visible = UsingMouseAndKeyboard;
     }
 }

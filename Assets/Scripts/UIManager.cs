@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -49,37 +50,34 @@ public class UIManager : MonoBehaviour
     {
         if (GameOver)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Keyboard.current.rKey.wasPressedThisFrame)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+#if UNITY_EDITOR
         else
         {
-#if UNITY_EDITOR
             var distanceFromCenter = Vector2.Distance(PlayerController.Instance.transform.position, Vector2.zero);
             DistanceIndicator.text = $"Distance: {distanceFromCenter.ToString("0.00")}";
-#endif
-            if (Input.GetButtonDown("Menu"))
-            {
-                ToggleLevelMenu();
-            }
+
         }
+#endif
 #if !UNITY_WEBGL
-        if (Input.GetKey(KeyCode.Escape))
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Application.Quit();
         }
 #endif
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             FullScreenMode fullScreenMode = FullScreenMode.FullScreenWindow;
             Screen.fullScreenMode = fullScreenMode;
             Resolution currentResolution = Screen.currentResolution;
             Screen.SetResolution(currentResolution.width, currentResolution.height, fullScreenMode, 60);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
         {
             Screen.SetResolution(960, 540, false, 60);
         }
@@ -97,25 +95,23 @@ public class UIManager : MonoBehaviour
         ExpCounter.text = $"Exp: {amount.ToString()}";
     }
 
-    private void ToggleLevelMenu ()
+    public void OpenLevelMenu ()
     {
-        Paused = !Paused;
+        Paused = true;
+        _menuOverlay.SetActive(true);
+        PauseText.text = "Press 'space' to resume";
+        PauseText.enabled = true;
+        Time.timeScale = 0f;
+        PauseEvent?.Invoke();
+    }
 
-        if (Paused)
-        {
-            _menuOverlay.SetActive(true);
-            PauseText.text = "Press 'space' to resume";
-            PauseText.enabled = true;
-            Time.timeScale = 0f;
-            PauseEvent?.Invoke();
-        }
-        else
-        {
-            _menuOverlay.SetActive(false);
-            PauseText.enabled = false;
-            Time.timeScale = 1f;
-            UnpauseEvent?.Invoke();
-        }
+    public void CloseLevelMenu ()
+    {
+        Paused = false;
+        _menuOverlay.SetActive(false);
+        PauseText.enabled = false;
+        Time.timeScale = 1f;
+        UnpauseEvent?.Invoke();
     }
 
     public void ShowPauseTip ()
