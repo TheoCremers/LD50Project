@@ -15,7 +15,7 @@ public class UpgradeTile : MonoBehaviour
     {
         UIManager.Instance.PauseEvent.AddListener(ShowDetails);
         UIManager.Instance.UnpauseEvent.AddListener(HideDetails);
-        Details.enabled = UIManager.Paused;
+        Details.enabled = false;
     }
 
     private void OnDestroy ()
