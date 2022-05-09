@@ -8,7 +8,11 @@ public static class AudioManager
         // TODO: Implement object pooling for SFX
         var sfxGameObject = new GameObject("SFX");
         var audioSource = sfxGameObject.AddComponent<AudioSource>();
-        audioSource.clip = GetAudioClip(sfxType);
+        var metadata = GetSFXMetadata(sfxType);
+        audioSource.clip = metadata.AudioClip;
+
+        // TODO: Implement volume setting
+        audioSource.volume = metadata.BaseVolume;
         audioSource.Play();     
         Object.Destroy(sfxGameObject, audioSource.clip.length);
     }
@@ -18,7 +22,9 @@ public static class AudioManager
         // TODO: Replace currently playing BGM
         var bgmGameObject = new GameObject("BGM");
         var audioSource = bgmGameObject.AddComponent<AudioSource>();
-        audioSource.clip = GetAudioClip(bgmType);
+        var metadata =  GetBGMMetadata(bgmType);
+        audioSource.clip = metadata.AudioClip;
+        audioSource.volume = metadata.BaseVolume;
         audioSource.loop = true;
         audioSource.Play();  
     }
@@ -29,30 +35,30 @@ public static class AudioManager
         throw new System.NotImplementedException();
     }
 
-    private static AudioClip GetAudioClip(SFXType sfxType) 
+    private static SFXMetadata GetSFXMetadata(SFXType sfxType) 
     {
-        var sfxAudioClip = GameAssets.Instance.SFXAudioClips.FirstOrDefault(x => x.SfxType == sfxType);
-        if (sfxAudioClip != null) 
+        var sfxMetadata = GameAssets.Instance.SFXMetadata.FirstOrDefault(x => x.SfxType == sfxType);
+        if (sfxMetadata != null) 
         {
-            return sfxAudioClip.AudioClip;
+            return sfxMetadata;
         } 
         else 
         {
-            Debug.LogError("Missing SFX AudioClip " + sfxType);
+            Debug.LogError("Missing SFX Metadata " + sfxType);
             return null;
         }
     }
 
-    private static AudioClip GetAudioClip(BGMType bgmType) 
+    private static BGMMetadata GetBGMMetadata(BGMType bgmType) 
     {
-        var sfxAudioClip = GameAssets.Instance.BGMAudioClips.FirstOrDefault(x => x.BGMType == bgmType);
-        if (sfxAudioClip != null) 
+        var bgmMetadata = GameAssets.Instance.BGMMetadata.FirstOrDefault(x => x.BGMType == bgmType);
+        if (bgmMetadata != null) 
         {
-            return sfxAudioClip.AudioClip;
+            return bgmMetadata;
         } 
         else 
         {
-            Debug.LogError("Missing BGM AudioClip " + bgmType);
+            Debug.LogError("Missing BGM Metadata " + bgmType);
             return null;
         }
     }

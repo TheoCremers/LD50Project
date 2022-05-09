@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class GameAssets : MonoBehaviour
 {
-    [SerializeField] public List<SFXAudioClip> SFXAudioClips = new List<SFXAudioClip>();
+    [SerializeField] public List<SFXMetadata> SFXMetadata = new List<SFXMetadata>();
 
-    [SerializeField] public List<BGMAudioClip> BGMAudioClips = new List<BGMAudioClip>();
+    [SerializeField] public List<BGMMetadata> BGMMetadata = new List<BGMMetadata>();
 
     private static GameAssets _instance;
 
@@ -19,5 +19,10 @@ public class GameAssets : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    void Awake ()
+    {
+        _instance = this;
     }
 }

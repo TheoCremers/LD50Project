@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a6b18b6619928543a2ea96abdfe87ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SFXMetadata:
+  - AudioClip: {fileID: 8300000, guid: 35b8356919d2ecb49aa2402d0cc29709, type: 3}
+    BaseVolume: 1
+    SfxType: 0
+  BGMMetadata:
+  - AudioClip: {fileID: 8300000, guid: ea32e5f6028e43947ababf81df006959, type: 3}
+    BaseVolume: 0.2
+    BGMType: 0

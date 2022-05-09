@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class SFXAudioClip : BaseAudioClip
+public class SFXMetadata : BaseAudioMetadata
 {
     public SFXType SfxType;
 }

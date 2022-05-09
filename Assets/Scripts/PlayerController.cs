@@ -85,6 +85,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)_targetDirection);
     }
 
+    // Ugly wrapper function until Static calls from UnityEvents are allowed
+    public void OnDamageTaken() 
+    {   
+        AudioManager.PlaySFX(SFXType.PlayerTakeDamage);
+    }
+
     private void GetInput ()
     {
         _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
