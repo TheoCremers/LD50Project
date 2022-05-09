@@ -19,6 +19,10 @@ public class PlayerLeveling : MonoBehaviour
     private void Start ()
     {
         _upgradeTiles.AddRange(UIManager.Instance.UpgradeContainer.GetComponentsInChildren<UpgradeTile>());
+        for (int i = 0; i < _upgradeTiles.Count; i++)
+        {
+            _upgradeTiles[i].SetButtonIndex(i);
+        }
 
         // quick shuffle
         _currentUpgradeOptions = _currentUpgradeOptions.OrderBy(x => Guid.NewGuid()).ToList();
@@ -93,11 +97,11 @@ public class PlayerLeveling : MonoBehaviour
 
     private void ApplyUpgrade(UpgradeTile tile)
     {
-        tile.SetInactive();
-
         UpgradeOption option = tile.UpgradeOption;
+        if (CurrentExperience < option.expCost) { return; }
 
         ChangeExperience(-option.expCost);
+        tile.SetInactive();
 
         switch (option.type)
         {
@@ -149,6 +153,14 @@ public class PlayerLeveling : MonoBehaviour
         }
 
         UpgradesBought++;
+    }
+
+    public void ApplyUpgrade (int tileIndex)
+    {
+        if (_upgradeTiles.Count > tileIndex)
+        {
+            ApplyUpgrade(_upgradeTiles[tileIndex]);
+        }
     }
 
     public void AddRangedDamage (int amount)

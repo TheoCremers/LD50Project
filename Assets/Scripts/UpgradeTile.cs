@@ -10,19 +10,26 @@ public class UpgradeTile : MonoBehaviour
     public TextMeshProUGUI Cost = null;
     public TextMeshProUGUI Details = null;
     public bool Active = false;
+    private int _index = -1;
+    [SerializeField] private Image _buttonImage;
+    [SerializeField] private TextMeshProUGUI _buttonKey;
 
     private void Start ()
     {
-        UIManager.Instance.PauseEvent.AddListener(ShowDetails);
-        UIManager.Instance.UnpauseEvent.AddListener(HideDetails);
+        InputManager.PauseEvent.AddListener(ShowDetails);
+        InputManager.UnpauseEvent.AddListener(HideDetails);
+        InputManager.MouseAndKeyBoardEnabled.AddListener(HideGamePadButton);
+        InputManager.GamepadEnabled.AddListener(ShowGamePadButton);
         Details.enabled = false;
     }
 
     private void OnDestroy ()
     {
         Button.onClick.RemoveAllListeners();
-        UIManager.Instance?.PauseEvent.RemoveListener(ShowDetails);
-        UIManager.Instance?.UnpauseEvent.RemoveListener(HideDetails);
+        InputManager.PauseEvent.RemoveListener(ShowDetails);
+        InputManager.UnpauseEvent.RemoveListener(HideDetails);
+        InputManager.MouseAndKeyBoardEnabled.RemoveListener(HideGamePadButton);
+        InputManager.GamepadEnabled.RemoveListener(ShowGamePadButton);
     }
 
     public void SetUpgradeOption(UpgradeOption upgradeOption)
@@ -51,11 +58,13 @@ public class UpgradeTile : MonoBehaviour
 
     public void ShowDetails()
     {
+        if (UIManager.GameOver) { return; }
         Details.enabled = true;
     }
 
     public void HideDetails ()
     {
+        if (UIManager.GameOver) { return; }
         Details.enabled = false;
     }
 
@@ -82,5 +91,36 @@ public class UpgradeTile : MonoBehaviour
     {
         gameObject.SetActive(true);
         Active = true;
+    }
+
+    public void SetButtonIndex(int index)
+    {
+        _index = index;
+
+        switch(index)
+        {
+            case 0:
+                _buttonImage.color = new Color(0.9f, 0.7f, 0f);
+                _buttonKey.text = "Y";
+                break;
+            case 1:
+                _buttonImage.color = new Color(0f, 0.6f, 1f);
+                _buttonKey.text = "X";
+                break;
+            case 2:
+                _buttonImage.color = new Color(0.4f, 0.8f, 0.3f);
+                _buttonKey.text = "A";
+                break;
+        }
+    }
+
+    private void HideGamePadButton ()
+    {
+        _buttonImage.gameObject.SetActive(false);
+    }
+
+    private void ShowGamePadButton ()
+    {
+        _buttonImage.gameObject.SetActive(true);
     }
 }

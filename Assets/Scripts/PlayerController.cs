@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     public SpriteRenderer SpriteRenderer;
     public Animator Animator;
+    [SerializeField] private Transform _aimTargetTransform;
+    private SpriteRenderer _aimRenderer = null;
 
     private Vector2 _inputDirection = Vector2.zero;
     private Vector2 _targetDirection = Vector2.zero;
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private float _moveSpeedModifier = 1f;
     private float _attackCooldownModifier = 1f;
 
+    private InputManager _input;
 
     // Summons
     public int SummonLevel = 0;
@@ -54,20 +58,24 @@ public class PlayerController : MonoBehaviour
         MeleeAttack = GetComponent<MeleeAttack>();
         LevelingSystem = GetComponent<PlayerLeveling>();
         Summoner = GetComponent<Summoner>();
+
+        _aimRenderer = _aimTargetTransform.GetComponent<SpriteRenderer>();
     }
 
     private void Start ()
     {
         UnitManager.FriendlyUnits.Add(transform);
+        _input = InputManager.Instance;
     }
 
     void Update ()
     {
         if (UIManager.Paused || UIManager.GameOver) { return; }
 
-        GetInput();
+        ReadInput();
         ApplyMovement();
         ApplyActions();
+        ShowTarget();
         UpdateTimers();
     }
 
@@ -85,26 +93,29 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + (Vector3)_targetDirection);
     }
 
-    private void GetInput ()
+    private void ReadInput ()
     {
-        _inputDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        _inputDirection = _input.MoveAction.ReadValue<Vector2>();
 
         var moving = _inputDirection != Vector2.zero;
         Animator.SetBool("moving", moving);
-        if (moving)
+
+        if (_input.UsingMouseAndKeyboard)
         {
-            _inputDirection.Normalize();
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(_input.AimAction.ReadValue<Vector2>());
+            mouseWorldPosition.z = 0f;
+            Vector3 origin = transform.position + (Vector3)RangedAttack.AbsoluteSpawnOffset;
+            _targetDirection = (mouseWorldPosition - origin).normalized;
+        }
+        else
+        {
+            _targetDirection = _input.AimAction.ReadValue<Vector2>();
         }
 
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0f;
-        Vector3 origin = transform.position + RangedAttack.AbsoluteSpawnOffset;
-        _targetDirection = (mouseWorldPosition - origin).normalized;
-
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!_input.UsingMouseAndKeyboard || !EventSystem.current.IsPointerOverGameObject())
         {
-            _attackButton1Down = Input.GetAxis("Fire1") > 0f;
-            _attackButton2Down = Input.GetAxis("Fire2") > 0f;
+            _attackButton1Down = _input.Fire1Action.ReadValue<float>() > 0.5f;
+            _attackButton2Down = _input.Fire2Action.ReadValue<float>() > 0.5f;
         }
         else
         {
@@ -164,6 +175,27 @@ public class PlayerController : MonoBehaviour
             Summoner.Summon(0);
             _lv1SummonTimer = _baseLv1SummonSpeed * SummonCooldownFactor * Random.Range(0.9f, 1.1f);
         }
+    }
+
+    private void ShowTarget ()
+    {
+        if (_input.UsingMouseAndKeyboard) 
+        {
+            _aimRenderer.color = Color.clear;
+        }
+        else 
+        { 
+            if (_targetDirection.sqrMagnitude > 0.01f)
+            {
+                _aimRenderer.color = Color.white;
+                _aimTargetTransform.localPosition = RangedAttack.AbsoluteSpawnOffset + _targetDirection * 2f;
+            }
+            else
+            {
+                _aimRenderer.color = Color.clear;
+            }
+        }
+        
     }
 
     private void UpdateTimers ()
