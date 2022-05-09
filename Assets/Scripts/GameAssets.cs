@@ -19,10 +19,16 @@ public class GameAssets : MonoBehaviour
             }
             return _instance;
         }
-    }
+    }    
 
     void Awake ()
     {
         _instance = this;
+    }  
+
+    // Wrapper that allows object persistance from static classes
+    public void Persist(GameObject gameObject)
+    {
+        DontDestroyOnLoad(gameObject);
     }
 }

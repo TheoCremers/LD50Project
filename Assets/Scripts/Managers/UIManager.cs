@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text GameOverMessage;
     public TMP_Text Credits;
 
+    public GameObject SettingsPlaceholder;
+
     [SerializeField] private GameObject _menuOverlay = null;
     [SerializeField] private CanvasGroup _gameOverGroup = null;
 
@@ -23,8 +25,7 @@ public class UIManager : MonoBehaviour
 
     public UnityEvent PauseEvent;
     public UnityEvent UnpauseEvent;
-
-    private bool _pauseTipShown = false;
+    private bool _pauseTipShown = false;    
 
     private void Awake ()
     {
@@ -42,6 +43,7 @@ public class UIManager : MonoBehaviour
         DistanceIndicator.enabled = false;
 #endif
         _menuOverlay.SetActive(false);
+        SettingsPlaceholder.SetActive(false);
         PauseText.enabled = false;
     }
 
@@ -104,6 +106,7 @@ public class UIManager : MonoBehaviour
         if (Paused)
         {
             _menuOverlay.SetActive(true);
+            SettingsPlaceholder.SetActive(true);
             PauseText.text = "Press 'space' to resume";
             PauseText.enabled = true;
             Time.timeScale = 0f;
@@ -112,6 +115,7 @@ public class UIManager : MonoBehaviour
         else
         {
             _menuOverlay.SetActive(false);
+            SettingsPlaceholder.SetActive(false);
             PauseText.enabled = false;
             Time.timeScale = 1f;
             UnpauseEvent?.Invoke();
@@ -149,6 +153,19 @@ public class UIManager : MonoBehaviour
             GameOverMessage.color = Color.red;
             SurvivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
             Credits.enabled = false;
+        }
+    }
+
+    // Temp until we have a proper settings screen. This class is not the place for this.
+    public void MuteToggle(bool muted)
+    {
+        if (muted) 
+        {
+            AudioListener.volume = 0;
+        } 
+        else
+        {
+            AudioListener.volume = 1;
         }
     }
 }

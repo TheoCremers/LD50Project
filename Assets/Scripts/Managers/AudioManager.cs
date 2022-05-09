@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Linq;
 
 public static class AudioManager
-{
+{   
     public static void PlaySFX(SFXType sfxType)
     {
         // TODO: Implement object pooling for SFX
@@ -11,7 +11,7 @@ public static class AudioManager
         var metadata = GetSFXMetadata(sfxType);
         audioSource.clip = metadata.AudioClip;
 
-        // TODO: Implement volume setting
+        // TODO: Implement global volume setting
         audioSource.volume = metadata.BaseVolume;
         audioSource.Play();     
         Object.Destroy(sfxGameObject, audioSource.clip.length);
@@ -19,20 +19,74 @@ public static class AudioManager
 
     public static void PlayBGM(BGMType bgmType)
     {
-        // TODO: Replace currently playing BGM
-        var bgmGameObject = new GameObject("BGM");
-        var audioSource = bgmGameObject.AddComponent<AudioSource>();
         var metadata =  GetBGMMetadata(bgmType);
-        audioSource.clip = metadata.AudioClip;
-        audioSource.volume = metadata.BaseVolume;
-        audioSource.loop = true;
-        audioSource.Play();  
+        var bgmGameObject = GameObject.Find("BGM");
+        if (bgmGameObject != null) 
+        {
+            ChangeBGM(bgmGameObject, metadata);
+        }
+        else 
+        {
+            bgmGameObject = new GameObject("BGM");
+            // This is a bit ugly ngl
+            GameAssets.Instance.Persist(bgmGameObject);
+            var audioSource = bgmGameObject.AddComponent<AudioSource>();            
+            audioSource.clip = metadata.AudioClip;
+
+            // TODO: Implement global volume setting
+            audioSource.volume = metadata.BaseVolume;
+            audioSource.loop = true;
+            audioSource.Play();  
+        }
     }
 
     public static void StopBGM() 
     {
-        // TODO: Stop currently playing BGM
-        throw new System.NotImplementedException();
+        var bgmGameObject = GameObject.Find("BGM");
+        if (bgmGameObject != null) 
+        {
+            var audioSource = bgmGameObject.GetComponent<AudioSource>();   
+            if (audioSource != null) 
+            {
+                audioSource.Stop();
+            }
+        }
+    }
+
+    public static void TogglePauseBGM() 
+    {
+        var bgmGameObject = GameObject.Find("BGM");
+        if (bgmGameObject != null) 
+        {
+            var audioSource = bgmGameObject.GetComponent<AudioSource>();   
+            if (audioSource != null) 
+            {
+                if (audioSource.isPlaying) 
+                {
+                    audioSource.Pause();
+                } 
+                else
+                {
+                    audioSource.UnPause();
+                }
+            }
+        }
+    }
+
+    private static void ChangeBGM(GameObject bgmGameObject, BGMMetadata bgmMetadata)
+    {
+        var audioSource = bgmGameObject.GetComponent<AudioSource>();   
+        if (audioSource.clip == bgmMetadata.AudioClip) 
+        {
+            return;
+        }
+        audioSource.Stop();
+        audioSource.clip = bgmMetadata.AudioClip;
+
+        // TODO: Implement global volume setting
+        audioSource.volume = bgmMetadata.BaseVolume;
+        audioSource.loop = true;
+        audioSource.Play();  
     }
 
     private static SFXMetadata GetSFXMetadata(SFXType sfxType) 

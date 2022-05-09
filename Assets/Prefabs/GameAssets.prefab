@@ -50,5 +50,5 @@ MonoBehaviour:
     SfxType: 0
   BGMMetadata:
   - AudioClip: {fileID: 8300000, guid: ea32e5f6028e43947ababf81df006959, type: 3}
-    BaseVolume: 0.2
+    BaseVolume: 0.05
     BGMType: 0
