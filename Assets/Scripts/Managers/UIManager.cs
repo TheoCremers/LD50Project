@@ -125,6 +125,7 @@ public class UIManager : MonoBehaviour
         PauseText.enabled = true;
         SetPauseText();
         Time.timeScale = 0f;
+        InputManager.Instance.Input.SwitchCurrentActionMap("UI");
 
         _pauseExplained = true;
     }
@@ -138,6 +139,8 @@ public class UIManager : MonoBehaviour
         _settingsPlaceholder.SetActive(false);
         PauseText.enabled = false;
         Time.timeScale = 1f;
+
+        InputManager.Instance.Input.SwitchCurrentActionMap("Player");
     }
 
     public void ShowPauseTip ()
@@ -205,6 +208,7 @@ public class UIManager : MonoBehaviour
         _gameOverGroup.alpha = 1f;
         _gameOverGroup.interactable = true;
         _gameOverGroup.blocksRaycasts = true;
+        InputManager.Instance.Input.SwitchCurrentActionMap("UI");
 
         if (victory)
         {
