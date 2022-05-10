@@ -10,7 +10,6 @@ public class MeleeAttack : MonoBehaviour
     private Swing _swing = null;
     private AoeEffect _activeAoeEffect = null;
 
-
     public int Damage = 5;
     public bool LeavesAoe = false;
 
