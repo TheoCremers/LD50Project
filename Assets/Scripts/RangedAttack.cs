@@ -14,7 +14,7 @@ public class RangedAttack : MonoBehaviour
     public int PiercingAmount = 0;
     public bool Homing = false;
     public bool ChainLightning = false;
-    public Vector3 AbsoluteSpawnOffset = Vector2.zero;
+    public Vector2 AbsoluteSpawnOffset = Vector2.zero;
 
     public float BulletLifespan = 4f;
     public Color BulletColor;
@@ -41,7 +41,7 @@ public class RangedAttack : MonoBehaviour
         newProjectile.ChainLighting = ChainLightning;
         newProjectile.Lifespan = BulletLifespan;
         newProjectile.Sprite.color = BulletColor;
-        newProjectile.transform.position = AbsoluteSpawnOffset + transform.position + (Vector3)direction * _directionalSpawnOffset;
+        newProjectile.transform.position = transform.position + (Vector3)(AbsoluteSpawnOffset + direction * _directionalSpawnOffset);
         newProjectile.SetDirection(direction);
     }
 }

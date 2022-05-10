@@ -1193,16 +1193,11 @@ MonoBehaviour:
   PauseText: {fileID: 183240333851538876}
   SurvivalTime: {fileID: 2898828370020525751}
   GameOverMessage: {fileID: 368211956626063672}
+  RestartMessage: {fileID: 719057667470193070}
   Credits: {fileID: 7021591219507634637}
   SettingsPlaceholder: {fileID: 10447965858202415}
   _menuOverlay: {fileID: 3006155205308378613}
   _gameOverGroup: {fileID: 2057280716654424629}
-  PauseEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  UnpauseEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4647972745056635720
 GameObject:
   m_ObjectHideFlags: 0
