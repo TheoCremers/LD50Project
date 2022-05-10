@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     public TMP_Text RestartMessage;
     public TMP_Text Credits;
 
+    [SerializeField] private GameObject _settingsPlaceholder = null;
+
     [SerializeField] private GameObject _menuOverlay = null;
     [SerializeField] private CanvasGroup _gameOverGroup = null;
 
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
         DistanceIndicator.enabled = false;
 #endif
         _menuOverlay.SetActive(false);
+        _settingsPlaceholder.SetActive(false);
         PauseText.enabled = false;
 
         InputManager.PauseEvent.AddListener(OpenLevelMenu);
@@ -118,6 +121,7 @@ public class UIManager : MonoBehaviour
 
         Paused = true;
         _menuOverlay.SetActive(true);
+        _settingsPlaceholder.SetActive(true);
         PauseText.enabled = true;
         SetPauseText();
         Time.timeScale = 0f;
@@ -131,6 +135,7 @@ public class UIManager : MonoBehaviour
 
         Paused = false;
         _menuOverlay.SetActive(false);
+        _settingsPlaceholder.SetActive(false);
         PauseText.enabled = false;
         Time.timeScale = 1f;
     }
@@ -222,6 +227,19 @@ public class UIManager : MonoBehaviour
         if (GameOver)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+    }
+    
+    // Temp until we have a proper settings screen. This class is not the place for this.
+    public void MuteToggle(bool muted)
+    {
+        if (muted) 
+        {
+            AudioListener.volume = 0;
+        } 
+        else
+        {
+            AudioListener.volume = 1;
         }
     }
 }

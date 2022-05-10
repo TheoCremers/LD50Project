@@ -33,7 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 4287968890686764005}
   m_Father: {fileID: 4647972745030961092}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -896,7 +896,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4647972745018620414}
-  m_Father: {fileID: 6415880393489509338}
+  m_Father: {fileID: 4647972745030961092}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1105,6 +1105,7 @@ RectTransform:
   - {fileID: 6415880393489509338}
   - {fileID: 8893623390310290153}
   - {fileID: 8016551201118726467}
+  - {fileID: 4647972743652313895}
   - {fileID: 7751009348256610427}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1195,7 +1196,7 @@ MonoBehaviour:
   GameOverMessage: {fileID: 368211956626063672}
   RestartMessage: {fileID: 719057667470193070}
   Credits: {fileID: 7021591219507634637}
-  SettingsPlaceholder: {fileID: 10447965858202415}
+  _settingsPlaceholder: {fileID: 10447965858202415}
   _menuOverlay: {fileID: 3006155205308378613}
   _gameOverGroup: {fileID: 2057280716654424629}
 --- !u!1 &4647972745056635720
@@ -1448,7 +1449,6 @@ RectTransform:
   - {fileID: 6205995180587141026}
   - {fileID: 4930031398296061114}
   - {fileID: 3827537373701418300}
-  - {fileID: 4647972743652313895}
   - {fileID: 8410997605691356697}
   m_Father: {fileID: 4647972745030961092}
   m_RootOrder: 0
@@ -1638,7 +1638,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6415880393489509338}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
