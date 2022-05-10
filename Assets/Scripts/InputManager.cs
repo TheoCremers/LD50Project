@@ -53,12 +53,10 @@ public class InputManager : MonoBehaviour
         IsPaused = !IsPaused;
         if (IsPaused)
         {
-            Input.SwitchCurrentActionMap("UI");
             PauseEvent?.Invoke();
         }
         else
         {
-            Input.SwitchCurrentActionMap("Player");
             UnpauseEvent?.Invoke();
         }
     }
