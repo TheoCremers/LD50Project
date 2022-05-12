@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class UIManager : MonoBehaviour
 
     public Transform UpgradeContainer = null;
     public TMP_Text DistanceIndicator;
-    public TMP_Text ExpCounter;
+    public TMP_Text LevelCounter;
+    public TMP_Text SkillPointCounter;
     public TMP_Text PauseText;
     public TMP_Text SurvivalTime;
     public TMP_Text GameOverMessage;
@@ -18,7 +20,7 @@ public class UIManager : MonoBehaviour
     public TMP_Text Credits;
 
     [SerializeField] private GameObject _settingsPlaceholder = null;
-
+    [SerializeField] private Slider _expSlider = null;
     [SerializeField] private GameObject _menuOverlay = null;
     [SerializeField] private CanvasGroup _gameOverGroup = null;
 
@@ -97,9 +99,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateExpCounter (int amount)
+    public void UpdateExpCounter (float fraction, int level)
     {
-        ExpCounter.text = $"Exp: {amount.ToString()}";
+        _expSlider.value = fraction;
+        LevelCounter.text = $"lvl {level}";
+    }
+
+    public void UpdateSkillPointCounter (int amount)
+    {
+        SkillPointCounter.text = $"x{amount}";
     }
 
     private void ToggleLevelMenu ()

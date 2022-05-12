@@ -7,7 +7,14 @@ using System;
 
 public class PlayerLeveling : MonoBehaviour
 {
-    public int CurrentExperience = 0;
+    [SerializeField] private float _baseExpPerLevel = 100f;
+    [SerializeField] private float _expLevelFactor = 3f;
+
+    private float NextLevelThreshold;
+
+    public int CurrentLevel = 0;
+    public float CurrentExperience = 0;
+    public int CurrentSkillPoints = 0;
 
     public static int UpgradesBought = 0;
 
@@ -34,17 +41,29 @@ public class PlayerLeveling : MonoBehaviour
             _currentUpgradeOptions.RemoveAt(0);
         }
 
-        UIManager.Instance.UpdateExpCounter(CurrentExperience);
         UpgradesBought = 0;
+        NextLevelThreshold = LevelCurve(CurrentLevel + 1);
+
+        // set UI values
+        UIManager.Instance.UpdateExpCounter(CurrentExperience / NextLevelThreshold, CurrentLevel);
+        UIManager.Instance.UpdateSkillPointCounter(CurrentSkillPoints);
     }
 
     public void ChangeExperience(int amount)
     {
         CurrentExperience += amount;        
 
-        bool anyUpgrade = false;
+        // check if any new levels are reached
+        while (CurrentExperience >= NextLevelThreshold)
+        {
+            CurrentExperience -= NextLevelThreshold;
+            CurrentLevel++;
+            CurrentSkillPoints++;
+            NextLevelThreshold = LevelCurve(CurrentLevel + 1);
+        }
 
         // check if new upgrades become available
+        bool anyUpgrade = false;
         foreach (var item in _upgradeTiles)
         {
             if (item.UpgradeOption.expCost <= CurrentExperience)
@@ -57,12 +76,20 @@ public class PlayerLeveling : MonoBehaviour
                 item.DisableButton();
             }
         }
-        UIManager.Instance.UpdateExpCounter(CurrentExperience);
 
+        // upgrade UI
+        UIManager.Instance.UpdateExpCounter(CurrentExperience / NextLevelThreshold, CurrentLevel);
+        UIManager.Instance.UpdateSkillPointCounter(CurrentSkillPoints);
         if (anyUpgrade)
         {
             UIManager.Instance.ShowPauseTip();
         }
+    }
+
+    private float LevelCurve (int LevelToGet)
+    {
+        float requiredExp = _baseExpPerLevel + Mathf.Pow(LevelToGet, _expLevelFactor);
+        return requiredExp;
     }
 
     private UpgradeTile SetUpgradeTile (UpgradeOption option)
