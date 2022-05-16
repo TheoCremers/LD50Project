@@ -17,6 +17,7 @@ public class PlayerLeveling : MonoBehaviour
     public int CurrentSkillPoints = 0;
 
     public static int UpgradesBought = 0;
+    public UnityEvent PlayerLeveled = new UnityEvent();
 
     //List of available upgrades
     [SerializeField] private List<UpgradeOption> _currentUpgradeOptions;
@@ -43,10 +44,16 @@ public class PlayerLeveling : MonoBehaviour
 
         UpgradesBought = 0;
         NextLevelThreshold = LevelCurve(CurrentLevel + 1);
+        PlayerLeveled.AddListener(OnPlayerLeveled);
 
         // set UI values
         UIManager.Instance.UpdateExpCounter(CurrentExperience / NextLevelThreshold, CurrentLevel);
         UIManager.Instance.UpdateSkillPointCounter(CurrentSkillPoints);
+    }
+
+    private void OnDestroy ()
+    {
+        PlayerLeveled.RemoveAllListeners();
     }
 
     public void ChangeExperience(int amount)
@@ -58,15 +65,23 @@ public class PlayerLeveling : MonoBehaviour
         {
             CurrentExperience -= NextLevelThreshold;
             CurrentLevel++;
-            CurrentSkillPoints++;
+            PlayerLeveled?.Invoke();
+            ChangeSkillPoints(1);
             NextLevelThreshold = LevelCurve(CurrentLevel + 1);
         }
 
-        // check if new upgrades become available
+        UIManager.Instance.UpdateExpCounter(CurrentExperience / NextLevelThreshold, CurrentLevel);
+    }
+
+    private void ChangeSkillPoints (int amount)
+    {
+        CurrentSkillPoints += amount;
+
+        // check if new upgrades become available/disabled
         bool anyUpgrade = false;
         foreach (var item in _upgradeTiles)
         {
-            if (item.UpgradeOption.expCost <= CurrentExperience)
+            if (item.UpgradeOption.SkillPointCost <= CurrentSkillPoints)
             {
                 item.EnableButton();
                 anyUpgrade = true;
@@ -77,8 +92,6 @@ public class PlayerLeveling : MonoBehaviour
             }
         }
 
-        // upgrade UI
-        UIManager.Instance.UpdateExpCounter(CurrentExperience / NextLevelThreshold, CurrentLevel);
         UIManager.Instance.UpdateSkillPointCounter(CurrentSkillPoints);
         if (anyUpgrade)
         {
@@ -86,10 +99,18 @@ public class PlayerLeveling : MonoBehaviour
         }
     }
 
+
     private float LevelCurve (int LevelToGet)
     {
         float requiredExp = _baseExpPerLevel + Mathf.Pow(LevelToGet, _expLevelFactor);
         return requiredExp;
+    }
+
+    private void OnPlayerLeveled ()
+    {
+        PlayerController.Instance.HitpointData.ChangeMaxHealthAndScaleCurrent(10);
+        PlayerController.Instance.RangedAttack.Damage += 1;
+        PlayerController.Instance.MeleeAttack.Damage += 2;
     }
 
     private UpgradeTile SetUpgradeTile (UpgradeOption option)
@@ -110,7 +131,7 @@ public class PlayerLeveling : MonoBehaviour
         blankTile.Button.onClick.AddListener(() => ApplyUpgrade(blankTile));
         blankTile.SetActive();
 
-        if (option.expCost <= CurrentExperience)
+        if (option.SkillPointCost <= CurrentSkillPoints)
         {
             blankTile.EnableButton();
         }
@@ -125,9 +146,9 @@ public class PlayerLeveling : MonoBehaviour
     private void ApplyUpgrade(UpgradeTile tile)
     {
         UpgradeOption option = tile.UpgradeOption;
-        if (CurrentExperience < option.expCost) { return; }
+        if (CurrentSkillPoints < option.SkillPointCost) { return; }
 
-        ChangeExperience(-option.expCost);
+        ChangeSkillPoints(-option.SkillPointCost);
         tile.SetInactive();
 
         switch (option.type)
@@ -172,8 +193,9 @@ public class PlayerLeveling : MonoBehaviour
 
         while (_currentUpgradeOptions.Count > 0)
         {
-            //int index = UnityEngine.Random.Range(0, _currentUpgradeOptions.Count);
-            var nextUpgrade = _currentUpgradeOptions.OrderBy((x) => x.expCost).First();
+            int index = UnityEngine.Random.Range(0, _currentUpgradeOptions.Count);
+            var nextUpgrade = _currentUpgradeOptions[index];
+            //var nextUpgrade = _currentUpgradeOptions.OrderBy((x) => x.skillPointCost).First();
             UpgradeTile setTile = SetUpgradeTile(nextUpgrade);
             if (setTile == null) { break; } // no more blank tiles available
             _currentUpgradeOptions.Remove(nextUpgrade);

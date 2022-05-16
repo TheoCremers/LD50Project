@@ -72,4 +72,11 @@ public class Damagable : MonoBehaviour
         Health = Mathf.Clamp(Health, 0, (MaxHealth * MaxHpMultiplier));
         OnHeal?.Invoke();
     }
+
+    public void ChangeMaxHealthAndScaleCurrent(int value)
+    {
+        float currentPercentage = HealthPercentage;
+        MaxHealth += value;
+        Health = currentPercentage * MaxHealth * MaxHpMultiplier;
+    }
 }

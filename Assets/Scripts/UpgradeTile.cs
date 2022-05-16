@@ -13,6 +13,7 @@ public class UpgradeTile : MonoBehaviour
     private int _index = -1;
     [SerializeField] private Image _buttonImage;
     [SerializeField] private TextMeshProUGUI _buttonKey;
+    [SerializeField] private Transform _skillPointContainer;
 
     private void Start ()
     {
@@ -36,7 +37,8 @@ public class UpgradeTile : MonoBehaviour
     {
         UpgradeOption = upgradeOption;
         SetIconSprite(upgradeOption.upgradeImage, upgradeOption.spriteColor);
-        SetPriceText(upgradeOption.expCost);
+        //SetPriceText(upgradeOption.expCost);
+        SetSkillPointCost(upgradeOption.SkillPointCost);
         SetDetailsText(upgradeOption.details);
     }
 
@@ -49,6 +51,22 @@ public class UpgradeTile : MonoBehaviour
     public void SetPriceText(int amount)
     {
         Cost.text = amount.ToString();
+    }
+
+    public void SetSkillPointCost(int amount)
+    {
+        if (_skillPointContainer.childCount < amount)
+        {
+            Transform skillPointIcon = _skillPointContainer.GetChild(0);
+            while (_skillPointContainer.childCount < amount)
+            {
+                Instantiate(skillPointIcon, _skillPointContainer);
+            }
+        }
+        for (int i = 0; i < _skillPointContainer.childCount; i++)
+        {
+            _skillPointContainer.GetChild(i).gameObject.SetActive(i < amount);
+        }
     }
 
     public void SetDetailsText(string details)

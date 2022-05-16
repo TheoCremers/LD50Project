@@ -6,6 +6,7 @@ public class UpgradeOption : ScriptableObject
 {
     public UpgradeType type = UpgradeType.none;
     public int expCost = 100;
+    public int SkillPointCost = 1;
     public int intValue = 0;
     public float floatValue = 0f;
     public Sprite upgradeImage = null;
