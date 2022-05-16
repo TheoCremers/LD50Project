@@ -1,47 +1,45 @@
 using UnityEngine;
 
-namespace LD50.Scripts.AI 
-{
-    public abstract class BaseUnitAI : MonoBehaviour 
-    {   
-        [SerializeField]
-        protected float _agroRange;
+public abstract class BaseUnitAI : MonoBehaviour 
+{   
+    [SerializeField]
+    protected float _agroRange;
 
-        protected float _currentAgroRange;
+    protected float _currentAgroRange;
 
-        [SerializeField]
-        protected float _moveSpeed;
+    [SerializeField]
+    protected float _moveSpeed;
 
-        protected Vector2 _moveDirection;    
+    protected Vector2 _moveDirection;    
 
-        public SpriteRenderer Sprite;
+    public SpriteRenderer Sprite;
 
-        protected Transform _target;
+    protected Transform _target;
 
-        public Rigidbody2D RigidBody;
+    public Rigidbody2D RigidBody;
 
-        protected virtual void Start()
-        {       
-            _target = null;
-            _currentAgroRange = _agroRange;
-        }
+    protected virtual void Start()
+    {       
+        _target = null;
+        _currentAgroRange = _agroRange;
+    }
 
-        protected virtual void Update() 
-        { 
-            UpdateSprite();
-        }
+    protected virtual void Update() 
+    { 
+        UpdateSprite();
+    }
 
-        private void UpdateSprite()
+    private void UpdateSprite()
+    {
+        if (_moveDirection.x < 0) 
         {
-            if (_moveDirection.x < 0) 
-            {
-                Sprite.flipX = true;
-            } 
-            else if (_moveDirection.x > 0) 
-            {
-                Sprite.flipX = false;
-            }
+            Sprite.flipX = true;
+        } 
+        else if (_moveDirection.x > 0) 
+        {
+            Sprite.flipX = false;
         }
     }
 }
+
 

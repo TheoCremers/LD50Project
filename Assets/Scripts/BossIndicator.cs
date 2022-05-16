@@ -22,7 +22,7 @@ public class BossIndicator : MonoBehaviour
 
     private void Start ()
     {
-        _boss = LD50.Scripts.AI.BossEnemyAI.Instance.transform;
+        _boss = BossEnemyAI.Instance.transform;
         _camera = Camera.main;
         _viewHeight = 2 * _camera.orthographicSize;
         _viewWidth = _viewHeight * _camera.aspect;
