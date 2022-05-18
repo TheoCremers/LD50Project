@@ -3,7 +3,9 @@ using UnityEngine;
 
 public abstract class BaseFamiliarAI : BaseUnitAI 
 {   
-    protected FamiliarCombatState _state = FamiliarCombatState.Following;
+    protected FamiliarCombatState _combatState = FamiliarCombatState.Following;
+
+    protected FamiliarAgroStates _agroState = FamiliarAgroStates.Chase;
 
     [SerializeField]
     protected float _followSpeed;
@@ -47,7 +49,7 @@ public abstract class BaseFamiliarAI : BaseUnitAI
         }
 
 
-        switch (_state) 
+        switch (_combatState) 
         {
             case (FamiliarCombatState.Following): 
                 FollowBehavior();
@@ -66,7 +68,7 @@ public abstract class BaseFamiliarAI : BaseUnitAI
     {
         if (_target != null && _distanceToTarget < _currentAgroRange)
         {
-            _state = FamiliarCombatState.Agro;
+            _combatState = FamiliarCombatState.Agro;
         }
         else
         {
@@ -82,9 +84,9 @@ public abstract class BaseFamiliarAI : BaseUnitAI
     // Force agro when hit while idle
     public void OnHit() 
     {
-        if (_state == FamiliarCombatState.Following) 
+        if (_combatState == FamiliarCombatState.Following) 
         {
-            _state = FamiliarCombatState.Agro;
+            _combatState = FamiliarCombatState.Agro;
             _target = UnitManager.GetClosestEnemy(transform.position);
             _currentAgroRange = 99f;
         }
@@ -94,7 +96,7 @@ public abstract class BaseFamiliarAI : BaseUnitAI
 
     public void TriggerDeathAnimation ()
     {
-        _state = FamiliarCombatState.Dead;
+        _combatState = FamiliarCombatState.Dead;
 
         // Stop Movement
         RigidBody.velocity = Vector3.zero;

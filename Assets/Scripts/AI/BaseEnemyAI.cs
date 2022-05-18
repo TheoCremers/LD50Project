@@ -124,7 +124,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
 
     protected abstract void UpdateTargetting();
 
-    protected abstract void AgroBehavior();
+    protected abstract void AgroBehavior();   
 
     public void TriggerDeathAnimation ()
     {

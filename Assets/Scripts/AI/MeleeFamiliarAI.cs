@@ -27,25 +27,36 @@ public class MeleeFamiliarAI : BaseFamiliarAI
 
     protected override void AgroBehavior()
     {
+        // Transitions
         if (_target == null) 
         {
-            _state = FamiliarCombatState.Following;
+            _combatState = FamiliarCombatState.Following;
             _currentAgroRange = _agroRange;
             return;
         }  
+        // Actions
+        else
+        {
+            switch (_agroState)
+            {
+                case FamiliarAgroStates.Chase:
+                    ChaseBehavior();
+                    break;
+                case FamiliarAgroStates.Attack:
+                    AttackBehavior();
+                    break;                
+            }
+        }
+    }
 
-        // If close enough to target, swing
-        //var distanceToTarget = Vector2.Distance(_target.position, transform.position);
+    protected virtual void ChaseBehavior()
+    {
+        // Transitions
         if (_distanceToTarget < _meleeRange)
         {
-            if (_attackCooldownRemaining <= 0f) 
-            {
-                RigidBody.velocity = Vector2.zero;
-                _meleeAttack.Fire(_moveDirection);
-                _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
-            }
+            _agroState = FamiliarAgroStates.Attack;
         } 
-        // Move closer to target
+        // Actions
         else 
         {
             var relativeVector = _target.position - transform.position;
@@ -54,16 +65,28 @@ public class MeleeFamiliarAI : BaseFamiliarAI
         }
     }
 
-    private void UpdateTimers ()
+    protected virtual void AttackBehavior()
     {
-        if (_attackCooldownRemaining > 0f)
+        // Transitions
+        if (_distanceToTarget >= _meleeRange)
         {
-            _attackCooldownRemaining -= Time.deltaTime;
-            if (_attackCooldownRemaining < 0f)
+            _agroState = FamiliarAgroStates.Chase;
+        } 
+        // Actions
+        else
+        {
+            if (_attackCooldownRemaining <= 0f) 
             {
-                _attackCooldownRemaining = 0f;
+                RigidBody.velocity = Vector2.zero;
+                _meleeAttack.Fire(_moveDirection);
+                _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
             }
         }
+    }
+
+    private void UpdateTimers ()
+    {
+        _attackCooldownRemaining -= Time.deltaTime;
     }  
 }
 
