@@ -1,13 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-public enum FamiliarCombatState 
-{
-    Following,
-    Agro,
-    Dead
-}
-
 public abstract class BaseFamiliarAI : BaseUnitAI 
 {   
     protected FamiliarCombatState _state = FamiliarCombatState.Following;
@@ -22,7 +15,7 @@ public abstract class BaseFamiliarAI : BaseUnitAI
 
     private Transform _master;
 
-    protected float _fadeTime = 0.2f;
+    
 
     protected override void Start()
     {
@@ -120,25 +113,5 @@ public abstract class BaseFamiliarAI : BaseUnitAI
 
         // fade sprite out
         StartCoroutine(FadeOutAndDestroy());
-    }
-
-    private IEnumerator FadeOutAndDestroy ()
-    {
-        Color initialColor = Sprite.color;
-        float t = 0f;
-        while (t < _fadeTime * 0.5f)
-        {
-            t += Time.deltaTime;
-            Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / _fadeTime);
-            yield return null;
-        }
-        t = 0f;
-        while (t < _fadeTime * 0.5f)
-        {
-            t += Time.deltaTime;
-            Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / _fadeTime);
-            yield return null;
-        }
-        Destroy(gameObject);
     }
 }

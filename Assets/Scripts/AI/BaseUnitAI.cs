@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 
 public abstract class BaseUnitAI : MonoBehaviour 
 {   
@@ -40,6 +40,27 @@ public abstract class BaseUnitAI : MonoBehaviour
         {
             Sprite.flipX = false;
         }
+    }
+
+    protected virtual IEnumerator FadeOutAndDestroy ()
+    {
+        var fadeTime = 0.2f;
+        Color initialColor = Sprite.color;
+        float t = 0f;
+        while (t < fadeTime * 0.5f)
+        {
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / fadeTime);
+            yield return null;
+        }
+        t = 0f;
+        while (t < fadeTime * 0.5f)
+        {
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / fadeTime);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }
 
