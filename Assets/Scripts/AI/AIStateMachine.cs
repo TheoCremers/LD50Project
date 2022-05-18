@@ -11,11 +11,11 @@ public class AIStateMachine : MonoBehaviour
 
     private bool _stateChanged;
 
-    public void SetState(AIState state, bool force) 
+    public void SetState(AIState state, bool force = false) 
     {
         if (CurrentState.GetType() != state.GetType() || force)
         {
-
+            StateChange(state);
         }
     }
 

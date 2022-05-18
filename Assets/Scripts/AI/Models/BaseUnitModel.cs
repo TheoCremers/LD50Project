@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseUnitAI : MonoBehaviour 
+public abstract class BaseUnitModel : MonoBehaviour
 {   
     [SerializeField]
     protected float _agroRange;
@@ -10,19 +10,22 @@ public abstract class BaseUnitAI : MonoBehaviour
     [SerializeField]
     protected float _moveSpeed;
 
-    protected Vector2 _moveDirection;    
+    internal Vector2 _moveDirection;    
 
     public SpriteRenderer Sprite;
+    
+    public Rigidbody2D RigidBody;
 
     protected Transform _target;
 
-    public Rigidbody2D RigidBody;
 
     protected virtual void Start()
     {       
         _target = null;
         _currentAgroRange = _agroRange;
     }
+
+
 
     protected virtual void Update() 
     { 

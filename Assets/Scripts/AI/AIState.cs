@@ -6,7 +6,7 @@ using UnityEngine;
 public class AIState : AIStateMachine 
 {
     [HideInInspector]
-    public BaseEnemyAI Entity; 
+    public BaseUnitModel Model; 
 
     public AIStateMachine Parent;
 

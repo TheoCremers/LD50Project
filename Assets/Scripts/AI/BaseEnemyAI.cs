@@ -9,7 +9,7 @@ public enum EnemyCombatState
     Dead
 }
 
-public abstract class BaseEnemyAI : BaseUnitAI 
+public abstract class BaseEnemyAI : BaseUnitModel 
 {
     [SerializeField]
     private int ExpWorth;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeleeFamiliarAI : BaseFamiliarAI 
+public class MeleeFamiliarModel : BaseFamiliarModel 
 {   
     [SerializeField]
     protected float _meleeRange = 1f; 
@@ -15,8 +15,8 @@ public class MeleeFamiliarAI : BaseFamiliarAI
 
     protected override void Start()
     {
-        base.Start();
-        _meleeAttack = GetComponent<MeleeAttack>();
+        // base.Start();
+        // _meleeAttack = GetComponent<MeleeAttack>();
     }
 
     protected override void Update()
