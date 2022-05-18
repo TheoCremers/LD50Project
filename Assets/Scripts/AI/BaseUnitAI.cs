@@ -15,8 +15,8 @@ public abstract class BaseUnitAI : MonoBehaviour
     [SerializeField]
     protected float _moveSpeed;
 
-    protected Vector2 _moveDirection;    
-    
+    protected Vector2 _facingDirection;    
+
     protected Transform _target;
 
 
@@ -33,11 +33,11 @@ public abstract class BaseUnitAI : MonoBehaviour
 
     private void UpdateSprite()
     {
-        if (_moveDirection.x < 0) 
+        if (_facingDirection.x < 0) 
         {
             Sprite.flipX = true;
         } 
-        else if (_moveDirection.x > 0) 
+        else if (_facingDirection.x > 0) 
         {
             Sprite.flipX = false;
         }

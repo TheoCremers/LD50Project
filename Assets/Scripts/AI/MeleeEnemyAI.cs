@@ -73,8 +73,8 @@ public class MeleeEnemyAI : BaseEnemyAI
         else 
         {
             var relativeVector = _target.position - transform.position;
-            _moveDirection = relativeVector.normalized;
-            RigidBody.velocity = _moveDirection * _moveSpeed;
+            _facingDirection = relativeVector.normalized;
+            RigidBody.velocity = _facingDirection * _moveSpeed;
         }
     }
 
@@ -91,7 +91,7 @@ public class MeleeEnemyAI : BaseEnemyAI
             if (_attackCooldownRemaining <= 0f) 
             {
                 RigidBody.velocity = Vector2.zero;
-                _meleeAttack.Fire(_moveDirection);
+                _meleeAttack.Fire(_facingDirection);
                 _attackCooldownRemaining = _baseAttackCooldown;
             }
         }

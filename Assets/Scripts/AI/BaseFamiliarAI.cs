@@ -71,8 +71,8 @@ public abstract class BaseFamiliarAI : BaseUnitAI
         {
             if (_distanceToMaster > 1f) {
                 var relativeVector = _master.position - transform.position;
-                _moveDirection = relativeVector.normalized;
-                RigidBody.velocity = _moveDirection * _moveSpeed;
+                _facingDirection = relativeVector.normalized;
+                RigidBody.velocity = _facingDirection * _moveSpeed;
             }
         }
     }

@@ -80,8 +80,8 @@ public class RangedEnemyAI : BaseEnemyAI
         else 
         {
             var relativeVector = _target.position - transform.position;
-            _moveDirection = relativeVector.normalized;
-            RigidBody.velocity = _moveDirection * _moveSpeed;
+            _facingDirection = relativeVector.normalized;
+            RigidBody.velocity = _facingDirection * _moveSpeed;
         }
     }
 
@@ -102,7 +102,9 @@ public class RangedEnemyAI : BaseEnemyAI
             if (_attackCooldownRemaining <= 0f) 
             {
                 RigidBody.velocity = Vector2.zero;
-                _rangedAttack.Fire(_moveDirection);
+                var relativeVector = _target.position - transform.position;
+                _facingDirection = relativeVector.normalized;
+                _rangedAttack.Fire(_facingDirection);
                 _attackCooldownRemaining = _baseAttackCooldown;
             }
         }
@@ -123,8 +125,8 @@ public class RangedEnemyAI : BaseEnemyAI
         else 
         {
             var relativeVector = _target.position - transform.position;
-            _moveDirection = relativeVector.normalized;
-            RigidBody.velocity = -(_moveDirection * _moveSpeed);
+            _facingDirection = relativeVector.normalized;
+            RigidBody.velocity = -(_facingDirection * _moveSpeed);
         }
     }
 

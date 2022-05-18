@@ -100,7 +100,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
         _patrolTime = Random.Range(3.0f, 7.0f);
         var angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         var randomSpeedMod = Random.Range(0.3f, 0.4f);
-        _moveDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
+        _facingDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
     }
 
     private void RoamBehavior()
@@ -114,7 +114,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
         // Actions
         else
         {
-            RigidBody.velocity = _moveDirection * _wanderSpeed;            
+            RigidBody.velocity = _facingDirection * _wanderSpeed;            
         }
     }
 
