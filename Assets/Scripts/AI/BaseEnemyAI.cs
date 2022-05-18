@@ -90,7 +90,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
         // Actions
         else
         {
-            // Stand Idle
+            RigidBody.velocity = Vector3.zero;
         } 
     }
 
