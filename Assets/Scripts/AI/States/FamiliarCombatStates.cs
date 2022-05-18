@@ -5,7 +5,7 @@ public enum FamiliarCombatState
     Dead
 }
 
-public enum FamiliarAgroStates
+public enum FamiliarAgroState
 {
     Chase,
 

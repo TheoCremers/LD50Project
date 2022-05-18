@@ -1,14 +1,10 @@
-using System.Collections;
 using UnityEngine;
 
 public abstract class BaseFamiliarAI : BaseUnitAI 
 {   
     protected FamiliarCombatState _combatState = FamiliarCombatState.Following;
 
-    protected FamiliarAgroStates _agroState = FamiliarAgroStates.Chase;
-
-    [SerializeField]
-    protected float _followSpeed;
+    protected FamiliarAgroState _agroState = FamiliarAgroState.Chase;
 
     protected float _seekTime;
 
@@ -16,7 +12,6 @@ public abstract class BaseFamiliarAI : BaseUnitAI
     private float _distanceToMaster;
 
     private Transform _master;
-
     
 
     protected override void Start()
@@ -32,22 +27,11 @@ public abstract class BaseFamiliarAI : BaseUnitAI
     }
 
     protected override void Update() 
-    {
+    {        
         if (_seekTime <= 0) 
         {
-            _target = UnitManager.GetClosestEnemy(transform.position);
-            if (_target != null) 
-            {
-                _distanceToTarget = Vector2.Distance(_target.position, transform.position);
-            }
-            _distanceToMaster = Vector2.Distance(_master.position, transform.position);
-            _seekTime = 0.2f;
-        } 
-        else 
-        {
-            _seekTime -= Time.deltaTime;
+            UpdateTargets();
         }
-
 
         switch (_combatState) 
         {
@@ -64,15 +48,27 @@ public abstract class BaseFamiliarAI : BaseUnitAI
         base.Update();
     }
 
+    private void UpdateTargets()
+    {
+        _target = UnitManager.GetClosestEnemy(transform.position);
+        if (_target != null) 
+        {
+            _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+        }
+        _distanceToMaster = Vector2.Distance(_master.position, transform.position);
+        _seekTime = 0.2f;
+    }
+
     private void FollowBehavior() 
     {
+        // Transitions
         if (_target != null && _distanceToTarget < _currentAgroRange)
         {
             _combatState = FamiliarCombatState.Agro;
         }
+        // Actions
         else
         {
-            // Follow the player around
             if (_distanceToMaster > 1f) {
                 var relativeVector = _master.position - transform.position;
                 _moveDirection = relativeVector.normalized;
@@ -116,4 +112,9 @@ public abstract class BaseFamiliarAI : BaseUnitAI
         // fade sprite out
         StartCoroutine(FadeOutAndDestroy());
     }
+
+    protected virtual void UpdateTimers()
+    {
+        _seekTime -= Time.deltaTime;
+    } 
 }

@@ -8,11 +8,12 @@ public class MeleeEnemyAI : BaseEnemyAI
 
     protected float _attackCooldownRemaining = 0f;
 
+    private EnemyAgroState _agroState = EnemyAgroState.Chase;
+
     protected MeleeAttack _meleeAttack;
     
     [SerializeField] 
     private float _baseAttackCooldown = 1f;
-    private float _attackCooldownModifier = 1f;
 
     protected override void Start()
     {
@@ -26,36 +27,49 @@ public class MeleeEnemyAI : BaseEnemyAI
         UpdateTimers();
     }
 
-    protected override void UpdateTargetting()
+    protected override void UpdateTargets()
     {
         // There should always be a friendly target left, else it's game over
         _target = UnitManager.GetClosestFriendly(transform.position);
         _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+
         // If enemy is too far away Destroy
-        DestroyIfTooFar(_state == EnemyCombatState.Idle ? 25f : 40f);
+        DestroyIfTooFar(_combatState == EnemyCombatState.Patrol ? 25f : 40f);
+
         _seekTime = 0.2f;
     }
 
     protected override void AgroBehavior()
     {
+        // Transitions
         if (_target == null) 
         {
-            _state = EnemyCombatState.Idle;
+            _combatState = EnemyCombatState.Patrol;
             _currentAgroRange = _agroRange;
-            return;
-        }  
-        // If close enough to target, swing
-        //var distanceToTarget = Vector2.Distance(_target.position, transform.position);
-        if (_distanceToTarget < _meleeRange)
+        } 
+        // Actions
+        else
         {
-            if (_attackCooldownRemaining <= 0f) 
+            switch (_agroState)
             {
-                RigidBody.velocity = Vector2.zero;
-                _meleeAttack.Fire(_moveDirection);
-                _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
+                case EnemyAgroState.Chase:
+                    ChaseBehavior();
+                    break;
+                case EnemyAgroState.Attack:
+                    AttackBehavior();
+                    break;                
             }
         } 
-        // Move closer to target
+    }
+
+    private void ChaseBehavior()
+    {
+        // Transitions
+        if (_distanceToTarget < _meleeRange)
+        {
+            _agroState = EnemyAgroState.Attack;
+        } 
+        // Actions
         else 
         {
             var relativeVector = _target.position - transform.position;
@@ -64,15 +78,28 @@ public class MeleeEnemyAI : BaseEnemyAI
         }
     }
 
-    private void UpdateTimers ()
+    private void AttackBehavior()
     {
-        if (_attackCooldownRemaining > 0f)
+        // Transitions
+        if (_distanceToTarget >= _meleeRange)
         {
-            _attackCooldownRemaining -= Time.deltaTime;
-            if (_attackCooldownRemaining < 0f)
+            _agroState = EnemyAgroState.Chase;
+        } 
+        // Actions
+        else
+        {
+            if (_attackCooldownRemaining <= 0f) 
             {
-                _attackCooldownRemaining = 0f;
+                RigidBody.velocity = Vector2.zero;
+                _meleeAttack.Fire(_moveDirection);
+                _attackCooldownRemaining = _baseAttackCooldown;
             }
         }
+    }
+
+    protected override void UpdateTimers ()
+    {
+        base.UpdateTimers();
+        _attackCooldownRemaining -= Time.deltaTime;
     }  
 }

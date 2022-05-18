@@ -51,7 +51,7 @@ public class BossEnemyAI : BaseEnemyAI
         _meleeAttack = GetComponent<MeleeAttack>();
     }
 
-    protected override void UpdateTargetting()
+    protected override void UpdateTargets()
     {
         // There should always be a friendly target left, else it's game over
         _target = UnitManager.GetClosestFriendly(transform.position);
@@ -220,7 +220,7 @@ public class BossEnemyAI : BaseEnemyAI
         }
     }
 
-    private void UpdateTimers ()
+    protected override void UpdateTimers ()
     {
         if (_meleeAttackCooldownRemaining > 0f)
         {
@@ -242,7 +242,7 @@ public class BossEnemyAI : BaseEnemyAI
 
     protected override void OnDestroy()
     {
-        if (_state == EnemyCombatState.Dead)
+        if (_combatState == EnemyCombatState.Dead)
         {
             UIManager.Instance.TriggerGameOver(true);
         }

@@ -13,6 +13,9 @@ public class ExperienceOrbManager : MonoBehaviour
     private float _minVelocity = 3f;
     private float _maxVelocity = 7f;
 
+    // Let's move this to a better place. Just wanted it out of the AI code
+    private float _expMultiplier = 1.8f;
+
     private void Awake ()
     {
         Instance = this;
@@ -25,6 +28,8 @@ public class ExperienceOrbManager : MonoBehaviour
 
     public void SpawnExperienceOrbs(Vector3 position, int value)
     {
+        // For now
+        value = Mathf.CeilToInt(_expMultiplier * (float) value);
         CreateOrbs(_largeExpOrb, position, ref value);
         CreateOrbs(_mediumExpOrb, position, ref value);
         CreateOrbs(_smallExpOrb, position, ref value);

@@ -3,6 +3,10 @@ using System.Collections;
 
 public abstract class BaseUnitAI : MonoBehaviour 
 {   
+    public SpriteRenderer Sprite;
+
+    public Rigidbody2D RigidBody;
+
     [SerializeField]
     protected float _agroRange;
 
@@ -12,12 +16,9 @@ public abstract class BaseUnitAI : MonoBehaviour
     protected float _moveSpeed;
 
     protected Vector2 _moveDirection;    
-
-    public SpriteRenderer Sprite;
-
+    
     protected Transform _target;
 
-    public Rigidbody2D RigidBody;
 
     protected virtual void Start()
     {       

@@ -8,12 +8,13 @@ public class RangedEnemyAI : BaseEnemyAI
     [SerializeField] 
     protected float _range;
 
+    private EnemyAgroState _agroState = EnemyAgroState.Chase;
+
     protected RangedAttack _rangedAttack;
     protected float _attackCooldownRemaining = 0f;
 
     [SerializeField] 
     private float _baseAttackCooldown = 1f;
-    private float _attackCooldownModifier = 1f;
 
     protected override void Start()
     {
@@ -27,59 +28,110 @@ public class RangedEnemyAI : BaseEnemyAI
         UpdateTimers();
     }
 
-    protected override void UpdateTargetting()
+    protected override void UpdateTargets()
     {
         // There should always be a friendly target left, else it's game over
         _target = UnitManager.GetClosestFriendly(transform.position);
         _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+
         // If enemy is too far away Destroy
-        DestroyIfTooFar(_state == EnemyCombatState.Idle ? 25f : 40f);
+        DestroyIfTooFar(_combatState == EnemyCombatState.Patrol ? 25f : 40f);
         _seekTime = 0.2f;
     }
 
     protected override void AgroBehavior()
     {
+        // Transitions
         if (_target == null) 
         {
-            _state = EnemyCombatState.Idle;
+            _combatState = EnemyCombatState.Patrol;
             _currentAgroRange = _agroRange;
-            return;
         }  
-        //var distanceToTarget = Vector2.Distance(_target.position, transform.position);
-        var relativeVector = _target.position - transform.position;
-        _moveDirection = relativeVector.normalized;
+        // Actions
+        else
+        {
+            switch (_agroState)
+            {
+                case EnemyAgroState.Chase:
+                    ChaseBehavior();
+                    break;
+                case EnemyAgroState.Attack:
+                    AttackBehavior();
+                    break;                
+                case EnemyAgroState.TakeDistance:
+                    TakeDistanceBehavior();
+                    break;         
+            }
+        }        
+    }
 
-        // If too close to player, flee
-        if (_distanceToTarget < _deadzone) {
-            RigidBody.velocity = -(_moveDirection * _moveSpeed);
+    protected virtual void ChaseBehavior()
+    {
+        // Transitions
+        if (_distanceToTarget < _deadzone) 
+        {
+            _agroState = EnemyAgroState.TakeDistance;
         } 
-        // If close enough to player, shoot
-        else if (_distanceToTarget < _range)
+        else if (_distanceToTarget <= _range)
+        {
+            _agroState = EnemyAgroState.Attack;
+        } 
+        // Actions
+        else 
+        {
+            var relativeVector = _target.position - transform.position;
+            _moveDirection = relativeVector.normalized;
+            RigidBody.velocity = _moveDirection * _moveSpeed;
+        }
+    }
+
+    protected virtual void AttackBehavior()
+    {
+        // Transitions
+        if (_distanceToTarget < _deadzone) 
+        {
+            _agroState = EnemyAgroState.TakeDistance;
+        } 
+        else if (_distanceToTarget > _range)
+        {
+            _agroState = EnemyAgroState.Chase;
+        } 
+        // Actions
+        else
         {
             if (_attackCooldownRemaining <= 0f) 
             {
                 RigidBody.velocity = Vector2.zero;
                 _rangedAttack.Fire(_moveDirection);
-                _attackCooldownRemaining = _baseAttackCooldown * _attackCooldownModifier;
+                _attackCooldownRemaining = _baseAttackCooldown;
             }
-        } 
-        // If too far from player, move to a nice position
-        else
-        {
-            RigidBody.velocity = _moveDirection * _moveSpeed; 
         }
     }
 
-    private void UpdateTimers()
+    protected virtual void TakeDistanceBehavior()
     {
-        if (_attackCooldownRemaining > 0f)
+        // Transitions
+        if (_distanceToTarget > _range)
         {
-            _attackCooldownRemaining -= Time.deltaTime;
-            if (_attackCooldownRemaining < 0f)
-            {
-                _attackCooldownRemaining = 0f;
-            }
+            _agroState = EnemyAgroState.Chase;
+        } 
+        else if (_distanceToTarget > _deadzone) 
+        {
+            _agroState = EnemyAgroState.Attack;
+        } 
+        // Actions
+        else 
+        {
+            var relativeVector = _target.position - transform.position;
+            _moveDirection = relativeVector.normalized;
+            RigidBody.velocity = -(_moveDirection * _moveSpeed);
         }
+    }
+
+    protected override void UpdateTimers()
+    {            
+        base.UpdateTimers();
+        _attackCooldownRemaining -= Time.deltaTime;
     }        
 }
 

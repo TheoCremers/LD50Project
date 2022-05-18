@@ -1,27 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-public enum EnemyCombatState 
-{
-    Idle,
-    Agro,
-    Dead
-}
-
 public abstract class BaseEnemyAI : BaseUnitAI 
 {
     [SerializeField]
     private int ExpWorth;
 
-    protected float _expMultiplier = 1.8f;
+    protected EnemyCombatState _combatState = EnemyCombatState.Patrol;
 
-    protected EnemyCombatState _state = EnemyCombatState.Idle;
+    protected EnemyPatrolState _patrolState = EnemyPatrolState.Idle;
 
     [SerializeField]
     protected float _wanderSpeed;
 
-    protected float _wanderTime;
-    protected float _standTime;
+    protected float _patrolTime;
 
     protected float _seekTime;
 
@@ -38,22 +30,17 @@ public abstract class BaseEnemyAI : BaseUnitAI
         UnitManager.EnemyUnits.Remove(transform);
     }
 
-
     protected override void Update() 
     {
         if (_seekTime <= 0) 
         {
-            UpdateTargetting();
+            UpdateTargets();
         } 
-        else 
-        {
-            _seekTime -= Time.deltaTime;
-        }
 
-        switch (_state) 
+        switch (_combatState) 
         {
-            case (EnemyCombatState.Idle): 
-                IdleBehavior();
+            case (EnemyCombatState.Patrol): 
+                PatrolBehavior();
                 break;
             case (EnemyCombatState.Agro):
                 AgroBehavior();
@@ -62,48 +49,81 @@ public abstract class BaseEnemyAI : BaseUnitAI
                 break;
         }
 
+        UpdateTimers();
         base.Update();
     }
 
-    private void IdleBehavior() 
+    private void PatrolBehavior() 
     {
+        // Transitions
         if (_target != null && _distanceToTarget < _currentAgroRange)
         {
-            _state = EnemyCombatState.Agro;
+            _combatState = EnemyCombatState.Agro;
         }
         else
         {
-            if (_wanderTime > 0) 
+            switch (_patrolState) 
             {
-                // Wander around
-                RigidBody.velocity = _moveDirection * _wanderSpeed;
-                _wanderTime -= Time.deltaTime;
-                if (_wanderTime <= 0) {
-                    _standTime = Random.Range(1.0f, 3.0f);
-                }
-            } 
-            else if (_standTime > 0) 
-            {
-                // Stand around, take a break
-                _standTime -= Time.deltaTime;
-            } 
-            else 
-            {            
-                // Start moving in a random direction
-                _wanderTime = Random.Range(3.0f, 7.0f);
-                var angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-                var randomSpeedMod = Random.Range(0.3f, 0.4f);
-                _moveDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
+                case (EnemyPatrolState.Idle): 
+                    IdleBehavior();
+                    break;
+                case (EnemyPatrolState.Roam):
+                    RoamBehavior();
+                    break;
             }
+        }
+    }
+
+    private void EnterIdleBehavior()
+    {
+        _patrolTime = Random.Range(1.0f, 3.0f);
+    }
+
+    private void IdleBehavior()
+    {
+        // Transitions
+        if (_patrolTime < 0) 
+        {
+            EnterRoamBehavior();
+            _patrolState = EnemyPatrolState.Roam;
+        }
+        // Actions
+        else
+        {
+            // Stand Idle
+        } 
+    }
+
+    private void EnterRoamBehavior()
+    {
+        // Start moving in a random direction
+        _patrolTime = Random.Range(3.0f, 7.0f);
+        var angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        var randomSpeedMod = Random.Range(0.3f, 0.4f);
+        _moveDirection = new Vector2(Mathf.Cos(angle) * randomSpeedMod, Mathf.Sin(angle) * randomSpeedMod);
+    }
+
+    private void RoamBehavior()
+    {
+        // Transitions
+        if (_patrolTime < 0) 
+        {
+            EnterIdleBehavior();
+            _patrolState = EnemyPatrolState.Idle;
+        }
+        // Actions
+        else
+        {
+            RigidBody.velocity = _moveDirection * _wanderSpeed;            
         }
     }
 
     // Force agro when hit while idle
     public void OnHit() 
     {
-        if (_state == EnemyCombatState.Idle) 
+        if (_combatState == EnemyCombatState.Patrol) 
         {
-            _state = EnemyCombatState.Agro;
+            _combatState = EnemyCombatState.Agro;
             _currentAgroRange = 99f;
             _target = UnitManager.GetClosestFriendly(transform.position);
         }
@@ -119,16 +139,16 @@ public abstract class BaseEnemyAI : BaseUnitAI
 
     public void DropExp()
     {
-        ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, Mathf.CeilToInt(ExpWorth * _expMultiplier));
+        ExperienceOrbManager.Instance.SpawnExperienceOrbs(transform.position, Mathf.CeilToInt(ExpWorth));
     }
 
-    protected abstract void UpdateTargetting();
+    protected abstract void UpdateTargets();
 
     protected abstract void AgroBehavior();   
 
     public void TriggerDeathAnimation ()
     {
-        _state = EnemyCombatState.Dead;
+        _combatState = EnemyCombatState.Dead;
 
         // Stop Movement
         RigidBody.velocity = Vector3.zero;
@@ -148,4 +168,10 @@ public abstract class BaseEnemyAI : BaseUnitAI
         // fade sprite out
         StartCoroutine(FadeOutAndDestroy());
     }
+
+    protected virtual void UpdateTimers()
+    {
+        _seekTime -= Time.deltaTime;
+        _patrolTime -= Time.deltaTime;
+    } 
 }

@@ -39,10 +39,10 @@ public class MeleeFamiliarAI : BaseFamiliarAI
         {
             switch (_agroState)
             {
-                case FamiliarAgroStates.Chase:
+                case FamiliarAgroState.Chase:
                     ChaseBehavior();
                     break;
-                case FamiliarAgroStates.Attack:
+                case FamiliarAgroState.Attack:
                     AttackBehavior();
                     break;                
             }
@@ -54,7 +54,7 @@ public class MeleeFamiliarAI : BaseFamiliarAI
         // Transitions
         if (_distanceToTarget < _meleeRange)
         {
-            _agroState = FamiliarAgroStates.Attack;
+            _agroState = FamiliarAgroState.Attack;
         } 
         // Actions
         else 
@@ -70,7 +70,7 @@ public class MeleeFamiliarAI : BaseFamiliarAI
         // Transitions
         if (_distanceToTarget >= _meleeRange)
         {
-            _agroState = FamiliarAgroStates.Chase;
+            _agroState = FamiliarAgroState.Chase;
         } 
         // Actions
         else
@@ -84,8 +84,9 @@ public class MeleeFamiliarAI : BaseFamiliarAI
         }
     }
 
-    private void UpdateTimers ()
+    protected override void UpdateTimers ()
     {
+        base.UpdateTimers();
         _attackCooldownRemaining -= Time.deltaTime;
     }  
 }
