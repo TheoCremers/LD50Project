@@ -1,147 +1,144 @@
 using System.Collections;
 using UnityEngine;
 
-namespace LD50.Scripts.AI
+public enum FamiliarCombatState 
 {
-    public enum FamiliarCombatState 
+    Following,
+    Agro,
+    Dead
+}
+
+public abstract class BaseFamiliarAI : BaseUnitAI 
+{   
+    protected FamiliarCombatState _state = FamiliarCombatState.Following;
+
+    [SerializeField]
+    protected float _followSpeed;
+
+    protected float _seekTime;
+
+    protected float _distanceToTarget;
+    private float _distanceToMaster;
+
+    private Transform _master;
+
+    protected float _fadeTime = 0.2f;
+
+    protected override void Start()
     {
-        Following,
-        Agro,
-        Dead
+        UnitManager.FriendlyUnits.Add(transform);
+        _master = PlayerController.Instance.transform;
+        base.Start();
     }
 
-    public abstract class BaseFamiliarAI : BaseUnitAI 
-    {   
-        protected FamiliarCombatState _state = FamiliarCombatState.Following;
+    protected virtual void OnDestroy()
+    {
+        UnitManager.FriendlyUnits.Remove(transform);
+    }
 
-        [SerializeField]
-        protected float _followSpeed;
-
-        protected float _seekTime;
-
-        protected float _distanceToTarget;
-        private float _distanceToMaster;
-
-        private Transform _master;
-
-        protected float _fadeTime = 0.2f;
-
-        protected override void Start()
+    protected override void Update() 
+    {
+        if (_seekTime <= 0) 
         {
-            UnitManager.FriendlyUnits.Add(transform);
-            _master = PlayerController.Instance.transform;
-            base.Start();
+            _target = UnitManager.GetClosestEnemy(transform.position);
+            if (_target != null) 
+            {
+                _distanceToTarget = Vector2.Distance(_target.position, transform.position);
+            }
+            _distanceToMaster = Vector2.Distance(_master.position, transform.position);
+            _seekTime = 0.2f;
+        } 
+        else 
+        {
+            _seekTime -= Time.deltaTime;
         }
 
-        protected virtual void OnDestroy()
+
+        switch (_state) 
         {
-            UnitManager.FriendlyUnits.Remove(transform);
+            case (FamiliarCombatState.Following): 
+                FollowBehavior();
+                break;
+            case (FamiliarCombatState.Agro):
+                AgroBehavior();
+                break;
+            case (FamiliarCombatState.Dead):
+                break;
         }
 
-        protected override void Update() 
+        base.Update();
+    }
+
+    private void FollowBehavior() 
+    {
+        if (_target != null && _distanceToTarget < _currentAgroRange)
         {
-            if (_seekTime <= 0) 
-            {
-                _target = UnitManager.GetClosestEnemy(transform.position);
-                if (_target != null) 
-                {
-                    _distanceToTarget = Vector2.Distance(_target.position, transform.position);
-                }
-                _distanceToMaster = Vector2.Distance(_master.position, transform.position);
-                _seekTime = 0.2f;
-            } 
-            else 
-            {
-                _seekTime -= Time.deltaTime;
-            }
-
-
-            switch (_state) 
-            {
-                case (FamiliarCombatState.Following): 
-                    FollowBehavior();
-                    break;
-                case (FamiliarCombatState.Agro):
-                    AgroBehavior();
-                    break;
-                case (FamiliarCombatState.Dead):
-                    break;
-            }
-
-            base.Update();
+            _state = FamiliarCombatState.Agro;
         }
-
-        private void FollowBehavior() 
+        else
         {
-            if (_target != null && _distanceToTarget < _currentAgroRange)
-            {
-                _state = FamiliarCombatState.Agro;
-            }
-            else
-            {
-                // Follow the player around
-                if (_distanceToMaster > 1f) {
-                    var relativeVector = _master.position - transform.position;
-                    _moveDirection = relativeVector.normalized;
-                    RigidBody.velocity = _moveDirection * _moveSpeed;
-                }
+            // Follow the player around
+            if (_distanceToMaster > 1f) {
+                var relativeVector = _master.position - transform.position;
+                _moveDirection = relativeVector.normalized;
+                RigidBody.velocity = _moveDirection * _moveSpeed;
             }
         }
+    }
 
-        // Force agro when hit while idle
-        public void OnHit() 
+    // Force agro when hit while idle
+    public void OnHit() 
+    {
+        if (_state == FamiliarCombatState.Following) 
         {
-            if (_state == FamiliarCombatState.Following) 
-            {
-                _state = FamiliarCombatState.Agro;
-                _target = UnitManager.GetClosestEnemy(transform.position);
-                _currentAgroRange = 99f;
-            }
+            _state = FamiliarCombatState.Agro;
+            _target = UnitManager.GetClosestEnemy(transform.position);
+            _currentAgroRange = 99f;
+        }
+    }
+
+    protected abstract void AgroBehavior();
+
+    public void TriggerDeathAnimation ()
+    {
+        _state = FamiliarCombatState.Dead;
+
+        // Stop Movement
+        RigidBody.velocity = Vector3.zero;
+
+        // turn off all colliders
+        foreach (var collider in GetComponentsInChildren<Collider2D>())
+        {
+            collider.enabled = false;
         }
 
-        protected abstract void AgroBehavior();
-
-        public void TriggerDeathAnimation ()
+        // stop sprite animation
+        if (Sprite.TryGetComponent(out Animator animator))
         {
-            _state = FamiliarCombatState.Dead;
-
-            // Stop Movement
-            RigidBody.velocity = Vector3.zero;
-
-            // turn off all colliders
-            foreach (var collider in GetComponentsInChildren<Collider2D>())
-            {
-                collider.enabled = false;
-            }
-
-            // stop sprite animation
-            if (Sprite.TryGetComponent(out Animator animator))
-            {
-                animator.enabled = false;
-            }
-
-            // fade sprite out
-            StartCoroutine(FadeOutAndDestroy());
+            animator.enabled = false;
         }
 
-        private IEnumerator FadeOutAndDestroy ()
+        // fade sprite out
+        StartCoroutine(FadeOutAndDestroy());
+    }
+
+    private IEnumerator FadeOutAndDestroy ()
+    {
+        Color initialColor = Sprite.color;
+        float t = 0f;
+        while (t < _fadeTime * 0.5f)
         {
-            Color initialColor = Sprite.color;
-            float t = 0f;
-            while (t < _fadeTime * 0.5f)
-            {
-                t += Time.deltaTime;
-                Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / _fadeTime);
-                yield return null;
-            }
-            t = 0f;
-            while (t < _fadeTime * 0.5f)
-            {
-                t += Time.deltaTime;
-                Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / _fadeTime);
-                yield return null;
-            }
-            Destroy(gameObject);
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / _fadeTime);
+            yield return null;
         }
+        t = 0f;
+        while (t < _fadeTime * 0.5f)
+        {
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / _fadeTime);
+            yield return null;
+        }
+        Destroy(gameObject);
     }
 }
