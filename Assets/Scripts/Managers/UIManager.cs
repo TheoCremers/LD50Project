@@ -221,7 +221,7 @@ public class UIManager : MonoBehaviour
         {
             GameOverMessage.text = "GAME OVER";
             GameOverMessage.color = Color.red;
-            SurvivalTime.text = $"Remaining Boss Health: {(LD50.Scripts.AI.BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
+            SurvivalTime.text = $"Remaining Boss Health: {(BossEnemyAI.Instance.HitpointData.HealthPercentage * 100f).ToString("0.0")}%";
             Credits.enabled = false;
         }
     }

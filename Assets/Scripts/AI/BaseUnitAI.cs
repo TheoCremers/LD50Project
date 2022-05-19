@@ -1,47 +1,68 @@
 using UnityEngine;
+using System.Collections;
 
-namespace LD50.Scripts.AI 
-{
-    public abstract class BaseUnitAI : MonoBehaviour 
-    {   
-        [SerializeField]
-        protected float _agroRange;
+public abstract class BaseUnitAI : MonoBehaviour 
+{   
+    public SpriteRenderer Sprite;
 
-        protected float _currentAgroRange;
+    public Rigidbody2D RigidBody;
 
-        [SerializeField]
-        protected float _moveSpeed;
+    [SerializeField]
+    protected float _agroRange;
 
-        protected Vector2 _moveDirection;    
+    protected float _currentAgroRange;
 
-        public SpriteRenderer Sprite;
+    [SerializeField]
+    protected float _moveSpeed;
 
-        protected Transform _target;
+    protected Vector2 _facingDirection;    
 
-        public Rigidbody2D RigidBody;
+    protected Transform _target;
 
-        protected virtual void Start()
-        {       
-            _target = null;
-            _currentAgroRange = _agroRange;
-        }
 
-        protected virtual void Update() 
-        { 
-            UpdateSprite();
-        }
+    protected virtual void Start()
+    {       
+        _target = null;
+        _currentAgroRange = _agroRange;
+    }
 
-        private void UpdateSprite()
+    protected virtual void Update() 
+    { 
+        UpdateSprite();
+    }
+
+    private void UpdateSprite()
+    {
+        if (_facingDirection.x < 0) 
         {
-            if (_moveDirection.x < 0) 
-            {
-                Sprite.flipX = true;
-            } 
-            else if (_moveDirection.x > 0) 
-            {
-                Sprite.flipX = false;
-            }
+            Sprite.flipX = true;
+        } 
+        else if (_facingDirection.x > 0) 
+        {
+            Sprite.flipX = false;
         }
     }
+
+    protected virtual IEnumerator FadeOutAndDestroy ()
+    {
+        var fadeTime = 0.2f;
+        Color initialColor = Sprite.color;
+        float t = 0f;
+        while (t < fadeTime * 0.5f)
+        {
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(initialColor, Color.black, t * 2f / fadeTime);
+            yield return null;
+        }
+        t = 0f;
+        while (t < fadeTime * 0.5f)
+        {
+            t += Time.deltaTime;
+            Sprite.color = Color.Lerp(Color.black, Color.clear, t * 2f / fadeTime);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
 }
+
 
