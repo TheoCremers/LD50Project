@@ -40,6 +40,7 @@ public class ChainLightning : MonoBehaviour
             _current++;
             
             yield return AddToChain();
+            AudioManager.PlaySFX(SFXType.Lightning);
         }
         while (!_finished)
         {

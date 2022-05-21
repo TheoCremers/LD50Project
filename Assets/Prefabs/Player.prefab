@@ -237,6 +237,7 @@ MonoBehaviour:
   AbsoluteSpawnOffset: {x: 0, y: 0.3}
   BulletLifespan: 2
   BulletColor: {r: 1, g: 1, b: 1, a: 0}
+  SFX: 2
 --- !u!114 &4124551367453661928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +255,7 @@ MonoBehaviour:
   _aoeEffectTemplate: {fileID: 9041896508620672953, guid: 4567ea755f743cb418216ef6ec6306ec, type: 3}
   Damage: 12
   LeavesAoe: 0
+  SFX: 3
 --- !u!114 &7291279967199776037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +370,8 @@ MonoBehaviour:
   BaseRegen: 1
   RegenFactor: 1
   RegenTimer: 1
+  OnDamageSFX: 1
+  OnDeathSFX: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:

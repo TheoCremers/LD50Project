@@ -1,5 +1,6 @@
 
     public enum BGMType
     {
-        PlaceholderTrack
+        PlaceholderTrack,
+        Stage1,
     }

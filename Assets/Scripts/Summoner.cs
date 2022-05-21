@@ -17,6 +17,8 @@ public class Summoner : MonoBehaviour
 
         var summoningCircle = Instantiate(SummoningCircle);
         summoningCircle.transform.position = PlayerController.Instance.transform.position;
-        summoningCircle.Familiar = Familiars[level];    
+        summoningCircle.Familiar = Familiars[level];
+        
+        AudioManager.PlaySFX(SFXType.Summoning);
     }
 }

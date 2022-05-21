@@ -5,6 +5,8 @@ public static class AudioManager
 {   
     public static void PlaySFX(SFXType sfxType)
     {
+        if (sfxType == SFXType.None) { return; }
+
         // TODO: Implement object pooling for SFX
         var sfxGameObject = new GameObject("SFX");
         var audioSource = sfxGameObject.AddComponent<AudioSource>();
@@ -14,6 +16,25 @@ public static class AudioManager
         // TODO: Implement global volume setting
         audioSource.volume = metadata.BaseVolume;
         audioSource.Play();     
+        Object.Destroy(sfxGameObject, audioSource.clip.length);
+    }
+
+    public static void PlaySFXVariation (SFXType sfxType)
+    {
+        if (sfxType == SFXType.None) { return; }
+
+        // TODO: Implement object pooling for SFX
+        var sfxGameObject = new GameObject("SFX");
+        var audioSource = sfxGameObject.AddComponent<AudioSource>();
+        var metadata = GetSFXMetadata(sfxType);
+        audioSource.clip = metadata.AudioClip;
+
+        // Add some variation
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
+
+        // TODO: Implement global volume setting
+        audioSource.volume = metadata.BaseVolume;
+        audioSource.Play();
         Object.Destroy(sfxGameObject, audioSource.clip.length);
     }
 
@@ -98,7 +119,7 @@ public static class AudioManager
         } 
         else 
         {
-            Debug.LogError("Missing SFX Metadata " + sfxType);
+            Debug.LogWarning("Missing SFX Metadata " + sfxType);
             return null;
         }
     }
@@ -112,7 +133,7 @@ public static class AudioManager
         } 
         else 
         {
-            Debug.LogError("Missing BGM Metadata " + bgmType);
+            Debug.LogWarning("Missing BGM Metadata " + bgmType);
             return null;
         }
     }

@@ -4,6 +4,6 @@ public class StageOneManager : MonoBehaviour
 {
     void Start()
     {
-        AudioManager.PlayBGM(BGMType.PlaceholderTrack);
+        AudioManager.PlayBGM(BGMType.Stage1);
     }
 }

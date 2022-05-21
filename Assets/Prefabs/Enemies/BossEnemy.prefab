@@ -54,10 +54,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010ba709b5bbea74290444d738e49a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agroRange: 99
-  _moveSpeed: 1
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
+  _agroRange: 99
+  _moveSpeed: 1
   ExpWorth: 10000
   _wanderSpeed: 3
   _meleeRange: 2
@@ -120,6 +120,7 @@ MonoBehaviour:
   _aoeEffectTemplate: {fileID: 0}
   Damage: 20
   LeavesAoe: 0
+  SFX: 13
 --- !u!114 &-6197618260245336419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,9 +141,10 @@ MonoBehaviour:
   PiercingAmount: 0
   Homing: 0
   ChainLightning: 0
-  AbsoluteSpawnOffset: {x: 0, y: 0, z: 0}
+  AbsoluteSpawnOffset: {x: 0, y: 0}
   BulletLifespan: 4
   BulletColor: {r: 0, g: 0, b: 0, a: 0}
+  SFX: 0
 --- !u!1 &1324841201812642105
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +530,8 @@ MonoBehaviour:
   BaseRegen: 0
   RegenFactor: 1
   RegenTimer: 1
+  OnDamageSFX: 11
+  OnDeathSFX: 14
   OnDeath:
     m_PersistentCalls:
       m_Calls:
