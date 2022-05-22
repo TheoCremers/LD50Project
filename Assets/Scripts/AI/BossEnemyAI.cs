@@ -253,6 +253,7 @@ public class BossEnemyAI : BaseEnemyAI
     private void EnterPhase5Behavior()
     {
         _rangedAttack.ProjectileSpeed = 11f;
+        _rangedAttack.SFX = SFXType.None;
     }
 
 
@@ -275,6 +276,8 @@ public class BossEnemyAI : BaseEnemyAI
 
         _sprayOfset += 2.5f;
         _rangedAttackCooldownRemaining = 0.3f;
+
+        AudioManager.PlaySFXVariation(SFXType.BossRangedAttack1, gameObject);
     }
 
     protected override void UpdateTimers ()

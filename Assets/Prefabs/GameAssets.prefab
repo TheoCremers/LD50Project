@@ -45,10 +45,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXMetadata:
-  - AudioClip: {fileID: 8300000, guid: 35b8356919d2ecb49aa2402d0cc29709, type: 3}
+  - AudioClip: {fileID: 8300000, guid: 0db1058c584f0394c94bf04f06650bb7, type: 3}
     BaseVolume: 1
-    SfxType: 0
+    SfxType: 1
+  - AudioClip: {fileID: 8300000, guid: ab2ffbd7c24d7964e9b54e59276d07c3, type: 3}
+    BaseVolume: 0.4
+    SfxType: 2
+  - AudioClip: {fileID: 8300000, guid: f0bf82edb6038094babcdb34f4fc11f7, type: 3}
+    BaseVolume: 0.2
+    SfxType: 3
+  - AudioClip: {fileID: 8300000, guid: b3bb5e7730ea36d4b9a973e6efbab7a0, type: 3}
+    BaseVolume: 0.3
+    SfxType: 8
+  - AudioClip: {fileID: 8300000, guid: b3bb5e7730ea36d4b9a973e6efbab7a0, type: 3}
+    BaseVolume: 0.3
+    SfxType: 4
+  - AudioClip: {fileID: 8300000, guid: 5d882b12c997b944f87f13eb368de5e5, type: 3}
+    BaseVolume: 0.3
+    SfxType: 5
+  - AudioClip: {fileID: 8300000, guid: c0dd9c5bcb6beb4408f9f0ad61622519, type: 3}
+    BaseVolume: 0.3
+    SfxType: 11
+  - AudioClip: {fileID: 8300000, guid: 5d882b12c997b944f87f13eb368de5e5, type: 3}
+    BaseVolume: 0.5
+    SfxType: 12
+  - AudioClip: {fileID: 8300000, guid: 271c0e5da5c6e4a4795c88f8c31f9f65, type: 3}
+    BaseVolume: 0.5
+    SfxType: 13
+  - AudioClip: {fileID: 8300000, guid: 6a6bffa25c9fb534c8f6b9c758f4a9f0, type: 3}
+    BaseVolume: 1
+    SfxType: 14
+  - AudioClip: {fileID: 8300000, guid: 271c0e5da5c6e4a4795c88f8c31f9f65, type: 3}
+    BaseVolume: 0.3
+    SfxType: 6
+  - AudioClip: {fileID: 8300000, guid: 271c0e5da5c6e4a4795c88f8c31f9f65, type: 3}
+    BaseVolume: 0.3
+    SfxType: 9
+  - AudioClip: {fileID: 8300000, guid: d9d1f75fb1fc5ea49827bb4d9949f022, type: 3}
+    BaseVolume: 0.3
+    SfxType: 10
+  - AudioClip: {fileID: 8300000, guid: d9d1f75fb1fc5ea49827bb4d9949f022, type: 3}
+    BaseVolume: 0.3
+    SfxType: 7
+  - AudioClip: {fileID: 8300000, guid: 0fff43354a7e736499afefd2d25f3b96, type: 3}
+    BaseVolume: 0.4
+    SfxType: 15
+  - AudioClip: {fileID: 8300000, guid: 2f32a83468ebf51438936938a6a0ccff, type: 3}
+    BaseVolume: 0.2
+    SfxType: 17
+  - AudioClip: {fileID: 8300000, guid: c41d11f67a4e2864b92965bc10be4c5c, type: 3}
+    BaseVolume: 0.15
+    SfxType: 18
+  - AudioClip: {fileID: 8300000, guid: ef922a656a5e025439986b646b7fee16, type: 3}
+    BaseVolume: 0.05
+    SfxType: 16
   BGMMetadata:
   - AudioClip: {fileID: 8300000, guid: ea32e5f6028e43947ababf81df006959, type: 3}
-    BaseVolume: 0.05
+    BaseVolume: 0.5
     BGMType: 0
+  - AudioClip: {fileID: 8300000, guid: b77e11964a5ac6c49914988f6ab4ff82, type: 3}
+    BaseVolume: 0.5
+    BGMType: 1

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5523220971173264959}
   - component: {fileID: 6657988236638762593}
   - component: {fileID: 4202100901341521765}
-  - component: {fileID: 4459820402894597583}
   m_Layer: 0
   m_Name: FollowCamera
   m_TagString: MainCamera
@@ -153,14 +152,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!81 &4459820402894597583
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5523220971173264944}
-  m_Enabled: 1
 --- !u!1001 &741096872167337626
 PrefabInstance:
   m_ObjectHideFlags: 0

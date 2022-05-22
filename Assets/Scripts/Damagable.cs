@@ -13,6 +13,9 @@ public class Damagable : MonoBehaviour
     public float RegenFactor = 1.5f;
     public float RegenTimer = 1f;
 
+    public SFXType OnDamageSFX = SFXType.None;
+    public SFXType OnDeathSFX = SFXType.None;
+
     public float Health 
     {
         get { return _health; }
@@ -59,10 +62,12 @@ public class Damagable : MonoBehaviour
         if (Health <= 0) 
         {
             OnDeath?.Invoke();
+            AudioManager.PlaySFX(OnDeathSFX);
         } 
         else 
         {
             OnHit?.Invoke();
+            AudioManager.PlaySFXVariation(OnDamageSFX, gameObject);
         }
     }
 

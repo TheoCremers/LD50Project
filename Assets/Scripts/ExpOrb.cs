@@ -38,6 +38,7 @@ public class ExpOrb : MonoBehaviour
             if (relativeToPlayer.sqrMagnitude < 0.25f)
             {
                 PlayerController.Instance.LevelingSystem.ChangeExperience(ExpValue);
+                AudioManager.PlaySFXVariation(SFXType.ExpGet);
                 Destroy(gameObject);
             }
             else

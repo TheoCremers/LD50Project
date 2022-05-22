@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 7291279967199776037}
   - component: {fileID: 6086636119730936088}
   - component: {fileID: 8636970702003687100}
+  - component: {fileID: 2927021872424792575}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -237,6 +238,7 @@ MonoBehaviour:
   AbsoluteSpawnOffset: {x: 0, y: 0.3}
   BulletLifespan: 2
   BulletColor: {r: 1, g: 1, b: 1, a: 0}
+  SFX: 2
 --- !u!114 &4124551367453661928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +256,7 @@ MonoBehaviour:
   _aoeEffectTemplate: {fileID: 9041896508620672953, guid: 4567ea755f743cb418216ef6ec6306ec, type: 3}
   Damage: 12
   LeavesAoe: 0
+  SFX: 3
 --- !u!114 &7291279967199776037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +304,14 @@ MonoBehaviour:
   - {fileID: 5324056213313172754, guid: dbc884bb73b76c34b88c09e891a3f2dd, type: 3}
   - {fileID: 5905093987814352997, guid: e7a96a58f0a6bdf469c0d7a5d1918c88, type: 3}
   SummoningCircle: {fileID: 4057968531791591518, guid: 0f72d064182aad44e8ca3b21d5641b47, type: 3}
+--- !u!81 &2927021872424792575
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378395780697002140}
+  m_Enabled: 1
 --- !u!1 &1096860668947119840
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +379,8 @@ MonoBehaviour:
   BaseRegen: 1
   RegenFactor: 1
   RegenTimer: 1
+  OnDamageSFX: 1
+  OnDeathSFX: 0
   OnDeath:
     m_PersistentCalls:
       m_Calls:

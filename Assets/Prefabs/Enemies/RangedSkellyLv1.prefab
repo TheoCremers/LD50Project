@@ -67,6 +67,8 @@ MonoBehaviour:
   BaseRegen: 0
   RegenFactor: 1
   RegenTimer: 1
+  OnDamageSFX: 4
+  OnDeathSFX: 7
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -215,10 +217,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a465bd09cdbf99e4990b2bac42ba789b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agroRange: 6
-  _moveSpeed: 3
   Sprite: {fileID: 1947057478453327891}
   RigidBody: {fileID: 5302699178439564129}
+  _agroRange: 6
+  _moveSpeed: 3
   ExpWorth: 148
   _wanderSpeed: 2
   _deadzone: 3
@@ -281,9 +283,10 @@ MonoBehaviour:
   PiercingAmount: 0
   Homing: 0
   ChainLightning: 0
-  AbsoluteSpawnOffset: {x: 0, y: 0, z: 0}
+  AbsoluteSpawnOffset: {x: 0, y: 0}
   BulletLifespan: 4
   BulletColor: {r: 0, g: 0, b: 0, a: 0}
+  SFX: 5
 --- !u!1 &2193244941305343136
 GameObject:
   m_ObjectHideFlags: 0

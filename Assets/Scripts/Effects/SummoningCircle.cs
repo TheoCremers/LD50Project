@@ -11,7 +11,7 @@ public class SummoningCircle : MonoBehaviour
 
     void Start()
     {
-        
+        AudioManager.PlaySFX(SFXType.Summoning, gameObject);
     }
 
     // Update is called once per frame

@@ -13,6 +13,8 @@ public class MeleeAttack : MonoBehaviour
     public int Damage = 5;
     public bool LeavesAoe = false;
 
+    public SFXType SFX = SFXType.None;
+
     private void Start ()
     {
         if (_swingTransform == null)
@@ -37,6 +39,8 @@ public class MeleeAttack : MonoBehaviour
         {
             SpawnAoeEffect(_swingTransform.position);
         }
+
+        AudioManager.PlaySFXVariation(SFX, gameObject);
     }
 
     private void OnDestroy ()

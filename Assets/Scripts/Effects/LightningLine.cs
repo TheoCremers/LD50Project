@@ -26,6 +26,11 @@ public class LightningLine : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
     }
 
+    private void Start ()
+    {
+        AudioManager.PlaySFX(SFXType.Lightning, gameObject);
+    }
+
     private void Update ()
     {
         // Animation

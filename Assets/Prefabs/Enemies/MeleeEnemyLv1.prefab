@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1699233393844594868}
   - {fileID: 1572907973654098128}
@@ -52,10 +53,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 664e1b13763456c44b3cd2a5a7f3f5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agroRange: 4
-  _moveSpeed: 2
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
+  _agroRange: 4
+  _moveSpeed: 2
   ExpWorth: 22
   _wanderSpeed: 1
   _meleeRange: 1.5
@@ -114,6 +115,7 @@ MonoBehaviour:
   _aoeEffectTemplate: {fileID: 0}
   Damage: 12
   LeavesAoe: 0
+  SFX: 9
 --- !u!1 &4829709339234389034
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,6 +143,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0134, y: -0.1377, z: 0}
   m_LocalScale: {x: 0.9804923, y: 0.30520013, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 763289381788512823}
   m_RootOrder: 4
@@ -156,6 +159,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -224,6 +228,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 763289381788512823}
   m_RootOrder: 2
@@ -239,6 +244,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -281,7 +287,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &597365371275755367
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -294,6 +300,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -326,6 +333,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.465, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 763289381788512823}
   m_RootOrder: 1
@@ -364,6 +372,8 @@ MonoBehaviour:
   BaseRegen: 0
   RegenFactor: 1
   RegenTimer: 1
+  OnDamageSFX: 8
+  OnDeathSFX: 10
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -487,6 +497,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2866211265691963806}
   m_Father: {fileID: 763289381788512823}
@@ -627,11 +638,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9eb014a60a29e43b25fa2faba12ce1, type: 3}
---- !u!224 &2866211265691963806 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4210583272903237670, guid: ce9eb014a60a29e43b25fa2faba12ce1, type: 3}
-  m_PrefabInstance: {fileID: 2137007330491085240}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2554612771703114574 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4529462475914607350, guid: ce9eb014a60a29e43b25fa2faba12ce1, type: 3}
@@ -643,6 +649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &2866211265691963806 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4210583272903237670, guid: ce9eb014a60a29e43b25fa2faba12ce1, type: 3}
+  m_PrefabInstance: {fileID: 2137007330491085240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2584648450058136203
 PrefabInstance:
   m_ObjectHideFlags: 0

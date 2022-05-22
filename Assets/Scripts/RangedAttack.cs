@@ -19,6 +19,8 @@ public class RangedAttack : MonoBehaviour
     public float BulletLifespan = 4f;
     public Color BulletColor;
 
+    public SFXType SFX = SFXType.None;
+
     public void Start()
     {   
         BulletColor = _projectile.Sprite.color;
@@ -43,5 +45,7 @@ public class RangedAttack : MonoBehaviour
         newProjectile.Sprite.color = BulletColor;
         newProjectile.transform.position = transform.position + (Vector3)(AbsoluteSpawnOffset + direction * _directionalSpawnOffset);
         newProjectile.SetDirection(direction);
+
+        AudioManager.PlaySFXVariation(SFX, gameObject);
     }
 }

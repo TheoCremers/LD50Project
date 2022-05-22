@@ -153,6 +153,8 @@ public class PlayerLeveling : MonoBehaviour
         }
 
         UpgradesBought++;
+
+        AudioManager.PlaySFXVariation(SFXType.UpgradeBought);
     }
 
     public void ApplyUpgrade (int tileIndex)
