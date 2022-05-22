@@ -67,7 +67,7 @@ public class Damagable : MonoBehaviour
         else 
         {
             OnHit?.Invoke();
-            AudioManager.PlaySFXVariation(OnDamageSFX);
+            AudioManager.PlaySFXVariation(OnDamageSFX, gameObject);
         }
     }
 

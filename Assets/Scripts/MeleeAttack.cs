@@ -40,7 +40,7 @@ public class MeleeAttack : MonoBehaviour
             SpawnAoeEffect(_swingTransform.position);
         }
 
-        AudioManager.PlaySFXVariation(SFX);
+        AudioManager.PlaySFXVariation(SFX, gameObject);
     }
 
     private void OnDestroy ()

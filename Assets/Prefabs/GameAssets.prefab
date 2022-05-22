@@ -67,10 +67,10 @@ MonoBehaviour:
     BaseVolume: 0.3
     SfxType: 11
   - AudioClip: {fileID: 8300000, guid: 5d882b12c997b944f87f13eb368de5e5, type: 3}
-    BaseVolume: 0.3
+    BaseVolume: 0.5
     SfxType: 12
   - AudioClip: {fileID: 8300000, guid: 271c0e5da5c6e4a4795c88f8c31f9f65, type: 3}
-    BaseVolume: 0.3
+    BaseVolume: 0.5
     SfxType: 13
   - AudioClip: {fileID: 8300000, guid: 6a6bffa25c9fb534c8f6b9c758f4a9f0, type: 3}
     BaseVolume: 1
@@ -91,10 +91,10 @@ MonoBehaviour:
     BaseVolume: 0.4
     SfxType: 15
   - AudioClip: {fileID: 8300000, guid: 2f32a83468ebf51438936938a6a0ccff, type: 3}
-    BaseVolume: 0.1
+    BaseVolume: 0.2
     SfxType: 17
   - AudioClip: {fileID: 8300000, guid: c41d11f67a4e2864b92965bc10be4c5c, type: 3}
-    BaseVolume: 0.2
+    BaseVolume: 0.15
     SfxType: 18
   - AudioClip: {fileID: 8300000, guid: ef922a656a5e025439986b646b7fee16, type: 3}
     BaseVolume: 0.05

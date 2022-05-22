@@ -46,6 +46,6 @@ public class RangedAttack : MonoBehaviour
         newProjectile.transform.position = transform.position + (Vector3)(AbsoluteSpawnOffset + direction * _directionalSpawnOffset);
         newProjectile.SetDirection(direction);
 
-        AudioManager.PlaySFXVariation(SFX);
+        AudioManager.PlaySFXVariation(SFX, gameObject);
     }
 }

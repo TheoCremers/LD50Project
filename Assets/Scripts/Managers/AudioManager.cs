@@ -19,6 +19,24 @@ public static class AudioManager
         Object.Destroy(sfxGameObject, audioSource.clip.length);
     }
 
+    public static void PlaySFX (SFXType sfxType, GameObject target)
+    {
+        if (sfxType == SFXType.None) { return; }
+
+        // TODO: Implement object pooling for SFX
+        var audioSource = target.AddComponent<AudioSource>();
+        var metadata = GetSFXMetadata(sfxType);
+        audioSource.clip = metadata.AudioClip;
+
+        // TODO: Implement global volume setting
+        audioSource.volume = metadata.BaseVolume;
+        audioSource.spatialBlend = 1f;
+        audioSource.maxDistance = 30f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.Play();
+        Object.Destroy(audioSource, audioSource.clip.length);
+    }
+
     public static void PlaySFXVariation (SFXType sfxType)
     {
         if (sfxType == SFXType.None) { return; }
@@ -29,13 +47,40 @@ public static class AudioManager
         var metadata = GetSFXMetadata(sfxType);
         audioSource.clip = metadata.AudioClip;
 
-        // Add some variation
+        // TODO: Implement global volume setting
+        audioSource.volume = metadata.BaseVolume;
         audioSource.pitch = Random.Range(0.8f, 1.2f);
+        audioSource.Play();
+        Object.Destroy(sfxGameObject, audioSource.clip.length);
+    }
+
+    public static void PlaySFXVariation (SFXType sfxType, GameObject target)
+    {
+        if (sfxType == SFXType.None) { return; }
+
+        // TODO: Implement object pooling for SFX
+        var audioSource = target.AddComponent<AudioSource>();
+        var metadata = GetSFXMetadata(sfxType);
+        audioSource.clip = metadata.AudioClip;
 
         // TODO: Implement global volume setting
         audioSource.volume = metadata.BaseVolume;
+        audioSource.spatialBlend = 1f;
+        audioSource.maxDistance = 30f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         audioSource.Play();
-        Object.Destroy(sfxGameObject, audioSource.clip.length);
+        Object.Destroy(audioSource, audioSource.clip.length);
+    }
+
+    public static AudioSource AddAudioSource(SFXType sfxType, GameObject target)
+    {
+        var audioSource = target.AddComponent<AudioSource>();
+        var metadata = GetSFXMetadata(sfxType);
+        audioSource.clip = metadata.AudioClip;
+        audioSource.volume = metadata.BaseVolume;
+        audioSource.spatialBlend = 1f;
+        return audioSource;
     }
 
     public static void PlayBGM(BGMType bgmType)

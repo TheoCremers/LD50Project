@@ -40,7 +40,6 @@ public class ChainLightning : MonoBehaviour
             _current++;
             
             yield return AddToChain();
-            AudioManager.PlaySFX(SFXType.Lightning);
         }
         while (!_finished)
         {
@@ -54,6 +53,7 @@ public class ChainLightning : MonoBehaviour
     {
         LightningLine newLine = Instantiate(_lightningLineTemplate, transform);
         _lines.Add(newLine);
+        newLine.transform.position = _currentPosition;
         newLine.Origin = _targets[_current - 1];
         newLine.LastOriginPosition = _currentPosition;
         newLine.Target = _targets[_current];
