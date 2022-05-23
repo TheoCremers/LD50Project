@@ -138,6 +138,8 @@ public class BossEnemyAI : BaseEnemyAI
         {
             if (_meleeAttackCooldownRemaining <= 0f) 
             {
+                var relativeVector = _target.position - transform.position;
+                _facingDirection = relativeVector.normalized;
                 RigidBody.velocity = Vector2.zero;
                 _meleeAttack.Fire(_facingDirection);
                 _meleeAttackCooldownRemaining = _baseAttackCooldown / _distanceDifficultyModifier;
