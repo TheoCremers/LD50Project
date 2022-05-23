@@ -79,6 +79,7 @@ public class RangedEnemyAI : BaseEnemyAI
         // Actions
         else 
         {
+            BodyAnimator.SetBool("moving", true);
             var relativeVector = _target.position - transform.position;
             _facingDirection = relativeVector.normalized;
             RigidBody.velocity = _facingDirection * _moveSpeed;
@@ -101,6 +102,7 @@ public class RangedEnemyAI : BaseEnemyAI
         {
             if (_attackCooldownRemaining <= 0f) 
             {
+                BodyAnimator.SetBool("moving", false);
                 RigidBody.velocity = Vector2.zero;
                 var relativeVector = _target.position - transform.position;
                 _facingDirection = relativeVector.normalized;
@@ -124,6 +126,7 @@ public class RangedEnemyAI : BaseEnemyAI
         // Actions
         else 
         {
+            BodyAnimator.SetBool("moving", true);
             var relativeVector = _target.position - transform.position;
             _facingDirection = relativeVector.normalized;
             RigidBody.velocity = -(_facingDirection * _moveSpeed);
