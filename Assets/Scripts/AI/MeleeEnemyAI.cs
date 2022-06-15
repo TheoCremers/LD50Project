@@ -15,10 +15,19 @@ public class MeleeEnemyAI : BaseEnemyAI
     [SerializeField] 
     private float _baseAttackCooldown = 1f;
 
+    // for attack detection
+    [SerializeField]
+    private CapsuleCollider2D _hitBoxCollider;
+    private Vector2 _meleeCapsuleSize;
+
     protected override void Start()
     {
         base.Start();
         _meleeAttack = GetComponent<MeleeAttack>();
+
+        _meleeCapsuleSize = _hitBoxCollider.size;
+        _meleeCapsuleSize.x += _meleeRange;
+        _meleeCapsuleSize.y += _meleeRange;
     }
 
     protected override void Update()
@@ -64,11 +73,15 @@ public class MeleeEnemyAI : BaseEnemyAI
 
     private void ChaseBehavior()
     {
+        // Any targets within melee range?
+        Collider2D targetCollider = Physics2D.OverlapCapsule(transform.position, _meleeCapsuleSize, _hitBoxCollider.direction, 0f, Masks.PlayerHitBox);
+
         // Transitions
-        if (_distanceToTarget < _meleeRange)
+        if (targetCollider != null)
         {
             _agroState = EnemyAgroState.Attack;
-        } 
+            _target = targetCollider.transform;
+        }
         // Actions
         else 
         {
@@ -81,8 +94,11 @@ public class MeleeEnemyAI : BaseEnemyAI
 
     private void AttackBehavior()
     {
+        // Any targets within melee range?
+        Collider2D targetCollider = Physics2D.OverlapCapsule(transform.position, _meleeCapsuleSize, _hitBoxCollider.direction, 0f, Masks.PlayerHitBox);
+
         // Transitions
-        if (_distanceToTarget >= _meleeRange)
+        if (targetCollider == null)
         {
             _agroState = EnemyAgroState.Chase;
         } 
@@ -92,6 +108,7 @@ public class MeleeEnemyAI : BaseEnemyAI
             BodyAnimator.SetBool("moving", false);
             if (_attackCooldownRemaining <= 0f) 
             {
+                _target = targetCollider.transform;
                 var relativeVector = _target.position - transform.position;
                 _facingDirection = relativeVector.normalized;
                 RigidBody.velocity = Vector2.zero;

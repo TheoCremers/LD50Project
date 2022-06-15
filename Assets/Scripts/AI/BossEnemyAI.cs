@@ -36,6 +36,10 @@ public class BossEnemyAI : BaseEnemyAI
 
     private BossPhaseState _phaseState = BossPhaseState.Phase1;
 
+    // for attack detection
+    [SerializeField]
+    private CapsuleCollider2D _hitBoxCollider;
+    private Vector2 _meleeCapsuleSize;
 
     protected void Awake()
     {
@@ -47,6 +51,10 @@ public class BossEnemyAI : BaseEnemyAI
         base.Start();
         _rangedAttack = GetComponent<RangedAttack>();
         _meleeAttack = GetComponent<MeleeAttack>();
+
+        _meleeCapsuleSize = _hitBoxCollider.size;
+        _meleeCapsuleSize.x += _meleeRange;
+        _meleeCapsuleSize.y += _meleeRange;
     }
 
     protected override void UpdateTargets()
@@ -112,10 +120,14 @@ public class BossEnemyAI : BaseEnemyAI
 
     private void ChaseBehavior()
     {
+        // Any targets within melee range?
+        Collider2D targetCollider = Physics2D.OverlapCapsule(transform.position, _meleeCapsuleSize, _hitBoxCollider.direction, 0f, Masks.PlayerHitBox);
+
         // Transitions
-        if (_distanceToTarget <= _meleeRange)
-        {   
+        if (targetCollider != null)
+        {
             _agroState = EnemyAgroState.Attack;
+            _target = targetCollider.transform;
         }
         // Actions
         else
@@ -128,8 +140,11 @@ public class BossEnemyAI : BaseEnemyAI
 
     private void AttackBehavior()
     {
+        // Any targets within melee range?
+        Collider2D targetCollider = Physics2D.OverlapCapsule(transform.position, _meleeCapsuleSize, _hitBoxCollider.direction, 0f, Masks.PlayerHitBox);
+
         // Transitions
-        if (_distanceToTarget > _meleeRange) 
+        if (targetCollider == null)
         {
             _agroState = EnemyAgroState.Chase;
         }
@@ -138,6 +153,7 @@ public class BossEnemyAI : BaseEnemyAI
         {
             if (_meleeAttackCooldownRemaining <= 0f) 
             {
+                _target = targetCollider.transform;
                 var relativeVector = _target.position - transform.position;
                 _facingDirection = relativeVector.normalized;
                 RigidBody.velocity = Vector2.zero;

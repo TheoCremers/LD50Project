@@ -61,6 +61,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _meleeRange: 1
   _baseAttackCooldown: 1
+  _hitBoxCollider: {fileID: 6944834160650550234}
 --- !u!114 &6097530358922775405
 MonoBehaviour:
   m_ObjectHideFlags: 0
