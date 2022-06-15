@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 1232730551374866238}
   RigidBody: {fileID: 5483993250682471302}
+  BodyAnimator: {fileID: 597365371275755367}
   _agroRange: 4
   _moveSpeed: 2
   ExpWorth: 22

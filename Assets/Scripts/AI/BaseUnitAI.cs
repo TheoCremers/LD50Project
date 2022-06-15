@@ -7,6 +7,8 @@ public abstract class BaseUnitAI : MonoBehaviour
 
     public Rigidbody2D RigidBody;
 
+    public Animator BodyAnimator;
+
     [SerializeField]
     protected float _agroRange;
 

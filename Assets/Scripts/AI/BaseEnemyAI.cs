@@ -90,6 +90,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
         // Actions
         else
         {
+            BodyAnimator.SetBool("moving", false);
             RigidBody.velocity = Vector3.zero;
         } 
     }
@@ -114,6 +115,7 @@ public abstract class BaseEnemyAI : BaseUnitAI
         // Actions
         else
         {
+            BodyAnimator.SetBool("moving", true);
             RigidBody.velocity = _facingDirection * _wanderSpeed;            
         }
     }
