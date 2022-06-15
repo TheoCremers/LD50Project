@@ -634,6 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sprite: {fileID: 7647546800157164497}
   RigidBody: {fileID: 1693259839590717910}
+  BodyAnimator: {fileID: 2516076587188676270}
   _agroRange: 7
   _moveSpeed: 5
   _meleeRange: 1

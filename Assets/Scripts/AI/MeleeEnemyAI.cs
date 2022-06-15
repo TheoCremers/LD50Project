@@ -72,6 +72,7 @@ public class MeleeEnemyAI : BaseEnemyAI
         // Actions
         else 
         {
+            BodyAnimator.SetBool("moving", true);
             var relativeVector = _target.position - transform.position;
             _facingDirection = relativeVector.normalized;
             RigidBody.velocity = _facingDirection * _moveSpeed;
@@ -88,6 +89,7 @@ public class MeleeEnemyAI : BaseEnemyAI
         // Actions
         else
         {
+            BodyAnimator.SetBool("moving", false);
             if (_attackCooldownRemaining <= 0f) 
             {
                 var relativeVector = _target.position - transform.position;
